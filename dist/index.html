@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>ToDo</title>
+    <meta name="description" content="To Do List">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel=icon href=images/ed2.png>
+</head>
+
+<body>
+    <div class="main-title-container">
+        To Do List
+    </div>
+        <div class="list-container"></div>
+        <div class="element-modal-container hidden" id="id-modal">
+            <div class="element-modal">
+                <div class="close-container" onclick="toggleModalVisibility()">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="title-container">
+                    <input type="text" id="modal-title" placeholder="Enter a title…">
+                    <input type="hidden" id="modal-list">
+                    <input type="hidden" id="modal-element">
+                    <input type="hidden" id="modal-status">
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        Description
+                    </div>
+                    <textarea type="text" id="modal-description" placeholder="Add a more detailed description…"></textarea>
+                </div>
+                <div class="button-container">
+                    <input class="button button-create" type="button" value="Create" onclick="createNewElement()">
+                    <input class="button button-save" type="button" value="Save" onclick="updateElement()">
+                    <input class="button button-cancel" type="button" value="Cancel" onclick="toggleModalVisibility()">
+                </div>
+            </div>
+        </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/autosize.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

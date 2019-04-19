@@ -1,0 +1,362 @@
+var todoListExample = [
+    {
+        "list_id": 0,
+        "list_name": "Default List",
+        "openElements": [
+            {
+                "title": "This is an item that is yet to be completed",
+                "description": "This is the description for the item that is yet to be completed",
+                "classification": "",
+                "user": "",
+                "due": "",
+                "created": "",
+                "checklist": [
+                    {
+                        "name": "checklist Item 1",
+                        "status": "unchecked"
+                    }
+                ]
+            }
+        ],
+        "closedElements": [{
+            "title": "This is an item that has been completed",
+            "description": "This is the description for the item that has been completed",
+            "classification": "",
+            "user": "",
+            "due": "",
+            "created": "",
+            "checklist": [
+                {
+                    "name": "checklist Item 1",
+                    "status": "unchecked"
+                }
+            ]
+        }],
+        "deletedElements": []
+    }
+];
+
+var todo = JSON.parse(localStorage.getItem('todo'));
+
+function firstTimeLoadLocalStorage() {
+    if (localStorage.getItem("todo") == null) {
+        localStorage.setItem('todo', JSON.stringify(todoListExample));
+        todo = JSON.parse(localStorage.getItem('todo'));
+    }
+}
+
+function createListsAndElements() {
+    updateStoredTodoList();
+    $(".list-container").empty();
+    $.each(todo, function(i, field) {
+        //create the list
+        var output = "<div class=\"list\"><div class=\"list-header\"><div class=\"list-title\">"
+        + field.list_name
+        + "</div><div class=\"list-button\"><i class=\"fas fa-ellipsis-h\"></i></div></div><div class=\"list-body\" id=\"list-"
+        + field.list_id + "\"></div><div class=\"list-footer\" onclick=\"prepareModalCreate("
+        +  field.list_id
+        + ")\"><i class=\"fas fa-plus\"></i> Add another item</div></div>";
+        $(".list-container").append(output);
+        // access the elements of the list
+        //prepareModal(listId, element, status, title, description, mode)
+        var outputOpen = "";
+        var outputClosed = "";
+        $.each(field.openElements, function(i2, field2) {
+            outputOpen += "<div class='list-element status-open'><div class='position'><div class='position-up position-element' onclick='increaseElementPosition("
+            + field.list_id
+            + ", "
+            + i2
+            + ")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element'onclick='decreaseElementPosition("
+            + field.list_id
+            + ", "
+            + i2
+            + ")'><i class='fas fa-caret-down'></i></div></div><div class='title' onclick='prepareModalUpdate("
+            +  field.list_id
+            + ", "
+            + i2
+            + ", \"open\""
+            + ")'>"
+            + field2.title
+            + "</div><div class='status' onclick='elementStatusToClosed("
+            + field.list_id
+            + ", "
+            + i2
+            + ")'><i class='fas fa-check'></i></div></div>";
+        });
+        $("#list-" + field.list_id).append(outputOpen);
+        $.each(field.closedElements, function(i2, field2) {
+
+            outputClosed += "<div class='list-element status-closed'><div class='position'><div class='position-element promote' onclick='elementStatusToOpen("
+            + field.list_id
+            + ", "
+            + i2
+            + ")'><i class='fas fa-long-arrow-alt-up'></i></div></div><div class='title title-closed' onclick='prepareModalUpdate("
+            +  field.list_id
+            + ", "
+            + i2
+            + ", \"closed\""
+            + ")'>"
+            + field2.title
+            + "</div><div class='status' onclick='elementStatusToDeleted("
+            + field.list_id
+            + ", "
+            + i2
+            + ")'><i class='fas fa-trash'></i></div></div>";
+        });
+        $("#list-" + field.list_id).append(outputClosed);
+    });
+    $(".list-container").append("<div class=\"add-list\" onclick=\"createNewList()\"><i class=\"fas fa-plus\"></i> Add another item</div>");
+}
+
+function reorderList(listId, element, direction) {
+    $.each(todo, function(i, field) {
+        // if the searched for list matches one in the todo list
+        if(field.list_id == listId) {
+            //var localElements = field.elements;
+            if(direction == "up" && element != 0 && field.openElements.length > 1) {
+                var selectedElementUp = field.openElements[element];
+                var swapElementUp = field.openElements[element - 1];
+
+                field.openElements[element] = swapElementUp;
+                field.openElements[element - 1] = selectedElementUp;
+            }
+            if(direction == "down" && element != (field.openElements.length - 1) && field.openElements.length > 1) {
+                var selectedElementDown = field.openElements[element];
+                var swapElementDown = field.openElements[element + 1];
+
+                field.openElements[element] = swapElementDown;
+                field.openElements[element + 1] = selectedElementDown;
+            }
+        }
+    });
+    createListsAndElements();
+}
+
+function increaseElementPosition(listId, element){
+    reorderList(listId, element, "up");
+}
+function decreaseElementPosition(listId, element){
+    reorderList(listId, element, "down");
+}
+
+function createNewList() {
+    if(todo.length < 5) {
+        var localListId = 0;
+        $.each(todo, function(i, field) {
+            if(field.list_id > localListId){
+                localListId = field.list_id + 1;
+            }
+        });
+        todo.push({
+            "list_id": localListId,
+            "list_name": "Your New List",
+            "elements": []
+        });
+        createListsAndElements();
+    }
+}
+
+function updateStoredTodoList() {
+    localStorage.setItem('todo', JSON.stringify(todo));
+}
+
+function changeElementStatus(listId, element, toStatus) {
+    var storedListOpen = findElementList(listId, "open");
+    var storedListClosed = findElementList(listId, "closed");
+    var storedListDeleted = findElementList(listId, "deleted");
+    var storedElement = null;
+    if(toStatus == "open"){
+        storedElement = findElement(listId, element, "closed");
+        if(storedElement != null) {
+            storedListClosed.splice(element,1);
+            storedListOpen.push(storedElement);
+        } else {
+            console.log("null");
+        }
+    }
+    if(toStatus == "closed"){
+        storedElement = findElement(listId, element, "open");
+        storedListOpen.splice(element,1);
+        storedListClosed.push(storedElement);
+    }
+    if(toStatus == "deleted"){
+        storedElement = findElement(listId, element, "closed");
+        storedListClosed.splice(element,1);
+        storedListDeleted.push(storedElement);
+    }
+    createListsAndElements();
+}
+
+function elementStatusToDeleted(listId, element) {
+    changeElementStatus(listId, element, "deleted");
+}
+
+function elementStatusToClosed(listId, element) {
+    changeElementStatus(listId, element, "closed");
+}
+
+function elementStatusToOpen(listId, element) {
+    changeElementStatus(listId, element, "open");
+}
+
+//toggles the modal visibility
+function toggleModalVisibility() {
+    if($("#id-modal").hasClass("hidden")) {
+        $("#id-modal").addClass("flex");
+        $("#id-modal").removeClass("hidden");
+    } else {
+        $("#id-modal").removeClass("flex");
+        $("#id-modal").addClass("hidden");
+    }
+    // if($(".element-modal-container").is(":visible")){
+    //     $(".element-modal-container").hide();
+    // } else {
+    //     $(".element-modal-container").show();
+    // }
+}
+
+//opens the modal in the update configuration
+function prepareModalUpdate(listId, element, status, title, description) {
+    var localElement = findElement(listId, element, status);
+    $("#modal-title").val(localElement.title);
+    $("#modal-list").val(listId);
+    $("#modal-element").val(element);
+    $("#modal-status").val(status);
+    if(localElement.description != ""){
+        $("#modal-description").val(localElement.description);
+    }
+    $(".button-create").hide();
+    $(".button-save").show();
+    toggleModalVisibility();
+}
+
+//opens the modal in the create configuration
+function prepareModalCreate (listId) {
+    $("#modal-title").val("");
+    $("#modal-description").val("");
+    $(".button-create").show();
+    $(".button-save").hide();
+    $("#modal-list").val(listId);
+    toggleModalVisibility();
+}
+
+//button controls
+// update button
+function updateElement() {
+
+    // localElement.title = title;
+    // localElement.description = description;
+
+    var listId = $("#modal-list").val();
+    var element = $("#modal-element").val();
+    var status = $("#modal-status").val();
+    var localElement = findElement(listId, element, status);
+    localElement.title = $("#modal-title").val();
+    localElement.description = $("#modal-description").val();
+    toggleModalVisibility();
+    createListsAndElements();
+}
+
+//button controls
+// create button
+function createNewElement() {
+    var listId = $("#modal-list").val();
+    var title = $("#modal-title").val();
+    var description = $("#modal-description").val();
+    var localList = findElementList(listId, "open");
+    localList.push({
+        "title": title,
+        "description": description,
+        "classification": "OS",
+        "user": "Edward Wright",
+        "due": "7/4/2019",
+        "created": "1/4/2019",
+        "checklist": [
+            {
+                "name": "checklist Item 1",
+                "status": "unchecked"
+            },
+            {
+                "name": "checklist Item 2",
+                "status": "checked"
+            }
+        ]
+    });
+    toggleModalVisibility();
+    createListsAndElements();
+}
+
+function findElementList(listId, status) {
+    var returnState = null;
+    if(status === "open"){
+        $.each(todo, function(i, field) {
+            // if the searched for list matches one in the todo list
+            if(field.list_id == listId) {
+                returnState = todo[i].openElements;
+            }
+        });
+    }
+    if(status === "closed"){
+        $.each(todo, function(i, field) {
+            // if the searched for list matches one in the todo list
+            if(field.list_id == listId) {
+                returnState = todo[i].closedElements;
+            }
+        });
+    }
+    if(status === "deleted"){
+        $.each(todo, function(i, field) {
+            // if the searched for list matches one in the todo list
+            if(field.list_id == listId) {
+                returnState = todo[i].deletedElements;
+            }
+        });
+    }
+    return returnState;
+}
+
+function findElement(listId, element, status) {
+    var returnState = null;
+    if(status == "open"){
+        $.each(todo, function(i, field) {
+            // if the searched for list matches one in the todo list
+            if(field.list_id == listId) {
+                $.each(field.openElements, function(i2, field2) {
+                    if(i2 == element) {
+                        returnState = todo[i].openElements[i2];
+                    }
+                });
+            }
+        });
+    }
+    if(status == "closed"){
+        $.each(todo, function(i, field) {
+            // if the searched for list matches one in the todo list
+            if(field.list_id == listId) {
+                $.each(field.closedElements, function(i2, field2) {
+                    if(i2 == element) {
+                        returnState = todo[i].closedElements[i2];
+                    }
+                });
+            }
+        });
+    }
+    if(status == "deleted"){
+        $.each(todo, function(i, field) {
+            // if the searched for list matches one in the todo list
+            if(field.list_id == listId) {
+                $.each(field.closedElements, function(i2, field2) {
+                    if(i2 == element) {
+                        returnState = todo[i].deletedElements[i2];
+                    }
+                });
+            }
+        });
+    }
+    return returnState;
+}
+
+firstTimeLoadLocalStorage();
+//toggleModalVisibility();
+createListsAndElements();
+autosize($('textarea'));
