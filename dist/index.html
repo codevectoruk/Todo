@@ -16,7 +16,7 @@
         To Do List
     </div>
         <div class="list-container"></div>
-        <div class="element-modal-container hidden" id="id-modal">
+        <div class="element-modal-container hidden" id="id-element-modal">
             <div class="element-modal">
                 <div class="close-container" onclick="toggleModalVisibility()">
                     <i class="fas fa-times"></i>
@@ -36,7 +36,18 @@
                 <div class="button-container">
                     <input class="button button-create" type="button" value="Create" onclick="createNewElement()">
                     <input class="button button-save" type="button" value="Save" onclick="updateElement()">
-                    <input class="button button-cancel" type="button" value="Cancel" onclick="toggleModalVisibility()">
+                    <input class="button button-cancel" type="button" value="Cancel" onclick="toggleElementModalVisibility()">
+                </div>
+            </div>
+        </div>
+        <div class="confirmation-modal-container hidden" id="id-confirmation-modal">
+            <div class="confirmation-modal">
+                <div class="text-container">Are you sure you want to delete this?</div>
+                <div class="button-container">
+                    <input type="hidden" id="modal-confirm-list">
+                    <input type="hidden" id="modal-confirm-element">
+                    <input class="button button-confirm" type="button" value="Confirm" onclick="deleteElement()">
+                    <input class="button button-cancel" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
                 </div>
             </div>
         </div>

@@ -36,7 +36,6 @@ var todoListExample = [
 ];
 
 var todo = JSON.parse(localStorage.getItem('todo'));
-
 function firstTimeLoadLocalStorage() {
     if (localStorage.getItem("todo") == null) {
         localStorage.setItem('todo', JSON.stringify(todoListExample));
@@ -51,17 +50,35 @@ function createListsAndElements() {
         //create the list
         var output = "<div class=\"list\"><div class=\"list-header\"><div class=\"list-title\">"
         + field.list_name
-        + "</div><div class=\"list-button\"><i class=\"fas fa-ellipsis-h\"></i></div></div><div class=\"list-body\" id=\"list-"
+        + "</div><div class=\"button-container\"><div class=\"list-button\" onclick=\"toggleDropdown("
+        +  i
+        + ")\"><i class=\"fas fa-ellipsis-h\"></i></div><div class=\"dropdown hidden\" id=\"id-dropdown-"
+        + i
+        + "\"><div class=\"dropdown-title\"><div class=\"dropdown-title-text\">List Actions</div><i class=\"fas fa-times\" onclick=\"toggleDropdown("
+        + i
+        + ")\"></i></div><div class=\"dropdown-element\">Rename List</div><div class=\"dropdown-element\" onclick=\"deleteList("
+        + i
+        + ")\">Delete List</div></div></div></div><div class=\"list-body\" id=\"list-"
         + i + "\"></div><div class=\"list-footer\" onclick=\"prepareModalCreate("
         +  i
         + ")\"><i class=\"fas fa-plus\"></i> Add another item</div></div>";
         $(".list-container").append(output);
         // access the elements of the list
-        //prepareModal(listId, element, status, title, description, mode)
         var outputOpen = "";
         var outputClosed = "";
         $.each(field.openElements, function(i2, field2) {
-            outputOpen += "<div class='list-element status-open'><div class='position'><div class='position-up position-element' onclick='increaseElementPosition("
+            outputOpen += "<div class='list-element status-open'><div class='status' onclick='elementStatusToClosed("
+            + i
+            + ", "
+            + i2
+            + ")'><i class=\"far fa-square\"></i></div><div class='title' onclick='prepareModalUpdate("
+            +  i
+            + ", "
+            + i2
+            + ", \"open\""
+            + ")'>"
+            + field2.title
+            + "</div><div class='position'><div class='position-up position-element' onclick='increaseElementPosition("
             + i
             + ", "
             + i2
@@ -69,38 +86,26 @@ function createListsAndElements() {
             + i
             + ", "
             + i2
-            + ")'><i class='fas fa-caret-down'></i></div></div><div class='title' onclick='prepareModalUpdate("
-            +  i
-            + ", "
-            + i2
-            + ", \"open\""
-            + ")'>"
-            + field2.title
-            + "</div><div class='status' onclick='elementStatusToClosed("
-            + i
-            + ", "
-            + i2
-            + ")'><i class='fas fa-check'></i></div></div>";
+            + ")'><i class='fas fa-caret-down'></i></div></div></div>";
         });
         $("#list-" + i).append(outputOpen);
         $.each(field.closedElements, function(i2, field2) {
-
-            outputClosed += "<div class='list-element status-closed'><div class='position'><div class='position-element promote' onclick='elementStatusToOpen("
+            outputClosed += "<div class='list-element status-closed'><div class='status' onclick='elementStatusToOpen("
             + i
             + ", "
             + i2
-            + ")'><i class='fas fa-long-arrow-alt-up'></i></div></div><div class='title title-closed' onclick='prepareModalUpdate("
+            + ")'><i class=\"far fa-check-square\"></i></div><div class='title title-closed' onclick='prepareModalUpdate("
             +  i
             + ", "
             + i2
             + ", \"closed\""
             + ")'>"
             + field2.title
-            + "</div><div class='status' onclick='elementStatusToDeleted("
+            + "</div><div class='position'><div class='promote' onclick='prepareModalDelete("
             + i
             + ", "
             + i2
-            + ")'><i class='fas fa-trash'></i></div></div>";
+            + ")'><i class=\"fas fa-trash\"></i></div></div></div>";
         });
         $("#list-" + i).append(outputClosed);
     });
@@ -193,14 +198,25 @@ function elementStatusToOpen(listId, element) {
     changeElementStatus(listId, element, "open");
 }
 
-//toggles the modal visibility
-function toggleModalVisibility() {
-    if($("#id-modal").hasClass("hidden")) {
-        $("#id-modal").addClass("flex");
-        $("#id-modal").removeClass("hidden");
+//toggles the element modal visibility
+function toggleElementModalVisibility() {
+    if($("#id-element-modal").hasClass("hidden")) {
+        $("#id-element-modal").addClass("flex");
+        $("#id-element-modal").removeClass("hidden");
     } else {
-        $("#id-modal").removeClass("flex");
-        $("#id-modal").addClass("hidden");
+        $("#id-element-modal").removeClass("flex");
+        $("#id-element-modal").addClass("hidden");
+    }
+}
+
+//toggles the confirmation modal visibility
+function toggleConfirmationModalVisibility() {
+    if($("#id-confirmation-modal").hasClass("hidden")) {
+        $("#id-confirmation-modal").addClass("flex");
+        $("#id-confirmation-modal").removeClass("hidden");
+    } else {
+        $("#id-confirmation-modal").removeClass("flex");
+        $("#id-confirmation-modal").addClass("hidden");
     }
 }
 
@@ -216,17 +232,33 @@ function prepareModalUpdate(listId, element, status, title, description) {
     }
     $(".button-create").hide();
     $(".button-save").show();
-    toggleModalVisibility();
+    toggleElementModalVisibility();
 }
 
 //opens the modal in the create configuration
-function prepareModalCreate (listId) {
+function prepareModalCreate(listId) {
     $("#modal-title").val("");
     $("#modal-description").val("");
     $(".button-create").show();
     $(".button-save").hide();
     $("#modal-list").val(listId);
-    toggleModalVisibility();
+    toggleElementModalVisibility();
+}
+
+//opens the modal in the create configuration
+function prepareModalDelete(listId, element) {
+    console.log(todo[listId].closedElements[element]);
+    toggleConfirmationModalVisibility();
+}
+
+//button controls
+// confirm button
+function deleteElement() {
+    var listId = $("#modal-confirm-list").val();
+    var element = $("#modal-confirm-element").val();
+    console.log(todo[listId].closedElements[element]);
+    elementStatusToDeleted(listId, element);
+    toggleConfirmationModalVisibility();
 }
 
 //button controls
@@ -242,7 +274,7 @@ function updateElement() {
     var localElement = findElement(listId, element, status);
     localElement.title = $("#modal-title").val();
     localElement.description = $("#modal-description").val();
-    toggleModalVisibility();
+    toggleElementModalVisibility();
     createListsAndElements();
 }
 
@@ -271,7 +303,7 @@ function createNewElement() {
             }
         ]
     });
-    toggleModalVisibility();
+    toggleElementModalVisibility();
     createListsAndElements();
 }
 
@@ -345,7 +377,33 @@ function findElement(listId, element, status) {
     return returnState;
 }
 
+function findList(listId) {
+    var returnState = null;
+    $.each(todo, function(i, field) {
+        // if the searched for list matches one in the todo list
+        if(i == listId) {
+            returnState = todo[i];
+        }
+    });
+    return returnState;
+}
+
+function toggleDropdown(id) {
+    if($("#id-dropdown-" + id).hasClass("hidden")) {
+        $("#id-dropdown-" + id).addClass("flex");
+        $("#id-dropdown-" + id).removeClass("hidden");
+    } else {
+        $("#id-dropdown-" + id).removeClass("flex");
+        $("#id-dropdown-" + id).addClass("hidden");
+    }
+}
+
+function deleteList(listId) {
+    var list = findList(listId);
+    todo.splice(listId,1);
+    createListsAndElements();
+}
+
 firstTimeLoadLocalStorage();
-//toggleModalVisibility();
 createListsAndElements();
 autosize($('textarea'));
