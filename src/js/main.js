@@ -52,7 +52,7 @@ function createListsAndElements() {
     $(".list-container").empty();
     $.each(todo, function (i, field) {
         //create the list
-        var output = "<div class=\"list\"><div class=\"list-header\">\"" +
+        var output = "<div class=\"list\"><div class=\"list-header\">" +
         "<div class=\"list-title\">" +
         field.list_name +
         "</div><div class=\"button-container\"><div class=\"list-button\" " +
