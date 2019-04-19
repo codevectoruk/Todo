@@ -56,7 +56,9 @@ function createListsAndElements() {
         + i
         + "\"><div class=\"dropdown-title\"><div class=\"dropdown-title-text\">List Actions</div><i class=\"fas fa-times\" onclick=\"toggleDropdown("
         + i
-        + ")\"></i></div><div class=\"dropdown-element\">Rename List</div><div class=\"dropdown-element\" onclick=\"deleteList("
+        + ")\"></i></div><div class=\"dropdown-element\" onclick=\"prepareModalRenameList("
+        + i
+        + ")\">Rename List</div><div class=\"dropdown-element\" onclick=\"deleteList("
         + i
         + ")\">Delete List</div></div></div></div><div class=\"list-body\" id=\"list-"
         + i + "\"></div><div class=\"list-footer\" onclick=\"prepareModalCreate("
@@ -94,7 +96,7 @@ function createListsAndElements() {
             + i
             + ", "
             + i2
-            + ")'><i class=\"far fa-check-square\"></i></div><div class='title title-closed' onclick='prepareModalUpdate("
+            + ")'><i class=\"fas fa-check-square\"></i></div><div class='title title-closed' onclick='prepareModalUpdate("
             +  i
             + ", "
             + i2
@@ -247,7 +249,8 @@ function prepareModalCreate(listId) {
 
 //opens the modal in the create configuration
 function prepareModalDelete(listId, element) {
-    console.log(todo[listId].closedElements[element]);
+    $("#modal-confirm-list").val(listId);
+    $("#modal-confirm-element").val(element);
     toggleConfirmationModalVisibility();
 }
 
@@ -256,7 +259,6 @@ function prepareModalDelete(listId, element) {
 function deleteElement() {
     var listId = $("#modal-confirm-list").val();
     var element = $("#modal-confirm-element").val();
-    console.log(todo[listId].closedElements[element]);
     elementStatusToDeleted(listId, element);
     toggleConfirmationModalVisibility();
 }
@@ -264,10 +266,6 @@ function deleteElement() {
 //button controls
 // update button
 function updateElement() {
-
-    // localElement.title = title;
-    // localElement.description = description;
-
     var listId = $("#modal-list").val();
     var element = $("#modal-element").val();
     var status = $("#modal-status").val();
@@ -285,26 +283,28 @@ function createNewElement() {
     var title = $("#modal-title").val();
     var description = $("#modal-description").val();
     var localList = findElementList(listId, "open");
-    localList.push({
-        "title": title,
-        "description": description,
-        "classification": "OS",
-        "user": "Edward Wright",
-        "due": "7/4/2019",
-        "created": "1/4/2019",
-        "checklist": [
-            {
-                "name": "checklist Item 1",
-                "status": "unchecked"
-            },
-            {
-                "name": "checklist Item 2",
-                "status": "checked"
-            }
-        ]
-    });
-    toggleElementModalVisibility();
-    createListsAndElements();
+    if(title != ""){
+        localList.push({
+            "title": title,
+            "description": description,
+            "classification": "OS",
+            "user": "Edward Wright",
+            "due": "7/4/2019",
+            "created": "1/4/2019",
+            "checklist": [
+                {
+                    "name": "checklist Item 1",
+                    "status": "unchecked"
+                },
+                {
+                    "name": "checklist Item 2",
+                    "status": "checked"
+                }
+            ]
+        });
+        toggleElementModalVisibility();
+        createListsAndElements();
+    }
 }
 
 function findElementList(listId, status) {
@@ -390,18 +390,50 @@ function findList(listId) {
 
 function toggleDropdown(id) {
     if($("#id-dropdown-" + id).hasClass("hidden")) {
+        // hide all other dropdowns
+        $(".dropdown").removeClass("flex");
+        $(".dropdown").addClass("hidden");
+        //show this dropdown
         $("#id-dropdown-" + id).addClass("flex");
         $("#id-dropdown-" + id).removeClass("hidden");
     } else {
+        //hide this dropdown
         $("#id-dropdown-" + id).removeClass("flex");
         $("#id-dropdown-" + id).addClass("hidden");
     }
+}
+
+function toggleRenameListModal() {
+    if($("#id-rename-modal").hasClass("hidden")) {
+        $("#id-rename-modal").addClass("flex");
+        $("#id-rename-modal").removeClass("hidden");
+    } else {
+        $("#id-rename-modal").removeClass("flex");
+        $("#id-rename-modal").addClass("hidden");
+    }
+}
+
+function prepareModalRenameList(listId) {
+    $("#modal-rename-list").val(listId);
+    $("#modal-list-rename-input").val(todo[listId].list_name);
+    toggleRenameListModal();
 }
 
 function deleteList(listId) {
     var list = findList(listId);
     todo.splice(listId,1);
     createListsAndElements();
+}
+
+function renameList() {
+    var listId = $("#modal-rename-list").val();
+    var list = findList(listId);
+    var newTitle = $("#modal-list-rename-input").val();
+    if(newTitle != ""){
+        list.list_name = newTitle;
+        createListsAndElements();
+        toggleRenameListModal();
+    }
 }
 
 firstTimeLoadLocalStorage();

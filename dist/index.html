@@ -15,42 +15,58 @@
     <div class="main-title-container">
         To Do List
     </div>
-        <div class="list-container"></div>
-        <div class="element-modal-container hidden" id="id-element-modal">
-            <div class="element-modal">
-                <div class="close-container" onclick="toggleModalVisibility()">
-                    <i class="fas fa-times"></i>
+    <div class="list-container"></div>
+    <div class="element-modal-container hidden" id="id-element-modal">
+        <div class="element-modal">
+            <div class="close-container" onclick="toggleElementModalVisibility()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="title-container">
+                <input type="text" id="modal-title" placeholder="Enter a title…">
+                <input type="hidden" id="modal-list">
+                <input type="hidden" id="modal-element">
+                <input type="hidden" id="modal-status">
+            </div>
+            <div class="description-container">
+                <div class="description">
+                    Description
                 </div>
-                <div class="title-container">
-                    <input type="text" id="modal-title" placeholder="Enter a title…">
-                    <input type="hidden" id="modal-list">
-                    <input type="hidden" id="modal-element">
-                    <input type="hidden" id="modal-status">
-                </div>
-                <div class="description-container">
-                    <div class="description">
-                        Description
-                    </div>
-                    <textarea type="text" id="modal-description" placeholder="Add a more detailed description…"></textarea>
-                </div>
-                <div class="button-container">
-                    <input class="button button-create" type="button" value="Create" onclick="createNewElement()">
-                    <input class="button button-save" type="button" value="Save" onclick="updateElement()">
-                    <input class="button button-cancel" type="button" value="Cancel" onclick="toggleElementModalVisibility()">
-                </div>
+                <textarea type="text" id="modal-description" placeholder="Add a more detailed description…"></textarea>
+            </div>
+            <div class="button-container">
+                <input class="button button-create" type="button" value="Create" onclick="createNewElement()">
+                <input class="button button-save" type="button" value="Save" onclick="updateElement()">
+                <input class="button button-cancel" type="button" value="Cancel" onclick="toggleElementModalVisibility()">
             </div>
         </div>
-        <div class="confirmation-modal-container hidden" id="id-confirmation-modal">
-            <div class="confirmation-modal">
-                <div class="text-container">Are you sure you want to delete this?</div>
-                <div class="button-container">
-                    <input type="hidden" id="modal-confirm-list">
-                    <input type="hidden" id="modal-confirm-element">
-                    <input class="button button-confirm" type="button" value="Confirm" onclick="deleteElement()">
-                    <input class="button button-cancel" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
-                </div>
+    </div>
+    <div class="confirmation-modal-container hidden" id="id-confirmation-modal">
+        <div class="confirmation-modal">
+            <div class="text-container">Are you sure you want to delete this?</div>
+            <div class="button-container">
+                <input type="hidden" id="modal-confirm-list">
+                <input type="hidden" id="modal-confirm-element">
+                <input class="button button-confirm" type="button" value="Confirm" onclick="deleteElement()">
+                <input class="button button-cancel" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
             </div>
         </div>
+    </div>
+    <div class="list-rename-modal-container hidden" id="id-rename-modal">
+        <div class="list-rename-modal">
+            <div class="text-container">Rename List Title</div>
+            <div class="input-container">
+                <input type="text" id="modal-list-rename-input" placeholder="Change List's Name…">
+            </div>
+            <div class="button-container">
+                <input type="hidden" id="modal-rename-list">
+                <input class="button button-confirm" type="button" value="Confirm" onclick="renameList()">
+                <input class="button button-cancel" type="button" value="Cancel" onclick="toggleRenameListModal()">
+            </div>
+        </div>
+    </div>
+    <div class="main-footer-container">
+        Edward Wright 2019
+    </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/autosize.min.js"></script>
     <script src="js/main.js"></script>

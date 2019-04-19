@@ -20,7 +20,7 @@ body {
 }
 .list-container {
     display: flex;
-    padding: 8px;
+    padding: 0 8px 41px 8px;
 
     .list {
         background-color: #dfe3e6;
@@ -78,7 +78,7 @@ body {
                     .dropdown-title {
                         display: flex;
                         border-bottom: 1px solid rgba(0,0,0,0.1);
-                        margin: 0 5px;
+                        margin: 0 5px 5px 5px;
 
                         .dropdown-title-text {
                             flex-grow: 1;
@@ -96,6 +96,7 @@ body {
                         padding: 6px 12px;
                         align-self:stretch;
                         color: #333;
+                        cursor: pointer;
 
                         &:hover {
                             background-color: rgba(0,0,0,0.1);
@@ -226,11 +227,11 @@ body {
                     background-color: #f5f6f7;
                 }
                 .status {
-                    color: #2ecc71;
+                    color: lighten(#0079bf, 25%);
 
                     &:hover {
                         background-color: #f5f6f7;
-                        color: darken(#2ecc71, 10%);
+                        color: #0079bf;
                     }
                 }
             }
@@ -435,4 +436,94 @@ body {
             }
         }
     }
+}
+
+
+.list-rename-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.60);
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    .list-rename-modal {
+        width: 768px;
+        padding: 15px 20px;
+        background-color: #f5f6f7;
+        border-radius: 3px;
+
+        .text-container {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 0 0 5px 10px;
+        }
+        .input-container {
+            display: flex;
+
+            input {
+                flex-grow: 1;
+                border: none;
+                padding: 4px 8px;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 24px;
+                border-radius: 3px;
+
+                &:active, &:focus {
+                    border: none;
+                    outline: none;
+                    box-shadow: inset 0 0 0 2px #0079bf;
+                }
+            }
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 0 0 0;
+
+            .button {
+                border: none;
+                padding: 8px 12px;
+                border-radius: 3px;
+                cursor: pointer;
+                margin: 0 0 0 5px;
+            }
+            .button-confirm {
+                background-color: lighten(#007bff, 10%);
+                color: #fff;
+
+                &:hover {
+                    background-color: #007bff;
+                }
+            }
+            .button-cancel {
+                background-color: #7f8fa6;
+                color: #fff;
+
+                &:hover {
+                    background-color: darken(#7f8fa6, 10%);
+                }
+            }
+        }
+    }
+}
+.main-footer-container {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    padding: 10px 0;
+    text-align: center;
+
+    font-size: 16px;
+    background-color: darken(#007bff,25%);
+  color: transparent;
+  font-weight: 700;
+    text-shadow: 0px 2px 3px rgba(255,255,255,0.2);
+  -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
 }
