@@ -1,6 +1,5 @@
 var todoListExample = [
     {
-        "list_id": 0,
         "list_name": "Default List",
         "openElements": [
             {
@@ -53,8 +52,8 @@ function createListsAndElements() {
         var output = "<div class=\"list\"><div class=\"list-header\"><div class=\"list-title\">"
         + field.list_name
         + "</div><div class=\"list-button\"><i class=\"fas fa-ellipsis-h\"></i></div></div><div class=\"list-body\" id=\"list-"
-        + field.list_id + "\"></div><div class=\"list-footer\" onclick=\"prepareModalCreate("
-        +  field.list_id
+        + i + "\"></div><div class=\"list-footer\" onclick=\"prepareModalCreate("
+        +  i
         + ")\"><i class=\"fas fa-plus\"></i> Add another item</div></div>";
         $(".list-container").append(output);
         // access the elements of the list
@@ -63,47 +62,47 @@ function createListsAndElements() {
         var outputClosed = "";
         $.each(field.openElements, function(i2, field2) {
             outputOpen += "<div class='list-element status-open'><div class='position'><div class='position-up position-element' onclick='increaseElementPosition("
-            + field.list_id
+            + i
             + ", "
             + i2
             + ")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element'onclick='decreaseElementPosition("
-            + field.list_id
+            + i
             + ", "
             + i2
             + ")'><i class='fas fa-caret-down'></i></div></div><div class='title' onclick='prepareModalUpdate("
-            +  field.list_id
+            +  i
             + ", "
             + i2
             + ", \"open\""
             + ")'>"
             + field2.title
             + "</div><div class='status' onclick='elementStatusToClosed("
-            + field.list_id
+            + i
             + ", "
             + i2
             + ")'><i class='fas fa-check'></i></div></div>";
         });
-        $("#list-" + field.list_id).append(outputOpen);
+        $("#list-" + i).append(outputOpen);
         $.each(field.closedElements, function(i2, field2) {
 
             outputClosed += "<div class='list-element status-closed'><div class='position'><div class='position-element promote' onclick='elementStatusToOpen("
-            + field.list_id
+            + i
             + ", "
             + i2
             + ")'><i class='fas fa-long-arrow-alt-up'></i></div></div><div class='title title-closed' onclick='prepareModalUpdate("
-            +  field.list_id
+            +  i
             + ", "
             + i2
             + ", \"closed\""
             + ")'>"
             + field2.title
             + "</div><div class='status' onclick='elementStatusToDeleted("
-            + field.list_id
+            + i
             + ", "
             + i2
             + ")'><i class='fas fa-trash'></i></div></div>";
         });
-        $("#list-" + field.list_id).append(outputClosed);
+        $("#list-" + i).append(outputClosed);
     });
     $(".list-container").append("<div class=\"add-list\" onclick=\"createNewList()\"><i class=\"fas fa-plus\"></i> Add another item</div>");
 }
@@ -111,7 +110,7 @@ function createListsAndElements() {
 function reorderList(listId, element, direction) {
     $.each(todo, function(i, field) {
         // if the searched for list matches one in the todo list
-        if(field.list_id == listId) {
+        if(i == listId) {
             //var localElements = field.elements;
             if(direction == "up" && element != 0 && field.openElements.length > 1) {
                 var selectedElementUp = field.openElements[element];
@@ -141,16 +140,11 @@ function decreaseElementPosition(listId, element){
 
 function createNewList() {
     if(todo.length < 5) {
-        var localListId = 0;
-        $.each(todo, function(i, field) {
-            if(field.list_id > localListId){
-                localListId = field.list_id + 1;
-            }
-        });
         todo.push({
-            "list_id": localListId,
-            "list_name": "Your New List",
-            "elements": []
+            "list_name": "New List",
+            "openElements": [],
+            "closedElements": [],
+            "deletedElements": []
         });
         createListsAndElements();
     }
@@ -208,11 +202,6 @@ function toggleModalVisibility() {
         $("#id-modal").removeClass("flex");
         $("#id-modal").addClass("hidden");
     }
-    // if($(".element-modal-container").is(":visible")){
-    //     $(".element-modal-container").hide();
-    // } else {
-    //     $(".element-modal-container").show();
-    // }
 }
 
 //opens the modal in the update configuration
@@ -291,7 +280,7 @@ function findElementList(listId, status) {
     if(status === "open"){
         $.each(todo, function(i, field) {
             // if the searched for list matches one in the todo list
-            if(field.list_id == listId) {
+            if(i == listId) {
                 returnState = todo[i].openElements;
             }
         });
@@ -299,7 +288,7 @@ function findElementList(listId, status) {
     if(status === "closed"){
         $.each(todo, function(i, field) {
             // if the searched for list matches one in the todo list
-            if(field.list_id == listId) {
+            if(i == listId) {
                 returnState = todo[i].closedElements;
             }
         });
@@ -307,7 +296,7 @@ function findElementList(listId, status) {
     if(status === "deleted"){
         $.each(todo, function(i, field) {
             // if the searched for list matches one in the todo list
-            if(field.list_id == listId) {
+            if(i == listId) {
                 returnState = todo[i].deletedElements;
             }
         });
@@ -320,7 +309,7 @@ function findElement(listId, element, status) {
     if(status == "open"){
         $.each(todo, function(i, field) {
             // if the searched for list matches one in the todo list
-            if(field.list_id == listId) {
+            if(i == listId) {
                 $.each(field.openElements, function(i2, field2) {
                     if(i2 == element) {
                         returnState = todo[i].openElements[i2];
@@ -332,7 +321,7 @@ function findElement(listId, element, status) {
     if(status == "closed"){
         $.each(todo, function(i, field) {
             // if the searched for list matches one in the todo list
-            if(field.list_id == listId) {
+            if(i == listId) {
                 $.each(field.closedElements, function(i2, field2) {
                     if(i2 == element) {
                         returnState = todo[i].closedElements[i2];
@@ -344,7 +333,7 @@ function findElement(listId, element, status) {
     if(status == "deleted"){
         $.each(todo, function(i, field) {
             // if the searched for list matches one in the todo list
-            if(field.list_id == listId) {
+            if(i == listId) {
                 $.each(field.closedElements, function(i2, field2) {
                     if(i2 == element) {
                         returnState = todo[i].deletedElements[i2];
