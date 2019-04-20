@@ -18,11 +18,17 @@
 <body class="theme-default" >
     <div class="main-title-container" role="main">
         <div class="main-title">To Do List</div>
-        <div class="theme-picker">
-            Theme:
-            <div class="theme theme-picker-default" onclick="themeChanger('default')"></div>
-            <div class="theme theme-picker-dark" onclick="themeChanger('dark')"></div>
-            <div class="theme theme-picker-light" onclick="themeChanger('light')"></div>
+        <div class="flex-right">
+            <div class="import-export">
+                <i class="fas fa-file-import"></i>
+                <i class="fas fa-file-export" onclick="downloadObjectAsJson()"></i>
+            </div>
+            <div class="theme-picker">
+                Theme:
+                <div class="theme theme-picker-default" onclick="themeChanger('default')"></div>
+                <div class="theme theme-picker-dark" onclick="themeChanger('dark')"></div>
+                <div class="theme theme-picker-light" onclick="themeChanger('light')"></div>
+            </div>
         </div>
     </div>
     <div class="list-container"></div>
