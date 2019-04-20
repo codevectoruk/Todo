@@ -57,6 +57,16 @@
             </div>
         </div>
     </div>
+    <div class="modal-container hidden" id="id-list-confirmation-modal">
+        <div class="confirmation-modal generic-modal">
+            <div class="text-container">Are you sure you want to delete this?</div>
+            <div class="button-container">
+                <input type="hidden" id="modal-confirm-list">
+                <input class="button button-confirm" type="button" value="Confirm" onclick="deleteList()">
+                <input class="button button-cancel" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
+            </div>
+        </div>
+    </div>
     <div class="modal-container hidden" id="id-rename-modal">
         <div class="list-rename-modal generic-modal">
             <div class="text-container">Rename List Title</div>
