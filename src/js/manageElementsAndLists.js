@@ -41,7 +41,7 @@ function createListFromJson(localListId, localListFields) {
     "onclick=\"prepareModalRenameList(" +
     localListId +
     ")\">Rename List</div><div class=\"dropdown-element\" " +
-    "onclick=\"deleteList(" +
+    "onclick=\"prepareModalDeleteList(" +
     localListId +
     ")\">Delete List</div></div></div></div><div class=\"list-body\" " +
     "id=\"list-" +

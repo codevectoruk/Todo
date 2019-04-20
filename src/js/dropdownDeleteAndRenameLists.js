@@ -13,6 +13,11 @@ function toggleDropdown(id) {
     }
 }
 
+function closeAllDropdown() {
+    $(".dropdown").removeClass("flex");
+    $(".dropdown").addClass("hidden");
+}
+
 function toggleRenameListModal() {
     if ($("#id-rename-modal").hasClass("hidden")) {
         $("#id-rename-modal").addClass("flex");
@@ -26,12 +31,8 @@ function toggleRenameListModal() {
 function prepareModalRenameList(listId) {
     $("#modal-rename-list").val(listId);
     $("#modal-list-rename-input").val(todo[listId].list_name);
+    closeAllDropdown();
     toggleRenameListModal();
-}
-
-function deleteList(listId) {
-    todo.splice(listId, 1);
-    createListsAndElements();
 }
 
 function renameList() {

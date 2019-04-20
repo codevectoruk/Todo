@@ -22,5 +22,23 @@ function deleteElement() {
 function prepareModalDelete(localListId, localElementId) {
     $("#modal-confirm-list").val(localListId);
     $("#modal-confirm-element").val(localElementId);
+    $("#deleteElementButton").show();
+    $("#deleteListButton").hide();
+    closeAllDropdown()
+    toggleConfirmationModalVisibility();
+}
+
+function prepareModalDeleteList(localListId) {
+    $("#modal-confirm-list").val(localListId);
+    $("#deleteElementButton").hide();
+    $("#deleteListButton").show();
+    closeAllDropdown()
+    toggleConfirmationModalVisibility();
+}
+
+function deleteList() {
+    listId = $("#modal-confirm-list").val();
+    todo.splice(listId, 1);
+    createListsAndElements();
     toggleConfirmationModalVisibility();
 }

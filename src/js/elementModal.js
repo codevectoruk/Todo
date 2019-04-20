@@ -21,6 +21,7 @@ function buttonOpenElementModalForElementUpdate(listId, element, status) {
     $("#modal-description").val(localElement.description);
     $(".button-create").hide();
     $(".button-save").show();
+    closeAllDropdown();
     toggleElementModalVisibility();
 }
 
@@ -33,6 +34,7 @@ function buttonOpenElementModalForElementCreate(listId) {
     $(".button-create").show();
     $(".button-save").hide();
     $("#modal-list").val(listId);
+    closeAllDropdown();
     toggleElementModalVisibility();
 }
 
