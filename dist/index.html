@@ -13,7 +13,13 @@
 
 <body class="theme-default">
     <div class="main-title-container">
-        To Do List
+        <div class="main-title">To Do List</div>
+        <div class="theme-picker">
+            Theme:
+            <div class="theme theme-picker-default" onclick="themeChanger('default')"></div>
+            <div class="theme theme-picker-dark" onclick="themeChanger('dark')"></div>
+            <div class="theme theme-picker-light" onclick="themeChanger('light')"></div>
+        </div>
     </div>
     <div class="list-container"></div>
     <div class="element-modal-container hidden" id="id-element-modal">

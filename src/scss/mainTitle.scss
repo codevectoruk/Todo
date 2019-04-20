@@ -1,7 +1,39 @@
 .main-title-container {
-	font-size: 34px;
-	font-weight: lighter;
-	padding: 8px 10px;
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    .main-title {
+    	font-size: 34px;
+    	font-weight: lighter;
+    	padding: 8px 10px;
+    }
+    .theme-picker {
+        display: flex;
+        padding: 0 10px 0 0;
+        align-items: center;
+        font-size: 18px;
+        vertical-align: middle;
+
+        .theme {
+            margin: 0 0 0 10px;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            align-self: center;
+            cursor: pointer;
+            border-radius: 4px;
+
+            &:hover {
+                border: 1px solid #fff;
+            }
+        }
+        .theme-picker-default {
+            background-color: #007bff;
+        }
+        .theme-picker-dark {
+            background-color: #2f3640;
+        }
+        .theme-picker-light {
+            background-color: #f5f6f7;
+        }
+    }
 }
