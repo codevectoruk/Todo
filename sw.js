@@ -5,7 +5,6 @@ var offlineFundamentals = [
     'index.html',
     'css/main.css',
     'css/font-awesome.min.css',
-    'images/ed2.png',
     'images/todo-logo256.png',
     'images/todo-logo512.png',
     'images/todo-logo.ico',
