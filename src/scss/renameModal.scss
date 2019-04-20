@@ -1,0 +1,50 @@
+
+.list-rename-modal-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	.list-rename-modal {
+		width: 768px;
+		padding: 15px 20px;
+		border-radius: 4px;
+		.text-container {
+			font-size: 16px;
+			font-weight: 700;
+			padding: 0 0 5px 10px;
+		}
+		.input-container {
+			display: flex;
+			input {
+				flex-grow: 1;
+				border: none;
+				padding: 4px 8px;
+				font-size: 16px;
+				font-weight: 700;
+				line-height: 24px;
+				border-radius: 4px;
+				&:active,
+				&:focus {
+					border: none;
+					outline: none;
+				}
+			}
+		}
+		.button-container {
+			display: flex;
+			justify-content: flex-end;
+			padding: 10px 0 0 0;
+			.button {
+				border: none;
+				padding: 8px 14px;
+				border-radius: 4px;
+				cursor: pointer;
+				margin: 0 0 0 5px;
+			}
+		}
+	}
+}
