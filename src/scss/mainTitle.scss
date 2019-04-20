@@ -8,28 +8,23 @@
     }
     .theme-picker {
         display: flex;
-        padding: 0 10px 0 0;
+        padding: 0 8px 0 0;
         align-items: center;
         vertical-align: middle;
         font-size: 16px;
-        //font-weight: 700;
         align-self: center;
 
         .theme {
-            margin: 0 0 0 10px;
+            margin: 0 0 0 8px;
             width: 30px;
             height: 30px;
-            border: 1px solid #ccc;
+            border: 2px solid #fff;
             align-self: center;
             cursor: pointer;
             border-radius: 4px;
-
-            &:hover {
-                border: 1px solid #fff;
-            }
         }
         .theme-picker-default {
-            background-color: #007bff;
+            background-color: #0056B5;
         }
         .theme-picker-dark {
             background-color: #2f3640;
