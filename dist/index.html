@@ -1,14 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
     <title>ToDo</title>
     <meta name="description" content="To Do List">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0056B5">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel=icon href=images/ed2.png>
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body class="theme-default">
@@ -61,7 +63,7 @@
         <div class="confirmation-modal generic-modal">
             <div class="text-container">Are you sure you want to delete this?</div>
             <div class="button-container">
-                <input type="hidden" id="modal-confirm-list">
+                <input type="hidden" id="modal-confirm-list-2">
                 <input class="button button-confirm" type="button" value="Confirm" onclick="deleteList()">
                 <input class="button button-cancel" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
             </div>

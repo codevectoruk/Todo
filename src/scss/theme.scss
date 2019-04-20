@@ -15,7 +15,7 @@ $flat-green-shadow: darken($flat-green, 10%);
 $transparent-highlight: rgba(255,255,255,0.2);
 $transparent-shadow: rgba(0,0,0,0.1);
 
-$theme-default-background: #007bff;
+$theme-default-background: #0056B5;
 $theme-default-background-highlight: lighten($theme-default-background, 15%);
 $theme-default-background-shadow: darken($theme-default-background, 10%);
 $theme-default-list-background: #dfe3e6;
@@ -56,6 +56,9 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 	background-color: $theme-default-background;
 	.main-title-container {
 		color: $white;
+        .theme-picker {
+            color: $white;
+        }
 	}
 	.list-container {
 		.list {
@@ -292,6 +295,9 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 	background-color: $theme-dark-background;
 	.main-title-container {
 		color: $theme-dark-font-color-highlight;
+        .theme-picker {
+            color: $theme-dark-font-color-highlight;
+        }
 	}
 	.list-container {
 		.list {
@@ -529,6 +535,9 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 	background-color: $theme-light-background;
 	.main-title-container {
 		color: $theme-light-font-color-shadow;
+        .theme-picker {
+            color: $theme-light-font-color-shadow;
+        }
 	}
 	.list-container {
 		.list {

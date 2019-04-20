@@ -1,0 +1,16 @@
+{
+  "short_name": "Todo",
+  "name": "Todo List",
+  "icons": [
+    {
+      "src": "images/ed2.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#0056B5",
+  "display": "standalone",
+  "scope": "",
+  "theme_color": "#0056B5"
+}

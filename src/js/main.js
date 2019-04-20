@@ -18,3 +18,4 @@ function updateStoredTodoList() {
 //@prepros-append confirmModal.js
 //@prepros-append autoUpdate.js
 //@prepros-append themeChanger.js
+//@prepros-append serviceWorker.js
