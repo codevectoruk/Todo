@@ -13,7 +13,7 @@
     "sizes": "256x256"
   }
   ],
-  "start_url": "index.html",
+  "start_url": "https://ed-wright.github.io/Todo/index.html",
   "background_color": "#0056B5",
   "display": "standalone",
   "theme_color": "#0056B5"

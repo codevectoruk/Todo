@@ -8,6 +8,7 @@ var offlineFundamentals = [
     'images/ed2.png',
     'images/todo-logo256.png',
     'images/todo-logo512.png',
+    'images/todo-logo.ico',
     'js/autosize.min.js',
     'js/jquery-3.3.1.min.js',
     'js/main.js',
