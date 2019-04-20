@@ -15,7 +15,7 @@ var offlineFundamentals = [
     'index.html',
     'css/main.css',
     'css/font-awesome.min.css',
-    'js/autosize.minjs',
+    'js/autosize.min.js',
     'js/jquery-3.3.1.min.js',
     'js/main.js'
 ];
