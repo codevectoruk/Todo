@@ -13,11 +13,22 @@ var version = 'v1::';
 */
 var offlineFundamentals = [
     'index.html',
+    'sw.js',
     'css/main.css',
     'css/font-awesome.min.css',
+    'images/ed2.png',
+    'images/todo-logo256.png',
+    'images/todo-logo256.png',
     'js/autosize.min.js',
     'js/jquery-3.3.1.min.js',
-    'js/main.js'
+    'js/main.js',
+    'manifest.json',
+    'webfonts/fa-brands-400.woff',
+    'webfonts/fa-brands-400.woff2',
+    'webfonts/fa-regular-400.woff',
+    'webfonts/fa-regular-400.woff2',
+    'webfonts/fa-solid-900.woff',
+    'webfonts/fa-solid-900.woff2'
 ];
 
 /* The install event fires when the service worker is first installed.
