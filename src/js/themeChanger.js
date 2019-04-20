@@ -28,8 +28,12 @@ function loadTheme() {
 }
 
 function autoChangeTheme() {
-    if(localStorage.getItem("theme") !==  currentTheme){
-        loadTheme();
+    if(localStorage.getItem("theme") != null){
+        if(localStorage.getItem("theme") !==  currentTheme){
+            loadTheme();
+        }
+    } else {
+        setDefaultTheme();
     }
 }
 

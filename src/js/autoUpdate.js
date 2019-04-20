@@ -1,8 +1,12 @@
 function autoUpdate() {
     var localTodo = JSON.parse(localStorage.getItem("todo"));
-    if(!compareJsonArrays(todo, localTodo)) {
-        todo = JSON.parse(localStorage.getItem("todo"));
-        createListsAndElements();
+    if(localStorage.getItem("todo") != null){
+        if(!compareJsonArrays(todo, localTodo)) {
+            todo = JSON.parse(localStorage.getItem("todo"));
+            createListsAndElements();
+        }
+    } else {
+        firstTimeLoadLocalStorage();
     }
 }
 
