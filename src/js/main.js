@@ -1,6 +1,14 @@
+//@prepros-prepend defaultSetup.js
+
 var todo = JSON.parse(localStorage.getItem("todo"));
+
 createListsAndElements();
 autosize($("textarea"));
+
+function updateStoredTodoList() {
+    localStorage.setItem("todo", JSON.stringify(todo));
+}
+
 
 //@prepros-append defaultSetup.js
 //@prepros-append manageElementsAndLists.js
@@ -8,7 +16,4 @@ autosize($("textarea"));
 //@prepros-append dropdownDeleteAndRenameLists.js
 //@prepros-append elementModal.js
 //@prepros-append confirmModal.js
-
-function updateStoredTodoList() {
-    localStorage.setItem("todo", JSON.stringify(todo));
-}
+//@prepros-append autoUpdate.js

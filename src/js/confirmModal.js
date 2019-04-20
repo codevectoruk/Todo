@@ -19,8 +19,8 @@ function deleteElement() {
 }
 
 //opens the modal in the create configuration
-function prepareModalDelete(listId, element) {
-    $("#modal-confirm-list").val(listId);
-    $("#modal-confirm-element").val(element);
+function prepareModalDelete(localListId, localElementId) {
+    $("#modal-confirm-list").val(localListId);
+    $("#modal-confirm-element").val(localElementId);
     toggleConfirmationModalVisibility();
 }
