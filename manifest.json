@@ -3,10 +3,15 @@
   "name": "Todo List",
   "icons": [
     {
-      "src": "images/ed2.png",
+      "src": "images/todo-logo512.png",
       "type": "image/png",
-      "sizes": "16x16"
-    }
+      "sizes": "512x512"
+  },
+  {
+    "src": "images/todo-logo256.png",
+    "type": "image/png",
+    "sizes": "256x256"
+  }
   ],
   "start_url": "https://ed-wright.github.io/Todo/index.html",
   "background_color": "#0056B5",
