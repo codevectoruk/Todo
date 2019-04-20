@@ -3,7 +3,6 @@
 var version = 'v1::';
 var offlineFundamentals = [
     'index.html',
-    'sw.js',
     'css/main.css',
     'css/font-awesome.min.css',
     'images/ed2.png',
