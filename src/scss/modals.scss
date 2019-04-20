@@ -1,0 +1,137 @@
+.modal-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	.element-modal {
+		width: 768px;
+		padding: 0 20px;
+		border-radius: 4px;
+		.close-container {
+			display: flex;
+			justify-content: flex-end;
+			padding: 5px 0;
+			i {
+				cursor: pointer;
+				padding: 10px;
+				margin: 0 -15px 0 0;
+			}
+		}
+		.title-container {
+			display: flex;
+			input {
+				flex-grow: 1;
+				border: none;
+				padding: 4px 8px;
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 24px;
+				border-radius: 4px;
+				&:active,
+				&:focus {
+					border: none;
+					outline: none;
+				}
+			}
+		}
+		.description-container {
+			padding: 10px 0;
+			display: flex;
+			flex-direction: column;
+			.description {
+				font-size: 16px;
+				line-height: 20px;
+				font-weight: bold;
+				padding: 12px 0 8px 10px;
+			}
+			textarea {
+				border: none;
+				padding: 4px 8px;
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 24px;
+				border-radius: 4px;
+				resize: vertical;
+				&:active,
+				&:focus {
+					border: none;
+					outline: none;
+				}
+			}
+		}
+		.button-container {
+			display: flex;
+			justify-content: flex-end;
+			padding: 10px 0 20px 0;
+			.button {
+				border: none;
+				padding: 8px 14px;
+				border-radius: 4px;
+				cursor: pointer;
+				margin: 0 0 0 5px;
+			}
+		}
+	}
+    .confirmation-modal {
+        width: 512px;
+        padding: 20px;
+        border-radius: 4px;
+        .text-container {
+            font-size: 16px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            .button {
+                border: none;
+                padding: 8px 14px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 0 0 0 5px;
+            }
+        }
+    }
+    .list-rename-modal {
+        width: 768px;
+        padding: 15px 20px;
+        border-radius: 4px;
+        .text-container {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 0 0 5px 10px;
+        }
+        .input-container {
+            display: flex;
+            input {
+                flex-grow: 1;
+                border: none;
+                padding: 4px 8px;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 24px;
+                border-radius: 4px;
+                &:active,
+                &:focus {
+                    border: none;
+                    outline: none;
+                }
+            }
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 0 0 0;
+            .button {
+                border: none;
+                padding: 8px 14px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 0 0 0 5px;
+            }
+        }
+    }
+}

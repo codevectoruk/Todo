@@ -169,7 +169,7 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 			}
 		}
 	}
-	.element-modal-container {
+	.modal-container {
 		background-color: $theme-default-modal-cover;
 		.element-modal {
 			background-color: $theme-default-list-background;
@@ -228,34 +228,28 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 				}
 			}
 		}
-	}
-	.confirmation-modal-container {
-		background-color: $theme-default-modal-cover;
-		.confirmation-modal {
+        .confirmation-modal {
             background-color: $theme-default-list-background;
             color: $theme-default-font-color;
-			.button-container {
-				.button-confirm {
-					background-color: $flat-red;
+            .button-container {
+                .button-confirm {
+                    background-color: $flat-red;
                     color: $white;
-					&:hover {
-						background-color: $flat-red-shadow;
+                    &:hover {
+                        background-color: $flat-red-shadow;
                         color: $white;
-					}
-				}
+                    }
+                }
                 .button-cancel {
-					background-color: $flat-grey;
-					color: $white;
-					&:hover {
-						background-color: $flat-grey-shadow;
+                    background-color: $flat-grey;
+                    color: $white;
+                    &:hover {
+                        background-color: $flat-grey-shadow;
                         color: $white;
-					}
-				}
-			}
-		}
-	}
-    .list-rename-modal-container {
-        background-color: $theme-default-modal-cover;
+                    }
+                }
+            }
+        }
         .list-rename-modal {
             background-color: $theme-default-list-background;
             color: $theme-default-font-color;
@@ -269,24 +263,24 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
             }
             .button-container {
                 .button-confirm {
-					background-color: $flat-blue;
-					color: $white;
-					&:hover {
-						background-color: $flat-blue-shadow;
+                    background-color: $flat-blue;
+                    color: $white;
+                    &:hover {
+                        background-color: $flat-blue-shadow;
                         color: $white;
-					}
-				}
+                    }
+                }
                 .button-cancel {
-					background-color: $flat-grey;
-					color: $white;
-					&:hover {
-						background-color: $flat-grey-shadow;
+                    background-color: $flat-grey;
+                    color: $white;
+                    &:hover {
+                        background-color: $flat-grey-shadow;
                         color: $white;
-					}
+                    }
                 }
             }
         }
-    }
+	}
 	.main-footer-container {
 		background-color: darken(#007bff, 25%);
 		text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.2);
@@ -412,7 +406,7 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 			}
 		}
 	}
-	.element-modal-container {
+	.modal-container {
 		background-color: $theme-dark-modal-cover;
 		.element-modal {
 			background-color: $theme-dark-background;
@@ -471,34 +465,28 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 				}
 			}
 		}
-	}
-	.confirmation-modal-container {
-		background-color: $theme-dark-modal-cover;
-		.confirmation-modal {
+        .confirmation-modal {
             background-color: $theme-dark-background;
             color: $theme-dark-font-color;
-			.button-container {
-				.button-confirm {
-					background-color: $flat-red-shadow;
+            .button-container {
+                .button-confirm {
+                    background-color: $flat-red-shadow;
                     color: $theme-dark-font-color;
-					&:hover {
-						background-color: $flat-red;
+                    &:hover {
+                        background-color: $flat-red;
                         color: $theme-dark-font-color-highlight;
-					}
-				}
+                    }
+                }
                 .button-cancel {
-					background-color: $flat-grey-shadow;
-					color: $theme-dark-font-color;
-					&:hover {
-						background-color: $flat-grey;
+                    background-color: $flat-grey-shadow;
+                    color: $theme-dark-font-color;
+                    &:hover {
+                        background-color: $flat-grey;
                         color: $theme-dark-font-color-highlight;
-					}
-				}
-			}
-		}
-	}
-    .list-rename-modal-container {
-        background-color: $theme-dark-modal-cover;
+                    }
+                }
+            }
+        }
         .list-rename-modal {
             background-color: $theme-dark-background;
             color: $theme-dark-font-color;
@@ -512,24 +500,24 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
             }
             .button-container {
                 .button-confirm {
-					background-color: $flat-blue-shadow;
-					color: $theme-dark-font-color;
-					&:hover {
-						background-color: $flat-blue;
+                    background-color: $flat-blue-shadow;
+                    color: $theme-dark-font-color;
+                    &:hover {
+                        background-color: $flat-blue;
                         color: $theme-dark-font-color-highlight;
-					}
-				}
+                    }
+                }
                 .button-cancel {
-					background-color: $flat-grey-shadow;
-					color: $theme-dark-font-color;
-					&:hover {
-						background-color: $flat-grey;
+                    background-color: $flat-grey-shadow;
+                    color: $theme-dark-font-color;
+                    &:hover {
+                        background-color: $flat-grey;
                         color: $theme-dark-font-color-highlight;
-					}
+                    }
                 }
             }
         }
-    }
+	}
 	.main-footer-container {
 		background-color: darken(#007bff, 25%);
 		text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.2);
@@ -655,7 +643,7 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 			}
 		}
 	}
-	.element-modal-container {
+	.modal-container {
 		background-color: $theme-light-modal-cover;
 		.element-modal {
 			background-color: $theme-light-background;
@@ -714,34 +702,28 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 				}
 			}
 		}
-	}
-	.confirmation-modal-container {
-		background-color: $theme-light-modal-cover;
-		.confirmation-modal {
+        .confirmation-modal {
             background-color: $theme-light-background;
             color: $theme-light-font-color;
-			.button-container {
-				.button-confirm {
-					background-color: $flat-red-shadow;
+            .button-container {
+                .button-confirm {
+                    background-color: $flat-red-shadow;
                     color: $white;
-					&:hover {
-						background-color: $flat-red;
+                    &:hover {
+                        background-color: $flat-red;
                         color: $white;
-					}
-				}
+                    }
+                }
                 .button-cancel {
-					background-color: $flat-grey-shadow;
-					color: $white;
-					&:hover {
-						background-color: $flat-grey;
+                    background-color: $flat-grey-shadow;
+                    color: $white;
+                    &:hover {
+                        background-color: $flat-grey;
                         color: $white;
-					}
-				}
-			}
-		}
-	}
-    .list-rename-modal-container {
-        background-color: $theme-light-modal-cover;
+                    }
+                }
+            }
+        }
         .list-rename-modal {
             background-color: $theme-light-background;
             color: $theme-light-font-color;
@@ -755,24 +737,24 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
             }
             .button-container {
                 .button-confirm {
-					background-color: $flat-blue-shadow;
-					color: $white;
-					&:hover {
-						background-color: $flat-blue;
+                    background-color: $flat-blue-shadow;
+                    color: $white;
+                    &:hover {
+                        background-color: $flat-blue;
                         color: $white;
-					}
-				}
+                    }
+                }
                 .button-cancel {
-					background-color: $flat-grey-shadow;
-					color: $white;
-					&:hover {
-						background-color: $flat-grey;
+                    background-color: $flat-grey-shadow;
+                    color: $white;
+                    &:hover {
+                        background-color: $flat-grey;
                         color: $white;
-					}
+                    }
                 }
             }
         }
-    }
+	}
 	.main-footer-container {
 		background-color: lighten(#007bff, 25%);
 		text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.2);
