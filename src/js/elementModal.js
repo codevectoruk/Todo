@@ -18,9 +18,7 @@ function buttonOpenElementModalForElementUpdate(listId, element, status) {
     $("#modal-list").val(listId);
     $("#modal-element").val(element);
     $("#modal-status").val(status);
-    if (localElement.description !== "") {
-        $("#modal-description").val(localElement.description);
-    }
+    $("#modal-description").val(localElement.description);
     $(".button-create").hide();
     $(".button-save").show();
     toggleElementModalVisibility();

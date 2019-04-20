@@ -22,7 +22,7 @@ body {
 	display: flex;
 	padding: 0 8px 41px 8px;
 	.list {
-		border-radius: 3px;
+		border-radius: 4px;
 		display: flex;
 		flex-direction: column;
 		margin-right: 8px;
@@ -47,7 +47,7 @@ body {
 					align-self: center;
 					margin-right: 8px;
 					padding: 6px 9px;
-					border-radius: 3px;
+					border-radius: 4px;
 					cursor: pointer;
 				}
 				.dropdown {
@@ -58,7 +58,7 @@ body {
 					transform: translate3d(0px, 40px, 0px);
 					flex-direction: column;
 					padding: 0 0 5px 0;
-					border-radius: 3px;
+					border-radius: 4px;
 					min-width: 160px;
 					.dropdown-title {
 						display: flex;
@@ -90,7 +90,7 @@ body {
 			overflow-x: hidden;
 			padding: 0 12px;
 			.list-element {
-				border-radius: 3px;
+				border-radius: 4px;
 				cursor: pointer;
 				margin-bottom: 8px;
 				text-decoration: none;
@@ -109,8 +109,9 @@ body {
 						}
 					}
 					.promote {
-						border-top-right-radius: 3px;
-						border-bottom-right-radius: 3px;
+						// border-top-right-radius: 4px;
+						// border-bottom-right-radius: 4px;
+                        border-radius: 4px;
 						padding: 0 8px;
 						font-size: 14px;
 						flex-grow: 1;
@@ -121,10 +122,10 @@ body {
 						}
 					}
 					.position-up {
-						border-top-right-radius: 3px;
+						border-top-right-radius: 4px;
 					}
 					.position-down {
-						border-bottom-right-radius: 3px;
+						border-bottom-right-radius: 4px;
 					}
 				}
 				.title {
@@ -160,21 +161,21 @@ body {
 			overflow-wrap: break-word;
 			padding: 8px 0 8px 20px;
 			cursor: pointer;
-			border-bottom-left-radius: 3px;
-			border-bottom-right-radius: 3px;
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
 			flex-shrink: 0;
 			&:hover {
 				text-decoration: underline;
 			}
 			i {
-				padding-right: 3px;
+				padding-right: 4px;
 			}
 		}
 	}
 	.add-list {
 		align-self: baseline;
 		padding: 10px;
-		border-radius: 3px;
+		border-radius: 4px;
 		font-weight: 700;
 		cursor: pointer;
 	}
@@ -192,7 +193,7 @@ body {
 	.element-modal {
 		width: 768px;
 		padding: 0 20px;
-		border-radius: 3px;
+		border-radius: 4px;
 		.close-container {
 			display: flex;
 			justify-content: flex-end;
@@ -212,7 +213,7 @@ body {
 				font-size: 20px;
 				font-weight: 700;
 				line-height: 24px;
-				border-radius: 3px;
+				border-radius: 4px;
 				&:active,
 				&:focus {
 					border: none;
@@ -236,7 +237,7 @@ body {
 				font-size: 14px;
 				font-weight: 400;
 				line-height: 24px;
-				border-radius: 3px;
+				border-radius: 4px;
 				resize: vertical;
 				&:active,
 				&:focus {
@@ -251,8 +252,8 @@ body {
 			padding: 10px 0 20px 0;
 			.button {
 				border: none;
-				padding: 8px 12px;
-				border-radius: 3px;
+				padding: 8px 14px;
+				border-radius: 4px;
 				cursor: pointer;
 				margin: 0 0 0 5px;
 			}
@@ -280,7 +281,7 @@ body {
 	.confirmation-modal {
 		width: 512px;
 		padding: 20px;
-		border-radius: 3px;
+		border-radius: 4px;
 		.text-container {
 			font-size: 16px;
 		}
@@ -289,8 +290,8 @@ body {
 			justify-content: flex-end;
 			.button {
 				border: none;
-				padding: 8px 12px;
-				border-radius: 3px;
+				padding: 8px 14px;
+				border-radius: 4px;
 				cursor: pointer;
 				margin: 0 0 0 5px;
 			}
@@ -310,7 +311,7 @@ body {
 	.list-rename-modal {
 		width: 768px;
 		padding: 15px 20px;
-		border-radius: 3px;
+		border-radius: 4px;
 		.text-container {
 			font-size: 16px;
 			font-weight: 700;
@@ -325,7 +326,7 @@ body {
 				font-size: 16px;
 				font-weight: 700;
 				line-height: 24px;
-				border-radius: 3px;
+				border-radius: 4px;
 				&:active,
 				&:focus {
 					border: none;
@@ -339,8 +340,8 @@ body {
 			padding: 10px 0 0 0;
 			.button {
 				border: none;
-				padding: 8px 12px;
-				border-radius: 3px;
+				padding: 8px 14px;
+				border-radius: 4px;
 				cursor: pointer;
 				margin: 0 0 0 5px;
 			}
