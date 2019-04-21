@@ -13,6 +13,22 @@
     }
 	.element-modal {
 		width: 768px;
+        .icon-container {
+            display: flex;
+        i {
+            align-self: center;
+            padding: 0 15px 0 0;
+            font-size: 18px;
+        }
+    }
+    .input-container {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        input {
+            width: 100%;
+        }
+    }
 		.close-container {
 			display: flex;
 			justify-content: flex-end;
@@ -29,7 +45,7 @@
 		.description-container {
 			padding: 10px 0;
 			display: flex;
-			flex-direction: column;
+			// flex-direction: column;
 			.description {
 				font-size: 16px;
 				line-height: 20px;
