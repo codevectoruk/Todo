@@ -11,6 +11,9 @@ $flat-grey-shadow: darken($flat-grey, 10%);
 $flat-green :#2ecc71;
 $flat-green-highlight: lighten($flat-green, 20%);
 $flat-green-shadow: darken($flat-green, 10%);
+$flat-yellow: #f1c40f;
+$flat-yellow-highlight: lighten($flat-yellow, 20%);
+$flat-yellow-shadow: darken($flat-yellow, 10%);
 
 $transparent-highlight: rgba(255,255,255,0.2);
 $transparent-shadow: rgba(0,0,0,0.1);
@@ -55,9 +58,19 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
 	color: $theme-default-font-color;
 	background-color: $theme-default-background;
 	.main-title-container {
-		color: $white;
-        .theme-picker {
-            color: $white;
+        color: $white;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $white;
+                    &:hover {
+                        color: darken($white, 10%);
+                    }
+                }
+            }
+            .theme-picker {
+                color: $white;
+            }
         }
 	}
 	.list-container {
@@ -285,18 +298,38 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
         }
 	}
 	.main-footer-container {
-		background-color: darken(#007bff, 25%);
-		text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.2);
+        color: $white;
 	}
+    .userAlert-container {
+        .userAlert {
+            color: $white;
+            .icon {
+            }
+            .text {
+                background-color: $white;
+                color: $theme-default-font-color;
+            }
+        }
+    }
 }
 
 .theme-dark {
 	color: $theme-dark-font-color;
 	background-color: $theme-dark-background;
-	.main-title-container {
-		color: $theme-dark-font-color-highlight;
-        .theme-picker {
-            color: $theme-dark-font-color-highlight;
+    .main-title-container {
+        color: $theme-dark-font-color;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $theme-dark-font-color;
+                    &:hover {
+                        color: $theme-dark-font-color-highlight;
+                    }
+                }
+            }
+            .theme-picker {
+                color: $theme-dark-font-color;
+            }
         }
 	}
 	.list-container {
@@ -524,21 +557,44 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
             }
         }
 	}
-	.main-footer-container {
-		background-color: darken(#007bff, 25%);
-		text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.2);
+    .main-footer-container {
+        color: $white;
 	}
+    .userAlert-container {
+        .userAlert {
+            color: $white;
+            .icon {
+            }
+            .text {
+                background-color: $theme-dark-background-shadow;
+                color: $white;
+            }
+        }
+    }
 }
 
 .theme-light {
 	color: $theme-light-font-color;
 	background-color: $theme-light-background;
-	.main-title-container {
-		color: $theme-light-font-color-shadow;
-        .theme-picker {
-            color: $theme-light-font-color-shadow;
+    .main-title-container {
+        color: $theme-light-font-color;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $theme-light-font-color;
+                    &:hover {
+                        color: $theme-light-font-color-shadow;
+                    }
+                }
+            }
+            .theme-picker {
+                color: $theme-light-font-color-highlight;
+                .theme {
+
+                }
+            }
         }
-	}
+    }
 	.list-container {
 		.list {
 			background-color: $theme-light-background-highlight;
@@ -764,8 +820,18 @@ $theme-light-modal-cover: rgba(0,0,0,0.5);
             }
         }
 	}
-	.main-footer-container {
-		background-color: lighten(#007bff, 25%);
-		text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.2);
+    .main-footer-container {
+        color: $flat-grey-shadow;
 	}
+    .userAlert-container {
+        .userAlert {
+            color: $white;
+            .icon {
+            }
+            .text {
+                background-color: $white;
+                color: $theme-light-font-color;
+            }
+        }
+    }
 }

@@ -19,4 +19,5 @@ function updateStoredTodoList() {
 //@prepros-append autoUpdate.js
 //@prepros-append themeChanger.js
 //@prepros-append serviceWorker.js
-//@prepros-append exportJson.js
+//@prepros-append importAndExportJson.js
+//@prepros-append userAlerts.js

@@ -4,6 +4,7 @@ function autoUpdate() {
         if(!compareJsonArrays(todo, localTodo)) {
             todo = JSON.parse(localStorage.getItem("todo"));
             createListsAndElements();
+            generateUserAlert("It looks like you updated your list on another tab, it has been updated on this tab too!", "information", 5000);
         }
     } else {
         firstTimeLoadLocalStorage();
