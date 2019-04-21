@@ -16,6 +16,7 @@ function deleteElement() {
     var element = $("#modal-confirm-element").val();
     elementStatusToDeleted(listId, element);
     toggleConfirmationModalVisibility();
+    generateUserAlert("List item successfully deleted.", "success", 5000);
 }
 
 //opens the modal in the create configuration
@@ -41,4 +42,5 @@ function deleteList() {
     todo.splice(listId, 1);
     createListsAndElements();
     toggleConfirmationModalVisibility();
+    generateUserAlert("List successfully deleted.", "success", 5000);
 }
