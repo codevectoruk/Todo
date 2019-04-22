@@ -1,6 +1,6 @@
 "use strict";
 //console.log('WORKER: executing.');
-var version = 'v1:1:5';
+var version = 'v1:2:1';
 var offlineFundamentals = [
     'index.html',
     'css/main.css',
@@ -9,7 +9,7 @@ var offlineFundamentals = [
     'images/todo-logo512.png',
     'images/todo-logo.ico',
     'js/autosize.min.js',
-    'js/jquery-3.3.1.min.js',
+    'js/jquery-3.4.0.min.js',
     'js/main.js',
     'manifest.json',
     'webfonts/fa-brands-400.woff',

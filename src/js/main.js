@@ -4,11 +4,11 @@ var todo = JSON.parse(localStorage.getItem("todo"));
 
 createListsAndElements();
 
-var ta = document.querySelector('textarea');
-ta.addEventListener('focus', function(){
-  autosize(ta);
+autosize($("#modal-description"));
+
+$("#modal-description").focus(function(){
+  autosize.update($("#modal-description"));
 });
-// autosize($("textarea"));
 
 function updateStoredTodoList() {
     localStorage.setItem("todo", JSON.stringify(todo));
