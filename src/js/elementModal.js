@@ -62,15 +62,16 @@ function createNewElement() {
   var listId = $("#modal-list").val();
   var title = $("#modal-title").val();
   var description = $("#modal-description").val();
+  var due = $("#due-date-input").val();
   var localList = findElementList(listId, "open");
   if (title !== "") {
     localList.push({
       "title": title,
       "description": description,
-      "classification": "OS",
-      "user": "Edward Wright",
-      "due": "7/4/2019",
-      "created": "1/4/2019",
+      "classification": "",
+      "user": "",
+      "due": due,
+      "created": "",
       "checklist": [{
           "name": "checklist Item 1",
           "status": "unchecked"
