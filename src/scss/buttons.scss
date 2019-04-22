@@ -1,0 +1,25 @@
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0 0;
+}
+
+.button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 0 0 5px;
+}
+
+@each $color, $value in $theme-colors {
+  .button-#{$color} {
+      background-color: $value;
+      color: $white;
+
+      &:hover {
+        background-color: darken($value, 10%);
+        color: $white;
+      }
+  }
+}

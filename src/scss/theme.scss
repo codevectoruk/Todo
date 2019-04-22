@@ -1,837 +1,722 @@
-$white: #fff;
-$flat-red: #e74c3c;
-$flat-red-highlight: lighten($flat-red, 20%);
-$flat-red-shadow: darken($flat-red, 10%);
-$flat-blue :#00a8ff;
-$flat-blue-highlight: lighten($flat-blue, 20%);
-$flat-blue-shadow: darken($flat-blue, 10%);
-$flat-grey :#7f8fa6;
-$flat-grey-highlight: lighten($flat-grey, 20%);
-$flat-grey-shadow: darken($flat-grey, 10%);
-$flat-green :#2ecc71;
-$flat-green-highlight: lighten($flat-green, 20%);
-$flat-green-shadow: darken($flat-green, 10%);
-$flat-yellow: #f1c40f;
-$flat-yellow-highlight: lighten($flat-yellow, 20%);
-$flat-yellow-shadow: darken($flat-yellow, 10%);
-
-$transparent-highlight: rgba(255,255,255,0.2);
-$transparent-shadow: rgba(0,0,0,0.1);
-
-$theme-default-background: #0056B5;
-$theme-default-background-highlight: lighten($theme-default-background, 15%);
-$theme-default-background-shadow: darken($theme-default-background, 10%);
-$theme-default-list-background: #dfe3e6;
-$theme-default-list-background-highlight: lighten($theme-default-list-background, 20%);
-$theme-default-list-background-shadow: darken($theme-default-list-background, 10%);
-$theme-default-font-color: #212529;
-$theme-default-font-color-highlight: lighten($theme-default-font-color, 20%);
-$theme-default-font-color-shadow: darken($theme-default-font-color, 20%);
-$theme-default-element: #fff;
-$theme-default-element-highlight: lighten($theme-default-element, 20%);
-$theme-default-element-shadow: darken($theme-default-element, 5%);
-$theme-default-modal-cover: rgba(0,0,0,0.5);
-
-$theme-dark-background: #2f3640;
-$theme-dark-background-highlight: lighten($theme-dark-background, 15%);
-$theme-dark-background-shadow: darken($theme-dark-background, 10%);
-$theme-dark-font-color: #eee;
-$theme-dark-font-color-highlight: lighten($theme-dark-font-color, 20%);
-$theme-dark-font-color-shadow: darken($theme-dark-font-color, 20%);
-$theme-dark-element: #353b48;
-$theme-dark-element-highlight: lighten($theme-dark-element, 15%);
-$theme-dark-element-shadow: darken($theme-dark-element, 10%);
-$theme-dark-modal-cover: rgba(0,0,0,0.5);
-
-$theme-light-background: #f5f6f7;
-$theme-light-background-highlight: lighten($theme-light-background, 15%);
-$theme-light-background-shadow: darken($theme-light-background, 10%);
-$theme-light-font-color: #333;
-$theme-light-font-color-highlight: lighten($theme-light-font-color, 20%);
-$theme-light-font-color-shadow: darken($theme-light-font-color, 20%);
-$theme-light-element: #fff;
-$theme-light-element-highlight: lighten($theme-light-element, 15%);
-$theme-light-element-shadow: darken($theme-light-element, 10%);
-$theme-light-modal-cover: rgba(0,0,0,0.5);
 
 .theme-default {
-	color: $theme-default-font-color;
-	background-color: $theme-default-background;
-	.main-title-container {
-        color: $white;
-        .flex-right {
-            .import-export {
-                i {
-                    color: $white;
-                    &:hover {
-                        color: darken($white, 10%);
-                    }
-                }
-            }
-            .theme-picker {
-                color: $white;
-            }
-        }
-	}
-	.list-container {
-		.list {
-			background-color: $theme-default-list-background;
-			.list-header {
-				.button-container {
-					.list-button {
-						color: $theme-default-font-color;
-						&:hover {
-							background-color: $theme-default-list-background-shadow;
-                            color: $theme-default-font-color-shadow;
-						}
-					}
-					.dropdown {
-						background-color: $theme-default-element;
-						box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-						.dropdown-title {
-							border-bottom: 1px solid $theme-default-list-background-shadow;
-                            i {
-                                color: $theme-default-font-color;
-                                &:hover {
-                                    color: $theme-default-font-color-shadow;
-                                }
-                            }
-						}
-						.dropdown-element {
-							color: $theme-default-font-color;
-							&:hover {
-								background-color: $theme-default-element-shadow;
-                                color: $theme-default-font-color-shadow;
-							}
-						}
-					}
-				}
-			}
-			.list-body {
-				.list-element {
-                    background-color: $theme-default-element;
-                    color: $theme-default-font-color;
+  color: $theme-default-font-color;
+  background-color: $theme-default-background;
 
-                    &:hover {
-                        background-color: $theme-default-element-shadow;
-                        color: $theme-default-font-color-shadow;
-                    }
-					.position {
-						.promote {
-							color: $white;
-							background-color: $flat-red;
-							&:hover {
-								background-color: $flat-red-shadow;
-								color: $white;
-							}
-						}
-						.position-up {
-                            border-left: 1px solid $theme-default-element-shadow;
-							border-bottom: 1px solid $theme-default-element-shadow;
-							&:hover {
-								background-color: $transparent-shadow;
-							}
-						}
-						.position-down {
-                            border-left: 1px solid $theme-default-element-shadow;
-							&:hover {
-								background-color: $transparent-shadow;
-							}
-						}
-					}
-				}
-				.status-open {
-					&:hover {
-						.position {
-							.position-up {
-								border-bottom: 1px solid $transparent-shadow;
-                                border-left: 1px solid $transparent-shadow;
-							}
-                            .position-down {
-                                border-left: 1px solid $transparent-shadow;
-							}
-						}
-					}
-					.status {
-						color: $flat-blue;
-						&:hover {
-							color: $flat-blue-highlight;
-						}
-					}
-				}
-				.status-closed {
-                    .status {
-						color: $flat-blue;
-						&:hover {
-							color: $flat-blue-highlight;
-						}
-					}
-				}
-			}
-			.list-footer {
-				color: $theme-default-font-color;
-				&:hover {
-					background-color: $theme-default-list-background-shadow;
-					color: $theme-default-font-color-shadow;
-				}
-			}
-		}
-		.add-list {
-			color: $white;
-			background-color: $theme-default-background-shadow;
-			&:hover {
-				background-color: $theme-default-background-highlight;
-                color: $theme-default-font-color-shadow;
-			}
-		}
-	}
-	.modal-container {
-		background-color: $theme-default-modal-cover;
-		.element-modal {
-			background-color: $theme-default-list-background;
-            color: $theme-default-font-color;
-			.title-container {
-				input {
-                    background-color: $theme-default-element-highlight;
-                    color: $theme-default-font-color;
-                    &::placeholder {
-                        color: $theme-default-font-color-highlight;
-                    }
-					&:active,
-					&:focus {
-						box-shadow: inset 0 0 0 2px $flat-blue-shadow;
-					}
-				}
-			}
-			.description-container {
-				textarea {
-                    background-color: $theme-default-element-highlight;
-                    color: $theme-default-font-color;
+  .main-title-container {
+    color: $white;
 
-                    &::placeholder {
-                        color: $theme-default-font-color-highlight;
-                    }
-					&:active,
-					&:focus {
-						box-shadow: inset 0 0 0 2px $flat-blue-shadow;
-					}
-				}
-			}
-			.button-container {
-				.button-create {
-					background-color: $flat-green;
-					color: $white;
-					&:hover {
-						background-color: $flat-green-shadow;
-                        color: $white;
-					}
-				}
-				.button-save {
-					background-color: $flat-blue;
-					color: $white;
-					&:hover {
-						background-color: $flat-blue-shadow;
-                        color: $white;
-					}
-				}
-				.button-cancel {
-					background-color: $flat-grey;
-					color: $white;
-					&:hover {
-						background-color: $flat-grey-shadow;
-                        color: $white;
-					}
-				}
-			}
-		}
-        .confirmation-modal {
-            background-color: $theme-default-list-background;
-            color: $theme-default-font-color;
-            .button-container {
-                .button-confirm {
-                    background-color: $flat-red;
-                    color: $white;
-                    &:hover {
-                        background-color: $flat-red-shadow;
-                        color: $white;
-                    }
-                }
-                .button-cancel {
-                    background-color: $flat-grey;
-                    color: $white;
-                    &:hover {
-                        background-color: $flat-grey-shadow;
-                        color: $white;
-                    }
-                }
-            }
+    .flex-right {
+      .import-export {
+        i {
+          color: $white;
+
+          &:hover {
+            color: darken($white, 10%);
+          }
         }
-        .list-rename-modal {
-            background-color: $theme-default-list-background;
-            color: $theme-default-font-color;
-            .input-container {
-                input {
-                    &:active,
-                    &:focus {
-                        box-shadow: inset 0 0 0 2px $flat-blue;
-                    }
-                }
-            }
-            .button-container {
-                .button-confirm {
-                    background-color: $flat-blue;
-                    color: $white;
-                    &:hover {
-                        background-color: $flat-blue-shadow;
-                        color: $white;
-                    }
-                }
-                .button-cancel {
-                    background-color: $flat-grey;
-                    color: $white;
-                    &:hover {
-                        background-color: $flat-grey-shadow;
-                        color: $white;
-                    }
-                }
-            }
-        }
-	}
-	.main-footer-container {
+      }
+
+      .theme-picker {
         color: $white;
-	}
-    .userAlert-container {
-        .userAlert {
-            color: $white;
-            .icon {
-            }
-            .text {
-                background-color: $white;
-                color: $theme-default-font-color;
-            }
-        }
+      }
     }
+  }
+
+  .list-container {
+    .list {
+      background-color: $theme-default-list-background;
+
+      .list-header {
+        .button-container {
+          .list-button {
+            color: $theme-default-font-color;
+
+            &:hover {
+              background-color: $theme-default-list-background-shadow;
+              color: $theme-default-font-color-shadow;
+            }
+          }
+
+          .dropdown {
+            background-color: $theme-default-element;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+            .dropdown-title {
+              border-bottom: 1px solid $theme-default-list-background-shadow;
+
+              i {
+                color: $theme-default-font-color;
+
+                &:hover {
+                  color: $theme-default-font-color-shadow;
+                }
+              }
+            }
+
+            .dropdown-element {
+              color: $theme-default-font-color;
+
+              &:hover {
+                background-color: $theme-default-element-shadow;
+                color: $theme-default-font-color-shadow;
+              }
+            }
+          }
+        }
+      }
+
+      .list-body {
+        .list-element {
+          background-color: $theme-default-element;
+          color: $theme-default-font-color;
+
+          &:hover {
+            background-color: $theme-default-element-shadow;
+            color: $theme-default-font-color-shadow;
+          }
+
+          .position {
+            .promote {
+              color: $white;
+              background-color: $red;
+
+              &:hover {
+                background-color: $red-shadow;
+                color: $white;
+              }
+            }
+
+            .position-up {
+              border-left: 1px solid $theme-default-element-shadow;
+              border-bottom: 1px solid $theme-default-element-shadow;
+
+              &:hover {
+                background-color: $transparent-shadow;
+              }
+            }
+
+            .position-down {
+              border-left: 1px solid $theme-default-element-shadow;
+
+              &:hover {
+                background-color: $transparent-shadow;
+              }
+            }
+          }
+        }
+
+        .status-open {
+          &:hover {
+            .position {
+              .position-up {
+                border-bottom: 1px solid $transparent-shadow;
+                border-left: 1px solid $transparent-shadow;
+              }
+
+              .position-down {
+                border-left: 1px solid $transparent-shadow;
+              }
+            }
+          }
+
+          .status {
+            color: $blue;
+
+            &:hover {
+              color: $blue-highlight;
+            }
+          }
+        }
+
+        .status-closed {
+          .status {
+            color: $blue;
+
+            &:hover {
+              color: $blue-highlight;
+            }
+          }
+        }
+      }
+
+      .list-footer {
+        color: $theme-default-font-color;
+
+        &:hover {
+          background-color: $theme-default-list-background-shadow;
+          color: $theme-default-font-color-shadow;
+        }
+      }
+    }
+
+    .add-list {
+      color: $white;
+      background-color: $theme-default-background-shadow;
+
+      &:hover {
+        background-color: $theme-default-background-highlight;
+        color: $theme-default-font-color-shadow;
+      }
+    }
+  }
+
+  .modal-container {
+    background-color: $theme-default-modal-cover;
+
+    .element-modal {
+      background-color: $theme-default-list-background;
+      color: $theme-default-font-color;
+
+      .title-container {
+        input {
+          background-color: $theme-default-element-highlight;
+          color: $theme-default-font-color;
+
+          &::placeholder {
+            color: $theme-default-font-color-highlight;
+          }
+
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue-shadow;
+          }
+        }
+      }
+
+      .description-container {
+        textarea {
+          background-color: $theme-default-element-highlight;
+          color: $theme-default-font-color;
+
+          &::placeholder {
+            color: $theme-default-font-color-highlight;
+          }
+
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue-shadow;
+          }
+        }
+      }
+    }
+
+    .confirmation-modal {
+      background-color: $theme-default-list-background;
+      color: $theme-default-font-color;
+    }
+
+    .list-rename-modal {
+      background-color: $theme-default-list-background;
+      color: $theme-default-font-color;
+
+      .input-container {
+        input {
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue;
+          }
+        }
+      }
+    }
+  }
+
+  .main-footer-container {
+    color: $white;
+  }
+
+  .userAlert-container {
+    .userAlert {
+      color: $white;
+
+      .icon {}
+
+      .text {
+        background-color: $white;
+        color: $theme-default-font-color;
+      }
+    }
+  }
 }
 
 .theme-dark {
-	color: $theme-dark-font-color;
-	background-color: $theme-dark-background;
-    .main-title-container {
+  color: $theme-dark-font-color;
+  background-color: $theme-dark-background;
+
+  .main-title-container {
+    color: $theme-dark-font-color;
+
+    .flex-right {
+      .import-export {
+        i {
+          color: $theme-dark-font-color;
+
+          &:hover {
+            color: $theme-dark-font-color-highlight;
+          }
+        }
+      }
+
+      .theme-picker {
         color: $theme-dark-font-color;
-        .flex-right {
-            .import-export {
-                i {
-                    color: $theme-dark-font-color;
-                    &:hover {
-                        color: $theme-dark-font-color-highlight;
-                    }
-                }
-            }
-            .theme-picker {
-                color: $theme-dark-font-color;
-            }
-        }
-	}
-	.list-container {
-		.list {
-			background-color: $theme-dark-background-shadow;
-			.list-header {
-				.button-container {
-					.list-button {
-						color: $theme-dark-font-color;
-						&:hover {
-							background-color: $theme-dark-background-highlight;
-                            color: $theme-dark-font-color-highlight;
-						}
-					}
-					.dropdown {
-						background-color: $theme-dark-element;
-						box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-						.dropdown-title {
-							border-bottom: 1px solid $theme-dark-background-highlight;
-                            i {
-                                color: $theme-dark-font-color;
-                                &:hover {
-                                    color: $theme-dark-font-color-highlight;
-                                }
-                            }
-						}
-						.dropdown-element {
-							color: $theme-dark-font-color;
-							&:hover {
-								background-color: $theme-dark-element-highlight;
-                                color: $theme-dark-font-color-highlight;
-							}
-						}
-					}
-				}
-			}
-			.list-body {
-				.list-element {
-                    background-color: $theme-dark-element;
-                    color: $theme-dark-font-color;
-
-                    &:hover {
-                        background-color: $theme-dark-element-highlight;
-                        color: $theme-dark-font-color-highlight;
-                    }
-					.position {
-						.promote {
-							color: $theme-dark-font-color;
-							background-color: $flat-red;
-							&:hover {
-								background-color: $flat-red-shadow;
-								color: $theme-dark-font-color-highlight;
-							}
-						}
-						.position-up {
-                            border-left: 1px solid $theme-dark-element-highlight;
-							border-bottom: 1px solid $theme-dark-element-highlight;
-							&:hover {
-								background-color: $transparent-highlight;
-							}
-						}
-						.position-down {
-
-                            border-left: 1px solid $theme-dark-element-highlight;
-							&:hover {
-								background-color: $transparent-highlight;
-							}
-						}
-					}
-				}
-				.status-open {
-					&:hover {
-						.position {
-							.position-up {
-								border-bottom: 1px solid $transparent-highlight;
-                                border-left: 1px solid $transparent-highlight;
-							}
-                            .position-down {
-                                border-left: 1px solid $transparent-highlight;
-							}
-						}
-					}
-					.status {
-						color: $flat-blue;
-						&:hover {
-							color: $flat-blue-highlight;
-						}
-					}
-				}
-				.status-closed {
-                    .status {
-						color: $flat-blue;
-						&:hover {
-							color: $flat-blue-highlight;
-						}
-					}
-				}
-			}
-			.list-footer {
-				color: $theme-dark-font-color;
-				&:hover {
-					background-color: $theme-dark-background-highlight;
-					color: $theme-dark-font-color-highlight;
-				}
-			}
-		}
-		.add-list {
-			color: $theme-dark-font-color;
-			background-color: $theme-dark-background-shadow;
-			&:hover {
-				background-color: $theme-dark-background-highlight;
-                color: $theme-dark-font-color-highlight;
-			}
-		}
-	}
-	.modal-container {
-		background-color: $theme-dark-modal-cover;
-		.element-modal {
-			background-color: $theme-dark-background;
-            color: $theme-dark-font-color;
-			.title-container {
-				input {
-                    background-color: $theme-dark-element-highlight;
-                    color: $theme-dark-font-color;
-                    &::placeholder {
-                        color: $theme-dark-font-color;
-                    }
-					&:active,
-					&:focus {
-						box-shadow: inset 0 0 0 2px $flat-blue-shadow;
-					}
-				}
-			}
-			.description-container {
-				textarea {
-                    background-color: $theme-dark-element-highlight;
-                    color: $theme-dark-font-color;
-
-                    &::placeholder {
-                        color: $theme-dark-font-color;
-                    }
-					&:active,
-					&:focus {
-						box-shadow: inset 0 0 0 2px $flat-blue-shadow;
-					}
-				}
-			}
-			.button-container {
-				.button-create {
-					background-color: $flat-green-shadow;
-					color: $theme-dark-font-color;
-					&:hover {
-						background-color: $flat-green;
-                        color: $theme-dark-font-color-highlight;
-					}
-				}
-				.button-save {
-					background-color: $flat-blue-shadow;
-					color: $theme-dark-font-color;
-					&:hover {
-						background-color: $flat-blue;
-                        color: $theme-dark-font-color-highlight;
-					}
-				}
-				.button-cancel {
-					background-color: $flat-grey-shadow;
-					color: $theme-dark-font-color;
-					&:hover {
-						background-color: $flat-grey;
-                        color: $theme-dark-font-color-highlight;
-					}
-				}
-			}
-		}
-        .confirmation-modal {
-            background-color: $theme-dark-background;
-            color: $theme-dark-font-color;
-            .button-container {
-                .button-confirm {
-                    background-color: $flat-red-shadow;
-                    color: $theme-dark-font-color;
-                    &:hover {
-                        background-color: $flat-red;
-                        color: $theme-dark-font-color-highlight;
-                    }
-                }
-                .button-cancel {
-                    background-color: $flat-grey-shadow;
-                    color: $theme-dark-font-color;
-                    &:hover {
-                        background-color: $flat-grey;
-                        color: $theme-dark-font-color-highlight;
-                    }
-                }
-            }
-        }
-        .list-rename-modal {
-            background-color: $theme-dark-background;
-            color: $theme-dark-font-color;
-            .input-container {
-                input {
-                    &:active,
-                    &:focus {
-                        box-shadow: inset 0 0 0 2px $flat-blue;
-                    }
-                }
-            }
-            .button-container {
-                .button-confirm {
-                    background-color: $flat-blue-shadow;
-                    color: $theme-dark-font-color;
-                    &:hover {
-                        background-color: $flat-blue;
-                        color: $theme-dark-font-color-highlight;
-                    }
-                }
-                .button-cancel {
-                    background-color: $flat-grey-shadow;
-                    color: $theme-dark-font-color;
-                    &:hover {
-                        background-color: $flat-grey;
-                        color: $theme-dark-font-color-highlight;
-                    }
-                }
-            }
-        }
-	}
-    .main-footer-container {
-        color: $white;
-	}
-    .userAlert-container {
-        .userAlert {
-            color: $white;
-            .icon {
-            }
-            .text {
-                background-color: $theme-dark-background-shadow;
-                color: $white;
-            }
-        }
+      }
     }
+  }
+
+  .list-container {
+    .list {
+      background-color: $theme-dark-background-shadow;
+
+      .list-header {
+        .button-container {
+          .list-button {
+            color: $theme-dark-font-color;
+
+            &:hover {
+              background-color: $theme-dark-background-highlight;
+              color: $theme-dark-font-color-highlight;
+            }
+          }
+
+          .dropdown {
+            background-color: $theme-dark-element;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+            .dropdown-title {
+              border-bottom: 1px solid $theme-dark-background-highlight;
+
+              i {
+                color: $theme-dark-font-color;
+
+                &:hover {
+                  color: $theme-dark-font-color-highlight;
+                }
+              }
+            }
+
+            .dropdown-element {
+              color: $theme-dark-font-color;
+
+              &:hover {
+                background-color: $theme-dark-element-highlight;
+                color: $theme-dark-font-color-highlight;
+              }
+            }
+          }
+        }
+      }
+
+      .list-body {
+        .list-element {
+          background-color: $theme-dark-element;
+          color: $theme-dark-font-color;
+
+          &:hover {
+            background-color: $theme-dark-element-highlight;
+            color: $theme-dark-font-color-highlight;
+          }
+
+          .position {
+            .promote {
+              color: $theme-dark-font-color;
+              background-color: $red;
+
+              &:hover {
+                background-color: $red-shadow;
+                color: $theme-dark-font-color-highlight;
+              }
+            }
+
+            .position-up {
+              border-left: 1px solid $theme-dark-element-highlight;
+              border-bottom: 1px solid $theme-dark-element-highlight;
+
+              &:hover {
+                background-color: $transparent-highlight;
+              }
+            }
+
+            .position-down {
+              border-left: 1px solid $theme-dark-element-highlight;
+
+              &:hover {
+                background-color: $transparent-highlight;
+              }
+            }
+          }
+        }
+
+        .status-open {
+          &:hover {
+            .position {
+              .position-up {
+                border-bottom: 1px solid $transparent-highlight;
+                border-left: 1px solid $transparent-highlight;
+              }
+
+              .position-down {
+                border-left: 1px solid $transparent-highlight;
+              }
+            }
+          }
+
+          .status {
+            color: $blue;
+
+            &:hover {
+              color: $blue-highlight;
+            }
+          }
+        }
+
+        .status-closed {
+          .status {
+            color: $blue;
+
+            &:hover {
+              color: $blue-highlight;
+            }
+          }
+        }
+      }
+
+      .list-footer {
+        color: $theme-dark-font-color;
+
+        &:hover {
+          background-color: $theme-dark-background-highlight;
+          color: $theme-dark-font-color-highlight;
+        }
+      }
+    }
+
+    .add-list {
+      color: $theme-dark-font-color;
+      background-color: $theme-dark-background-shadow;
+
+      &:hover {
+        background-color: $theme-dark-background-highlight;
+        color: $theme-dark-font-color-highlight;
+      }
+    }
+  }
+
+  .modal-container {
+    background-color: $theme-dark-modal-cover;
+
+    .element-modal {
+      background-color: $theme-dark-background;
+      color: $theme-dark-font-color;
+
+      .title-container {
+        input {
+          background-color: $theme-dark-element-highlight;
+          color: $theme-dark-font-color;
+
+          &::placeholder {
+            color: $theme-dark-font-color;
+          }
+
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue-shadow;
+          }
+        }
+      }
+
+      .description-container {
+        textarea {
+          background-color: $theme-dark-element-highlight;
+          color: $theme-dark-font-color;
+
+          &::placeholder {
+            color: $theme-dark-font-color;
+          }
+
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue-shadow;
+          }
+        }
+      }
+    }
+
+    .confirmation-modal {
+      background-color: $theme-dark-background;
+      color: $theme-dark-font-color;
+    }
+
+    .list-rename-modal {
+      background-color: $theme-dark-background;
+      color: $theme-dark-font-color;
+
+      .input-container {
+        input {
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue;
+          }
+        }
+      }
+    }
+  }
+
+  .main-footer-container {
+    color: $white;
+  }
+
+  .userAlert-container {
+    .userAlert {
+      color: $white;
+
+      .icon {}
+
+      .text {
+        background-color: $theme-dark-background-shadow;
+        color: $white;
+      }
+    }
+  }
 }
 
 .theme-light {
-	color: $theme-light-font-color;
-	background-color: $theme-light-background;
-    .main-title-container {
-        color: $theme-light-font-color;
-        .flex-right {
-            .import-export {
-                i {
-                    color: $theme-light-font-color;
-                    &:hover {
-                        color: $theme-light-font-color-shadow;
-                    }
-                }
-            }
-            .theme-picker {
-                color: $theme-light-font-color-highlight;
-                .theme {
+  color: $theme-light-font-color;
+  background-color: $theme-light-background;
 
-                }
-            }
+  .main-title-container {
+    color: $theme-light-font-color;
+
+    .flex-right {
+      .import-export {
+        i {
+          color: $theme-light-font-color;
+
+          &:hover {
+            color: $theme-light-font-color-shadow;
+          }
         }
+      }
+
+      .theme-picker {
+        color: $theme-light-font-color-highlight;
+
+        .theme {}
+      }
     }
-	.list-container {
-		.list {
-			background-color: $theme-light-background-highlight;
-			.list-header {
-				.button-container {
-					.list-button {
-						color: $theme-light-font-color;
-						&:hover {
-							background-color: $theme-light-background-shadow;
-                            color: $theme-light-font-color-shadow;
-						}
-					}
-					.dropdown {
-						background-color: $theme-light-element;
-						box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-						.dropdown-title {
-							border-bottom: 1px solid $theme-light-background-shadow;
-                            i {
-                                color: $theme-light-font-color;
-                                &:hover {
-                                    color: $theme-light-font-color-shadow;
-                                }
-                            }
-						}
-						.dropdown-element {
-							color: $theme-light-font-color;
-							&:hover {
-								background-color: $theme-light-element-shadow;
-                                color: $theme-light-font-color-shadow;
-							}
-						}
-					}
-				}
-			}
-			.list-body {
-				.list-element {
-                    background-color: $theme-light-element;
-                    color: $theme-light-font-color;
+  }
 
-                    &:hover {
-                        background-color: $theme-light-element-shadow;
-                        color: $theme-light-font-color-shadow;
-                    }
-					.position {
-						.promote {
-							color: $white;
-							background-color: $flat-red;
-							&:hover {
-								background-color: $flat-red-shadow;
-                                color: darken(#fff, 10%);
-							}
-						}
-						.position-up {
-                            border-left: 1px solid $theme-light-element-highlight;
-							border-bottom: 1px solid $theme-light-element-highlight;
-							&:hover {
-								background-color: $transparent-highlight;
-							}
-						}
-						.position-down {
+  .list-container {
+    .list {
+      background-color: $theme-light-background-highlight;
 
-                            border-left: 1px solid $theme-light-element-highlight;
-							&:hover {
-								background-color: $transparent-highlight;
-							}
-						}
-					}
-				}
-				.status-open {
-					&:hover {
-						.position {
-							.position-up {
-								border-bottom: 1px solid $transparent-highlight;
-                                border-left: 1px solid $transparent-highlight;
-							}
-                            .position-down {
-                                border-left: 1px solid $transparent-highlight;
-							}
-						}
-					}
-					.status {
-						color: $flat-blue-highlight;
-						&:hover {
-							color: $flat-blue;
-						}
-					}
-				}
-				.status-closed {
-                    .status {
-						color: $flat-blue-highlight;
-						&:hover {
-							color: $flat-blue;
-						}
-					}
-				}
-			}
-			.list-footer {
-				color: $theme-light-font-color;
-				&:hover {
-					background-color: $theme-light-element-shadow;
-					color: $theme-light-font-color-shadow;
-				}
-			}
-		}
-		.add-list {
-			color: $theme-light-font-color;
-			background-color: $theme-light-background-shadow;
-			&:hover {
-				background-color: $theme-light-background-highlight;
-                color: $theme-light-font-color-shadow;
-			}
-		}
-	}
-	.modal-container {
-		background-color: $theme-light-modal-cover;
-		.element-modal {
-			background-color: $theme-light-background;
+      .list-header {
+        .button-container {
+          .list-button {
             color: $theme-light-font-color;
-			.title-container {
-				input {
-                    background-color: $theme-light-element-highlight;
-                    color: $theme-light-font-color;
-                    &::placeholder {
-                        color: $theme-light-font-color;
-                    }
-					&:active,
-					&:focus {
-						box-shadow: inset 0 0 0 2px $flat-blue-shadow;
-					}
-				}
-			}
-			.description-container {
-				textarea {
-                    background-color: $theme-light-element-highlight;
-                    color: $theme-light-font-color;
 
-                    &::placeholder {
-                        color: $theme-light-font-color;
-                    }
-					&:active,
-					&:focus {
-						box-shadow: inset 0 0 0 2px $flat-blue-shadow;
-					}
-				}
-			}
-			.button-container {
-				.button-create {
-					background-color: $flat-green-shadow;
-					color: $white;
-					&:hover {
-						background-color: $flat-green;
-                        color: $white;
-					}
-				}
-				.button-save {
-					background-color: $flat-blue-shadow;
-					color: $white;
-					&:hover {
-						background-color: $flat-blue;
-                        color: $white;
-					}
-				}
-				.button-cancel {
-					background-color: $flat-grey-shadow;
-					color: $white;
-					&:hover {
-						background-color: $flat-grey;
-                        color: $white;
-					}
-				}
-			}
-		}
-        .confirmation-modal {
-            background-color: $theme-light-background;
-            color: $theme-light-font-color;
-            .button-container {
-                .button-confirm {
-                    background-color: $flat-red-shadow;
-                    color: $white;
-                    &:hover {
-                        background-color: $flat-red;
-                        color: $white;
-                    }
-                }
-                .button-cancel {
-                    background-color: $flat-grey-shadow;
-                    color: $white;
-                    &:hover {
-                        background-color: $flat-grey;
-                        color: $white;
-                    }
-                }
+            &:hover {
+              background-color: $theme-light-background-shadow;
+              color: $theme-light-font-color-shadow;
             }
-        }
-        .list-rename-modal {
-            background-color: $theme-light-background;
-            color: $theme-light-font-color;
-            .input-container {
-                input {
-                    &:active,
-                    &:focus {
-                        box-shadow: inset 0 0 0 2px $flat-blue;
-                    }
-                }
-            }
-            .button-container {
-                .button-confirm {
-                    background-color: $flat-blue-shadow;
-                    color: $white;
-                    &:hover {
-                        background-color: $flat-blue;
-                        color: $white;
-                    }
-                }
-                .button-cancel {
-                    background-color: $flat-grey-shadow;
-                    color: $white;
-                    &:hover {
-                        background-color: $flat-grey;
-                        color: $white;
-                    }
-                }
-            }
-        }
-	}
-    .main-footer-container {
-        color: $flat-grey-shadow;
-	}
-    .userAlert-container {
-        .userAlert {
-            color: $white;
-            .icon {
-            }
-            .text {
-                background-color: $white;
+          }
+
+          .dropdown {
+            background-color: $theme-light-element;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+            .dropdown-title {
+              border-bottom: 1px solid $theme-light-background-shadow;
+
+              i {
                 color: $theme-light-font-color;
+
+                &:hover {
+                  color: $theme-light-font-color-shadow;
+                }
+              }
             }
+
+            .dropdown-element {
+              color: $theme-light-font-color;
+
+              &:hover {
+                background-color: $theme-light-element-shadow;
+                color: $theme-light-font-color-shadow;
+              }
+            }
+          }
         }
+      }
+
+      .list-body {
+        .list-element {
+          background-color: $theme-light-element;
+          color: $theme-light-font-color;
+
+          &:hover {
+            background-color: $theme-light-element-shadow;
+            color: $theme-light-font-color-shadow;
+          }
+
+          .position {
+            .promote {
+              color: $white;
+              background-color: $red;
+
+              &:hover {
+                background-color: $red-shadow;
+                color: darken(#fff, 10%);
+              }
+            }
+
+            .position-up {
+              border-left: 1px solid $theme-light-element-highlight;
+              border-bottom: 1px solid $theme-light-element-highlight;
+
+              &:hover {
+                background-color: $transparent-highlight;
+              }
+            }
+
+            .position-down {
+              border-left: 1px solid $theme-light-element-highlight;
+
+              &:hover {
+                background-color: $transparent-highlight;
+              }
+            }
+          }
+        }
+
+        .status-open {
+          &:hover {
+            .position {
+              .position-up {
+                border-bottom: 1px solid $transparent-highlight;
+                border-left: 1px solid $transparent-highlight;
+              }
+
+              .position-down {
+                border-left: 1px solid $transparent-highlight;
+              }
+            }
+          }
+
+          .status {
+            color: $blue-highlight;
+
+            &:hover {
+              color: $blue;
+            }
+          }
+        }
+
+        .status-closed {
+          .status {
+            color: $blue-highlight;
+
+            &:hover {
+              color: $blue;
+            }
+          }
+        }
+      }
+
+      .list-footer {
+        color: $theme-light-font-color;
+
+        &:hover {
+          background-color: $theme-light-element-shadow;
+          color: $theme-light-font-color-shadow;
+        }
+      }
     }
+
+    .add-list {
+      color: $theme-light-font-color;
+      background-color: $theme-light-background-shadow;
+
+      &:hover {
+        background-color: $theme-light-background-highlight;
+        color: $theme-light-font-color-shadow;
+      }
+    }
+  }
+
+  .modal-container {
+    background-color: $theme-light-modal-cover;
+
+    .element-modal {
+      background-color: $theme-light-background;
+      color: $theme-light-font-color;
+
+      .title-container {
+        input {
+          background-color: $theme-light-element-highlight;
+          color: $theme-light-font-color;
+
+          &::placeholder {
+            color: $theme-light-font-color;
+          }
+
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue-shadow;
+          }
+        }
+      }
+
+      .description-container {
+        textarea {
+          background-color: $theme-light-element-highlight;
+          color: $theme-light-font-color;
+
+          &::placeholder {
+            color: $theme-light-font-color;
+          }
+
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue-shadow;
+          }
+        }
+      }
+    }
+
+    .confirmation-modal {
+      background-color: $theme-light-background;
+      color: $theme-light-font-color;
+    }
+
+    .list-rename-modal {
+      background-color: $theme-light-background;
+      color: $theme-light-font-color;
+
+      .input-container {
+        input {
+          &:active,
+          &:focus {
+            box-shadow: inset 0 0 0 2px $blue;
+          }
+        }
+      }
+    }
+  }
+
+  .main-footer-container {
+    color: $grey-shadow;
+  }
+
+  .userAlert-container {
+    .userAlert {
+      color: $white;
+
+      .icon {}
+
+      .text {
+        background-color: $white;
+        color: $theme-light-font-color;
+      }
+    }
+  }
 }

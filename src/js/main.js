@@ -6,12 +6,12 @@ createListsAndElements();
 
 autosize($("#modal-description"));
 
-$("#modal-description").focus(function(){
+$("#modal-description").focus(function() {
   autosize.update($("#modal-description"));
 });
 
 function updateStoredTodoList() {
-    localStorage.setItem("todo", JSON.stringify(todo));
+  localStorage.setItem("todo", JSON.stringify(todo));
 }
 
 
