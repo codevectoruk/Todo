@@ -2,102 +2,119 @@
 <html class="no-js" lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>ToDo</title>
-    <meta name="description" content="To Do List">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0056B5">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="icon" href="images/todo-logo.ico">
-    <link rel="apple-touch-icon-precomposed" href="images/ed2.png">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#0056B5">
-    <link rel="manifest" href="manifest.json">
+  <meta charset="utf-8">
+  <title>ToDo</title>
+  <meta name="description" content="To Do List">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0056B5">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="icon" href="images/todo-logo.ico">
+  <link rel="apple-touch-icon-precomposed" href="images/ed2.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0056B5">
+  <link rel="manifest" href="manifest.json">
 </head>
 
-<body class="theme-default" >
-    <div class="main-title-container" role="main">
-        <div class="main-title">To Do List</div>
-        <div class="flex-right">
-            <div class="import-export">
-                <i class="fas fa-file-import"></i>
-                <i class="fas fa-file-export" onclick="downloadObjectAsJson()"></i>
-            </div>
-            <div class="theme-picker">
-                Theme:
-                <div class="theme theme-picker-default" onclick="themeChanger('default')"></div>
-                <div class="theme theme-picker-dark" onclick="themeChanger('dark')"></div>
-                <div class="theme theme-picker-light" onclick="themeChanger('light')"></div>
-            </div>
+<body class="theme-default">
+  <div class="main-title-container" role="main">
+    <div class="main-title">To Do List</div>
+    <div class="flex-right">
+      <div class="import-export">
+        <i class="fas fa-file-import"></i>
+        <i class="fas fa-file-export" onclick="downloadObjectAsJson()"></i>
+      </div>
+      <div class="theme-picker">
+        Theme:
+        <div class="theme theme-picker-default" onclick="themeChanger('default')"></div>
+        <div class="theme theme-picker-dark" onclick="themeChanger('dark')"></div>
+        <div class="theme theme-picker-light" onclick="themeChanger('light')"></div>
+      </div>
+    </div>
+  </div>
+  <div class="list-container"></div>
+  <div class="modal-container hidden" id="id-element-modal">
+    <div class="element-modal generic-modal">
+      <div class="close-container" onclick="toggleElementModalVisibility()">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="title-container">
+        <div class="icon-container">
+          <i class="fas fa-heading"></i>
         </div>
-    </div>
-    <div class="list-container"></div>
-    <div class="modal-container hidden" id="id-element-modal">
-        <div class="element-modal generic-modal">
-            <div class="close-container" onclick="toggleElementModalVisibility()">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="title-container">
-                <div class="icon-container">
-                    <i class="fas fa-heading"></i>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="modal-title" placeholder="Enter a title…">
-                    <input type="hidden" id="modal-list">
-                    <input type="hidden" id="modal-element">
-                    <input type="hidden" id="modal-status">
-                </div>
-            </div>
-            <div class="description-container">
-                <div class="icon-container">
-                    <i class="fas fa-align-left"></i>
-                </div>
-                <div class="input-container">
-                    <div class="description">
-                        Description
-                    </div>
-                    <textarea type="text" id="modal-description" placeholder="Add a more detailed description…" rows='4'></textarea>
-                </div>
-            </div>
-            <div class="button-container">
-                <input class="button button-create" type="button" value="Create" onclick="createNewElement()">
-                <input class="button button-save" type="button" value="Save" onclick="updateElement()">
-                <input class="button button-cancel" type="button" value="Cancel" onclick="toggleElementModalVisibility()">
-            </div>
+        <div class="input-container">
+          <input type="text" id="modal-title" placeholder="Enter a title…">
+          <input type="hidden" id="modal-list">
+          <input type="hidden" id="modal-element">
+          <input type="hidden" id="modal-status">
         </div>
-    </div>
-    <div class="modal-container hidden" id="id-confirmation-modal">
-        <div class="confirmation-modal generic-modal">
-            <div class="text-container">Are you sure you want to delete this?</div>
-            <div class="button-container">
-                <input type="hidden" id="modal-confirm-list">
-                <input type="hidden" id="modal-confirm-element">
-                <input class="button button-confirm" id="deleteElementButton" type="button" value="Confirm" onclick="deleteElement()">
-                <input class="button button-confirm" id="deleteListButton" type="button" value="Confirm" onclick="deleteList()">
-                <input class="button button-cancel" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
-            </div>
+      </div>
+      <div class="date-container">
+        <div class="icon-container">
+          <i class="far fa-clock"></i>
         </div>
-    </div>
-    <div class="modal-container hidden" id="id-rename-modal">
-        <div class="list-rename-modal generic-modal">
-            <div class="text-container">Rename List Title</div>
-            <div class="input-container">
-                <input type="text" id="modal-list-rename-input" placeholder="Change List's Name…">
+        <div class="due-button-container">
+            <div class="description">
+              Due Date
             </div>
-            <div class="button-container">
-                <input type="hidden" id="modal-rename-list">
-                <input class="button button-confirm" type="button" value="Confirm" onclick="renameList()">
-                <input class="button button-cancel" type="button" value="Cancel" onclick="toggleRenameListModal()">
-            </div>
+            <div class="due-button">
+          <input type="text" id="due-date-input" class="tail-datetime-field" />
+          <div class="button-container">
+          <button class="button button-danger" onclick="clearDueDate()">Remove Due Date</button>
+      </div>
+      </div>
         </div>
+      </div>
+      <div class="description-container">
+        <div class="icon-container">
+          <i class="fas fa-align-left"></i>
+        </div>
+        <div class="input-container">
+          <div class="description">
+            Description
+          </div>
+          <textarea type="text" class="scrollbar" id="modal-description" placeholder="Add a more detailed description…" rows='4'></textarea>
+        </div>
+      </div>
+      <div class="button-container">
+        <input class="button button-success" id="element-modal-button-create" type="button" value="Create" onclick="createNewElement()">
+        <input class="button button-info" id="element-modal-button-update" type="button" value="Save" onclick="updateElement()">
+        <input class="button button-default" id="element-modal-button-cancel" type="button" value="Cancel" onclick="toggleElementModalVisibility()">
+      </div>
     </div>
-    <div class="main-footer-container">
-        By Edward Wright
+  </div>
+  <div class="modal-container hidden" id="id-confirmation-modal">
+    <div class="confirmation-modal generic-modal">
+      <div class="text-container">Are you sure you want to delete this?</div>
+      <div class="button-container">
+        <input type="hidden" id="modal-confirm-list">
+        <input type="hidden" id="modal-confirm-element">
+        <input class="button button-danger" id="deleteElementButton" type="button" value="Confirm" onclick="deleteElement()">
+        <input class="button button-danger" id="deleteListButton" type="button" value="Confirm" onclick="deleteList()">
+        <input class="button button-default" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
+      </div>
     </div>
-    <div class="userAlert-container"></div>
-    <script src="js/jquery-3.4.0.min.js"></script>
-    <script src="js/autosize.min.js"></script>
-    <script src="js/main.js"></script>
+  </div>
+  <div class="modal-container hidden" id="id-rename-modal">
+    <div class="list-rename-modal generic-modal">
+      <div class="text-container">Rename List Title</div>
+      <div class="input-container">
+        <input type="text" id="modal-list-rename-input" placeholder="Change List's Name…">
+      </div>
+      <div class="button-container">
+        <input type="hidden" id="modal-rename-list">
+        <input class="button button-confirm" type="button" value="Confirm" onclick="renameList()">
+        <input class="button button-cancel" type="button" value="Cancel" onclick="toggleRenameListModal()">
+      </div>
+    </div>
+  </div>
+  <div class="main-footer-container">
+    By Edward Wright
+  </div>
+  <div class="userAlert-container"></div>
+  <script src="js/jquery-3.4.0.min.js"></script>
+  <script src="js/autosize.min.js"></script>
+  <script src="js/tail.datetime.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
