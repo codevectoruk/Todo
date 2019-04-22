@@ -24,31 +24,31 @@ function createListsAndElements() {
 
 function createListFromJson(localListId, localListFields) {
   var returnState = "";
-  returnState = "<div class=\"list\"><div class=\"list-header\">" +
-    "<div class=\"list-title\">" +
+  returnState = "<div class='list'><div class='list-header'>" +
+    "<div class='list-title'>" +
     localListFields.list_name +
-    "</div><div class=\"button-container\"><div class=\"list-button\" " +
-    "onclick=\"toggleDropdown(" +
+    "</div><div class='button-container'><div class='list-button' " +
+    "onclick='toggleDropdown(" +
     localListId +
-    ")\"><i class=\"fas fa-ellipsis-h\"></i></div><div " +
-    "class=\"dropdown hidden\" id=\"id-dropdown-" +
+    ")'><i class='fas fa-ellipsis-h'></i></div><div " +
+    "class='dropdown hidden' id='id-dropdown-" +
     localListId +
-    "\"><div class=\"dropdown-title\"><div " +
-    "class=\"dropdown-title-text\">List Actions</div><i " +
-    "class=\"fas fa-times\" onclick=\"toggleDropdown(" +
+    "'><div class='dropdown-title'><div " +
+    "class='dropdown-title-text'>List Actions</div><i " +
+    "class='fas fa-times' onclick='toggleDropdown(" +
     localListId +
-    ")\"></i></div><div class=\"dropdown-element\" " +
-    "onclick=\"prepareModalRenameList(" +
+    ")'></i></div><div class='dropdown-element' " +
+    "onclick='prepareModalRenameList(" +
     localListId +
-    ")\">Rename List</div><div class=\"dropdown-element\" " +
-    "onclick=\"prepareModalDeleteList(" +
+    ")'>Rename List</div><div class='dropdown-element' " +
+    "onclick='prepareModalDeleteList(" +
     localListId +
-    ")\">Delete List</div></div></div></div><div class=\"list-body scrollbar\" " +
-    "id=\"list-" +
+    ")'>Delete List</div></div></div></div><div class='list-body scrollbar' " +
+    "id='list-" +
     localListId +
-    "\"></div><div class=\"list-footer\" onclick=\"buttonOpenElementModalForElementCreate(" +
+    "'></div><div class='list-footer' onclick='buttonOpenElementModalForElementCreate(" +
     localListId +
-    ")\"><i class=\"fas fa-plus\"></i> Add another item</div></div>";
+    ")'><i class='fas fa-plus'></i> Add another item</div></div>";
   return returnState;
 }
 
@@ -58,6 +58,15 @@ function createElementsFromJson(localListId, localElementId, localElementFields,
   var statusStringB = "";
   var statusStringC = "";
   var statusStringD = "";
+  var dueDateTag = "";
+  //2019-04-01 14:02:00
+  if (localElementFields.due != "" && localElementStatus == "open") {
+      dueDateTag = "<div class='tag tag-" +
+      calculateRisk(localElementFields.due) +
+      "'>" +
+      timeTill(localElementFields.due) +
+      "</div>";
+  }
   if (localElementStatus === "open") {
     statusStringA = "status-open";
     statusStringB = "elementStatusToClosed";
@@ -88,6 +97,7 @@ function createElementsFromJson(localListId, localElementId, localElementFields,
     statusStringD +
     "\")'>" +
     localElementFields.title +
+    dueDateTag +
     "</div><div class='position'>";
   if (localElementStatus === "open") {
     returnState += "<div class='position-up position-element' onclick='increaseElementPosition(" +
