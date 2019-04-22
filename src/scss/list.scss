@@ -25,6 +25,7 @@
       }
 
       .button-container {
+          padding: 0 !important;
         position: relative;
         display: flex;
 
@@ -46,6 +47,7 @@
           padding: 0 0 5px;
           border-radius: 4px;
           min-width: 160px;
+          z-index: 1000;
 
           .dropdown-title {
             display: flex;

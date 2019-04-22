@@ -10,6 +10,7 @@ var offlineFundamentals = [
   'images/todo-logo.ico',
   'js/autosize.min.js',
   'js/jquery-3.4.0.min.js',
+  'js/tail.datetime.min.js',
   'js/main.js',
   'manifest.json',
   'webfonts/fa-brands-400.woff',

@@ -53,8 +53,15 @@
           <i class="far fa-clock"></i>
         </div>
         <div class="due-button-container">
-            <button class="button button-default date-button">Set Due Date</button>
-            <!-- <input type="text" id="start" name="trip-start" value="2018-07-22 12:00" min="2018-01-01" max="2018-12-31"> -->
+            <div class="description">
+              Due Date
+            </div>
+            <div class="due-button">
+          <input type="text" class="tail-datetime-field" />
+          <div class="button-container">
+          <button class="button button-danger" onclick="">Remove Due Date</button>
+      </div>
+      </div>
         </div>
       </div>
       <div class="description-container">
@@ -106,6 +113,7 @@
   <div class="userAlert-container"></div>
   <script src="js/jquery-3.4.0.min.js"></script>
   <script src="js/autosize.min.js"></script>
+  <script src="js/tail.datetime.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 

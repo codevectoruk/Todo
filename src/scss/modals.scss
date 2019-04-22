@@ -52,6 +52,26 @@
     .date-container {
       display: flex;
       padding: 15px 0 0;
+
+      .due-button-container {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          display: flex;
+          justify-content: flex-end;
+
+
+          .description {
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: bold;
+            padding: 5px 0 5px 10px;
+          }
+          .due-button {
+              display: flex;
+              flex-direction: column;
+          }
+      }
     }
 
     .description-container {
@@ -62,7 +82,7 @@
         font-size: 16px;
         line-height: 20px;
         font-weight: bold;
-        padding: 12px 0 8px 10px;
+        padding: 5px 0 5px 10px;
       }
     }
   }
@@ -86,20 +106,6 @@
 
     .input-container {
       display: flex;
-    }
-  }
-
-  .due-button-container {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 0;
-
-    .button {
-      border: none;
-      padding: 8px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 0 0 0 5px;
     }
   }
 
