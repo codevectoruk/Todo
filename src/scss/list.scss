@@ -68,7 +68,8 @@
 			flex-grow: 1;
 			overflow-y: auto;
 			overflow-x: hidden;
-			padding: 0 8px;
+			padding: 0 4px;
+            margin: 0 4px;
 			.list-element {
 				border-radius: 4px;
 				cursor: pointer;

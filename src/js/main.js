@@ -3,7 +3,12 @@
 var todo = JSON.parse(localStorage.getItem("todo"));
 
 createListsAndElements();
-autosize($("textarea"));
+
+var ta = document.querySelector('textarea');
+ta.addEventListener('focus', function(){
+  autosize(ta);
+});
+// autosize($("textarea"));
 
 function updateStoredTodoList() {
     localStorage.setItem("todo", JSON.stringify(todo));
