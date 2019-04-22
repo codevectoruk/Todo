@@ -37,6 +37,7 @@ The /dist folder contains everything that you require for deployment. Just put t
 * [jQuery (3.4.0)](https://jquery.com/) - JS Library
 * [Autosize (4.0.2)](http://www.jacklmoore.com/autosize/) - Textarea resize JS library
 * [Font Awesome (5.8.1)](https://fontawesome.com/) - Icon Library
+* [tail.DateTime (0.4.9)](https://github.com/pytesNET/tail.DateTime) - Date Picker JS Library
 
 ## License
 

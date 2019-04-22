@@ -1,6 +1,6 @@
 "use strict";
 //console.log('WORKER: executing.');
-var version = 'v1:2:1';
+var version = 'v1:3:1';
 var offlineFundamentals = [
   'index.html',
   'css/main.css',
