@@ -11,7 +11,7 @@ function timeTill(futureDate) {
     minutes = minutes - (days * 24 * 60) - (hours * 60);
     var output = "";
     if (dateFuture - dateNow <= 0) {
-        output = "Due!";
+        output = "Overdue";
     } else {
         if (days >= 1) {
             if (days == 1) {
