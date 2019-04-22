@@ -30,3 +30,7 @@ tail.DateTime(".tail-datetime-field", {
     viewDays: true,
     weekStart: 0
 });
+
+function clearDueDate() {
+    $("#due-date-input").val("");
+}

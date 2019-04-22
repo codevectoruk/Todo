@@ -18,6 +18,7 @@ function buttonOpenElementModalForElementUpdate(listId, element, status) {
   $("#modal-list").val(listId);
   $("#modal-element").val(element);
   $("#modal-status").val(status);
+  $("#due-date-input").val(localElement.due);
   $("#modal-description").val(localElement.description);
   $("#element-modal-button-create").hide();
   $("#element-modal-button-update").show();
@@ -32,6 +33,7 @@ function buttonOpenElementModalForElementUpdate(listId, element, status) {
 function buttonOpenElementModalForElementCreate(listId) {
   $("#modal-title").val("");
   $("#modal-description").val("");
+  $("#due-date-input").val("");
   $("#element-modal-button-create").show();
   $("#element-modal-button-update").hide();
   $("#modal-list").val(listId);
@@ -49,6 +51,7 @@ function updateElement() {
   var localElement = findElement(listId, element, status);
   localElement.title = $("#modal-title").val();
   localElement.description = $("#modal-description").val();
+  localElement.due = $("#due-date-input").val();
   toggleElementModalVisibility();
   createListsAndElements();
 }
