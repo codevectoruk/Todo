@@ -38,6 +38,10 @@ The /dist folder contains everything that you require for deployment. Just put t
 * [Autosize (4.0.2)](http://www.jacklmoore.com/autosize/) - Textarea resize JS library
 * [Font Awesome (5.8.1)](https://fontawesome.com/) - Icon Library
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning.
