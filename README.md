@@ -7,7 +7,7 @@ This project was spawned from the requirement for a to do list application that 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Access Live Version 
+### Access Live Version
 
 If you just want to use the application the easiest way is to go to the github pages link to this repository.
 
@@ -17,8 +17,8 @@ If you just want to use the application the easiest way is to go to the github p
 
 This application is currently built using the following:
 - Windows 10 PC (10.0.17134)
-- Atom (1.36.0)
-- Prepros (6.3.0)
+- Atom
+- Prepros
 
 The only requirement is that Prepros is installed. The Prepros config file is included in the repository when you clone. There are two folder that are important.
 - /dist
@@ -34,7 +34,7 @@ The /dist folder contains everything that you require for deployment. Just put t
 
 * [Atom (1.36.0)](https://atom.io/) - IDE
 * [Prepros (6.3.0)](https://prepros.io/) - Used to compile SCSS and JS
-* [jQuery (3.3.1)](https://jquery.com/) - JS Library
+* [jQuery (3.4.0)](https://jquery.com/) - JS Library
 * [Autosize (4.0.2)](http://www.jacklmoore.com/autosize/) - Textarea resize JS library
 * [Font Awesome (5.8.1)](https://fontawesome.com/) - Icon Library
 
