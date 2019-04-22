@@ -23,6 +23,7 @@ function buttonOpenElementModalForElementUpdate(listId, element, status) {
     $(".button-save").show();
     closeAllDropdown();
     toggleElementModalVisibility();
+    autosize.update($("#modal-description"));
 }
 
 //opens the modal in the create configuration
@@ -36,6 +37,7 @@ function buttonOpenElementModalForElementCreate(listId) {
     $("#modal-list").val(listId);
     closeAllDropdown();
     toggleElementModalVisibility();
+    autosize.update($("#modal-description"));
 }
 
 //button controls
