@@ -765,14 +765,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 0 10px 0;
+  padding: 0 0 8px 0;
 }
 
 .modal-container .element-modal .generic-container .description {
   font-size: 16px;
   line-height: 20px;
   font-weight: bold;
-  padding: 5px 0 5px 10px;
+  padding: 0 0 5px 10px;
 }
 
 .modal-container .element-modal .generic-container .due-button {
@@ -783,6 +783,17 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.modal-container .element-modal .generic-container .user-save-alert-border {
+  -webkit-box-shadow: inset 0 0 0 2px #e74c3c;
+  box-shadow: inset 0 0 0 2px #e74c3c;
+}
+
+.modal-container .element-modal .generic-container .user-save-alert {
+  color: #e74c3c;
+  text-align: right;
+  padding: 0 0 0 5px;
 }
 
 .modal-container .confirmation-modal {
@@ -824,6 +835,8 @@
 .modal-container input[type=text]:active, .modal-container input[type=text]:focus {
   border: none;
   outline: none;
+  -webkit-box-shadow: inset 0 0 0 2px #00a8ff;
+  box-shadow: inset 0 0 0 2px #00a8ff;
 }
 
 .modal-container textarea {
@@ -841,6 +854,8 @@
 .modal-container textarea:active, .modal-container textarea:focus {
   border: none;
   outline: none;
+  -webkit-box-shadow: inset 0 0 0 2px #00a8ff;
+  box-shadow: inset 0 0 0 2px #00a8ff;
 }
 
 .hidden {

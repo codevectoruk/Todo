@@ -47,6 +47,7 @@ function buttonDeleteList() {
 // prepareModalUpdate
 function buttonOpenElementModalForElementUpdate(localListId, localElementId, localElementStatus) {
     var localElement = getElement(localListId, localElementId, localElementStatus);
+    resetElementModalUserAlert();
     $("#modal-list").val(localListId);
     $("#modal-element").val(localElementId);
     $("#modal-status").val(localElementStatus);
@@ -71,6 +72,7 @@ function buttonOpenElementModalForElementUpdate(localListId, localElementId, loc
 //prepareModalCreate
 //buttonOpenElementModalForElementCreate
 function buttonOpenElementModalForElementCreate(listId) {
+    resetElementModalUserAlert();
     $("#elementTitle").val("");
     $("#elementDescription").val("");
     $("#elementComments").val("");
