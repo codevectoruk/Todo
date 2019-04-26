@@ -18,7 +18,6 @@ function updateStoredTodoList() {
 
 //@prepros-append defaultSetup.js
 //@prepros-append manageElementsAndLists.js
-//@prepros-append findElementsAndLists.js
 //@prepros-append modalPrepare.js
 //@prepros-append modalToggleVisibility.js
 //@prepros-append button.js
