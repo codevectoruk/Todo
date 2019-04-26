@@ -119,7 +119,7 @@ function setElementComments(localListId, localElementId, localElementStatus, loc
 }
 function setElementCategory(localListId, localElementId, localElementStatus, localElementsCategory) {
     var localList = getElementList(localListId, localElementStatus);
-    localList[localElementId].category = localElementsCategory;
+    localList[localElementId].category = parseInt(localElementsCategory);
 }
 function setElementClassification(localListId, localElementId, localElementStatus, localElementClassification) {
     var localList = getElementList(localListId, localElementStatus);

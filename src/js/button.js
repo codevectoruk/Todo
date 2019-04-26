@@ -54,7 +54,7 @@ function buttonOpenElementModalForElementUpdate(localListId, localElementId, loc
     $("#elementTitle").val(localElement.title);
     $("#elementDescription").val(localElement.description);
     $("#elementComments").val(localElement.comments);
-    //$("#elementCategory").val(localElement.category);
+    $("#elementCategory").val(localElement.category);
     //$("#elementClassification").val(localElement.classification);
     //$("#elementUser").val(localElement.user);
     $("#elementDue").val(localElement.due);
@@ -76,7 +76,7 @@ function buttonOpenElementModalForElementCreate(listId) {
     $("#elementTitle").val("");
     $("#elementDescription").val("");
     $("#elementComments").val("");
-    //$("#elementCategory").val("");
+    $("#elementCategory").val(0);
     //$("#elementClassification").val("");
     //$("#elementUser").val("");
     $("#elementDue").val("");
@@ -100,7 +100,7 @@ function buttonUpdateElement() {
     setElementTitle(localListId,  localElementId, localElementStatus, $("#elementTitle").val());
     setElementDescription(localListId,  localElementId, localElementStatus, $("#elementDescription").val());
     setElementComments(localListId, localElementId, localElementStatus, $("#elementComments").val());
-    // setElementCategory(localListId, localElementId, localElementStatus, $("#elementCategory").val());
+    setElementCategory(localListId, localElementId, localElementStatus, $("#elementCategory").val());
     // setElementClassification(localListId, localElementId, localElementStatus, $("#elementClassification").val());
     // setElementUser(localListId, localElementId, localElementStatus, $("#elementUser").val());
     setElementDue(localListId,  localElementId, localElementStatus, $("#elementDue").val());
@@ -116,7 +116,7 @@ function buttonCreateNewElement() {
     var localElementTitle = $("#elementTitle").val();
     var localElementDescription = $("#elementDescription").val();
     var localElementComments = "";
-    var localElementsCategory = "";
+    var localElementsCategory = 0;
     var localElementClassification = "";
     var localElementUser = "";
     var localElementDue = $("#elementDue").val();

@@ -110,6 +110,7 @@ function populateElementsFromJson(localListId, localElementId, localElementField
     var statusStringC = "";
     var statusStringD = "";
     var dueDateTag = "";
+    var categoryTag = populateCategoryField(localElementFields.category);
     //2019-04-01 14:02:00
     if (localElementFields.due != "" && localElementStatus == "open") {
         dueDateTag = "<div class='tag tag-" +
@@ -148,6 +149,7 @@ function populateElementsFromJson(localListId, localElementId, localElementField
     statusStringD +
     "\")'>" +
     localElementFields.title +
+    categoryTag +
     dueDateTag +
     "</div><div class='position'>";
     if (localElementStatus === "open") {
@@ -175,6 +177,24 @@ function populateElementsFromJson(localListId, localElementId, localElementField
 function populateAddAnotherList() {                                             //contains the divs for the "Add another item" for the list-container
 var output = "<div class=\"add-list\" " + "onclick=\"buttonCreateList()\"><i class=\"fas fa-plus\"></i> " + "Add another item</div>";
 return output;
+}
+
+function populateCategoryField(localElementFieldsCategory) {
+    var output = "";
+    if(localElementFieldsCategory == 1) {
+        output = "<div class='category category-blue'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 2) {
+output = "<div class='category category-green'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 3) {
+output = "<div class='category category-orange'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 4) {
+output = "<div class='category category-purple'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 5) {
+output = "<div class='category category-red'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 6) {
+        output = "<div class='category category-yellow'><i class='fas fa-circle'></i></div>";
+    }
+    return output;
 }
 
 function findElementList(listId, status) {
@@ -391,7 +411,7 @@ function buttonOpenElementModalForElementUpdate(localListId, localElementId, loc
     $("#elementTitle").val(localElement.title);
     $("#elementDescription").val(localElement.description);
     $("#elementComments").val(localElement.comments);
-    //$("#elementCategory").val(localElement.category);
+    $("#elementCategory").val(localElement.category);
     //$("#elementClassification").val(localElement.classification);
     //$("#elementUser").val(localElement.user);
     $("#elementDue").val(localElement.due);
@@ -413,7 +433,7 @@ function buttonOpenElementModalForElementCreate(listId) {
     $("#elementTitle").val("");
     $("#elementDescription").val("");
     $("#elementComments").val("");
-    //$("#elementCategory").val("");
+    $("#elementCategory").val(0);
     //$("#elementClassification").val("");
     //$("#elementUser").val("");
     $("#elementDue").val("");
@@ -437,7 +457,7 @@ function buttonUpdateElement() {
     setElementTitle(localListId,  localElementId, localElementStatus, $("#elementTitle").val());
     setElementDescription(localListId,  localElementId, localElementStatus, $("#elementDescription").val());
     setElementComments(localListId, localElementId, localElementStatus, $("#elementComments").val());
-    // setElementCategory(localListId, localElementId, localElementStatus, $("#elementCategory").val());
+    setElementCategory(localListId, localElementId, localElementStatus, $("#elementCategory").val());
     // setElementClassification(localListId, localElementId, localElementStatus, $("#elementClassification").val());
     // setElementUser(localListId, localElementId, localElementStatus, $("#elementUser").val());
     setElementDue(localListId,  localElementId, localElementStatus, $("#elementDue").val());
@@ -453,7 +473,7 @@ function buttonCreateNewElement() {
     var localElementTitle = $("#elementTitle").val();
     var localElementDescription = $("#elementDescription").val();
     var localElementComments = "";
-    var localElementsCategory = "";
+    var localElementsCategory = 0;
     var localElementClassification = "";
     var localElementUser = "";
     var localElementDue = $("#elementDue").val();
@@ -994,7 +1014,7 @@ function setElementComments(localListId, localElementId, localElementStatus, loc
 }
 function setElementCategory(localListId, localElementId, localElementStatus, localElementsCategory) {
     var localList = getElementList(localListId, localElementStatus);
-    localList[localElementId].category = localElementsCategory;
+    localList[localElementId].category = parseInt(localElementsCategory);
 }
 function setElementClassification(localListId, localElementId, localElementStatus, localElementClassification) {
     var localList = getElementList(localListId, localElementStatus);
@@ -1131,8 +1151,6 @@ function resetElementModalUserAlert() {
     $("#elementCommentsWarning").removeClass("flex");
     $("#elementComments").removeClass("user-save-alert-border");
 }
-
-
 
 $(document).on('keyup',function(e) {
     compareElementModalTextarea();

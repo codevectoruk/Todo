@@ -14,7 +14,7 @@
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    margin: 0 0 0 4px;
+    margin: 0 0 0 2px;
 }
 
 @each $color, $value in $theme-colors {

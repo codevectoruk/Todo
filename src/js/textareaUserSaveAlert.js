@@ -35,8 +35,6 @@ function resetElementModalUserAlert() {
     $("#elementComments").removeClass("user-save-alert-border");
 }
 
-
-
 $(document).on('keyup',function(e) {
     compareElementModalTextarea();
 });

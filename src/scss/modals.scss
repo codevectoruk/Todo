@@ -45,6 +45,23 @@
                 margin: -15px -15px 0 0;
             }
         }
+        .flex-horizontal {
+            display: flex;
+
+
+            .generic-container {
+                flex-grow: 1;
+
+            }
+            .generic-container:last-child {
+                .icon-container {
+                    i {
+                        padding: 0 15px;
+                    }
+                }
+
+            }
+        }
         .generic-container {
             display: flex;
             padding: 0 0 8px 0;
@@ -109,6 +126,25 @@
     }
 
     textarea {
+        border: none;
+        padding: 8px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        border-radius: 4px;
+        resize: vertical;
+        max-height: 50vh;
+        overflow-y: scroll;
+
+        &:active,
+        &:focus {
+            border: none;
+            outline: none;
+            box-shadow: inset 0 0 0 2px #00a8ff;
+        }
+    }
+
+    select {
         border: none;
         padding: 8px;
         font-size: 14px;

@@ -52,6 +52,7 @@ function populateElementsFromJson(localListId, localElementId, localElementField
     var statusStringC = "";
     var statusStringD = "";
     var dueDateTag = "";
+    var categoryTag = populateCategoryField(localElementFields.category);
     //2019-04-01 14:02:00
     if (localElementFields.due != "" && localElementStatus == "open") {
         dueDateTag = "<div class='tag tag-" +
@@ -90,6 +91,7 @@ function populateElementsFromJson(localListId, localElementId, localElementField
     statusStringD +
     "\")'>" +
     localElementFields.title +
+    categoryTag +
     dueDateTag +
     "</div><div class='position'>";
     if (localElementStatus === "open") {
@@ -117,4 +119,22 @@ function populateElementsFromJson(localListId, localElementId, localElementField
 function populateAddAnotherList() {                                             //contains the divs for the "Add another item" for the list-container
 var output = "<div class=\"add-list\" " + "onclick=\"buttonCreateList()\"><i class=\"fas fa-plus\"></i> " + "Add another item</div>";
 return output;
+}
+
+function populateCategoryField(localElementFieldsCategory) {
+    var output = "";
+    if(localElementFieldsCategory == 1) {
+        output = "<div class='category category-blue'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 2) {
+output = "<div class='category category-green'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 3) {
+output = "<div class='category category-orange'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 4) {
+output = "<div class='category category-purple'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 5) {
+output = "<div class='category category-red'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 6) {
+        output = "<div class='category category-yellow'><i class='fas fa-circle'></i></div>";
+    }
+    return output;
 }
