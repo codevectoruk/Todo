@@ -55,47 +55,53 @@ function createJsonElement(localListId, localElementStatus) {
     return returnState;
 }
 
-function deleteElement(localList, localElementId){
-
-}
-
-function getElement(localList, localElementId) {
+function getElement(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementTitle(localList, localElementId) {
+function getElementTitle(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementDescription(localList, localElementId) {
+function getElementDescription(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementComments(localList, localElementId) {
+function getElementComments(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementCategory(localList, localElementId) {
+function getElementCategory(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementClassification(localList, localElementId) {
+function getElementClassification(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementUser(localList, localElementId) {
+function getElementUser(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementDue(localList, localElementId) {
+function getElementDue(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementCreated(localList, localElementId) {
+function getElementCreated(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementChecklist(localList, localElementId) {
+function getElementChecklist(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 

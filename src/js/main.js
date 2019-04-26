@@ -4,10 +4,12 @@ var todo = JSON.parse(localStorage.getItem("todo"));
 
 createListsAndElements();
 
-autosize($("#modal-description"));
+autosize($("#elementDescription"));
+autosize($("#elementComments"));
 
-$("#modal-description").focus(function() {
-  autosize.update($("#modal-description"));
+$("#elementDescription").focus(function() {
+  autosize.update($("#elementDescription"));
+  autosize.update($("#elementComments"));
 });
 
 function updateStoredTodoList() {

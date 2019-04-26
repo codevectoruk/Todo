@@ -32,5 +32,5 @@ tail.DateTime(".tail-datetime-field", {
 });
 
 function clearDueDate() {
-    $("#due-date-input").val("");
+    $("#elementDue").val("");
 }

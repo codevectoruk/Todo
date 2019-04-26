@@ -16,10 +16,12 @@ var todo = JSON.parse(localStorage.getItem("todo"));
 
 createListsAndElements();
 
-autosize($("#modal-description"));
+autosize($("#elementDescription"));
+autosize($("#elementComments"));
 
-$("#modal-description").focus(function() {
-  autosize.update($("#modal-description"));
+$("#elementDescription").focus(function() {
+  autosize.update($("#elementDescription"));
+  autosize.update($("#elementComments"));
 });
 
 function updateStoredTodoList() {
@@ -375,40 +377,49 @@ function buttonDeleteList() {
     generateUserAlert("List successfully deleted.", "success", 5000);
 }
 
-
-
-
 //opens the modal in the update configuration
 // buttonOpenElementModalForElementUpdate
 // prepareModalUpdate
-function buttonOpenElementModalForElementUpdate(listId, element, status) {
-    var localElement = findElement(listId, element, status);
-    $("#modal-title").val(localElement.title);
-    $("#modal-list").val(listId);
-    $("#modal-element").val(element);
-    $("#modal-status").val(status);
-    $("#due-date-input").val(localElement.due);
-    $("#modal-description").val(localElement.description);
+function buttonOpenElementModalForElementUpdate(localListId, localElementId, localElementStatus) {
+    var localElement = getElement(localListId, localElementId, localElementStatus);
+    $("#modal-list").val(localListId);
+    $("#modal-element").val(localElementId);
+    $("#modal-status").val(localElementStatus);
+    $("#elementTitle").val(localElement.title);
+    $("#elementDescription").val(localElement.description);
+    $("#elementComments").val(localElement.comments);
+    //$("#elementCategory").val(localElement.category);
+    //$("#elementClassification").val(localElement.classification);
+    //$("#elementUser").val(localElement.user);
+    $("#elementDue").val(localElement.due);
+    // $("#elementCreated").val(localElement.created);
+    // $("#elementCategory").val(localElement.category);
     $("#element-modal-button-create").hide();
     $("#element-modal-button-update").show();
     closeAllDropdown();
     toggleElementModalVisibility();
-    autosize.update($("#modal-description"));
+    autosize.update($("#elementDescription"));
 }
 
 //opens the modal in the create configuration
 //prepareModalCreate
 //buttonOpenElementModalForElementCreate
 function buttonOpenElementModalForElementCreate(listId) {
-    $("#modal-title").val("");
-    $("#modal-description").val("");
-    $("#due-date-input").val("");
+    $("#elementTitle").val("");
+    $("#elementDescription").val("");
+    $("#elementComments").val("");
+    //$("#elementCategory").val("");
+    //$("#elementClassification").val("");
+    //$("#elementUser").val("");
+    $("#elementDue").val("");
+    // $("#elementCreated").val("");
+    // $("#elementCategory").val("");
     $("#element-modal-button-create").show();
     $("#element-modal-button-update").hide();
     $("#modal-list").val(listId);
     closeAllDropdown();
     toggleElementModalVisibility();
-    autosize.update($("#modal-description"));
+    autosize.update($("#elementDescription"));
 }
 
 //button controls
@@ -417,15 +428,15 @@ function buttonUpdateElement() {
     var localListId = $("#modal-list").val();
     var localElementId = $("#modal-element").val();
     var localElementStatus = $("#modal-status").val();
-    setElementTitle(localListId,  localElementId, localElementStatus, $("#modal-title").val());
-    setElementDescription(localListId,  localElementId, localElementStatus, $("#modal-description").val());
-    // setElementComments(localListId, localElementId, localElementStatus, localElementComments);
-    // setElementCategory(localListId, localElementId, localElementStatus, localElementsCategory);
-    // setElementClassification(localListId, localElementId, localElementStatus, localElementClassification);
-    // setElementUser(localListId, localElementId, localElementStatus, localElementUser);
-    setElementDue(localListId,  localElementId, localElementStatus, $("#due-date-input").val());
-    // setElementCreated(localListId, localElementId, localElementStatus, localElementCreated);
-    // setElementChecklist(localListId, localElementId, localElementStatus, localElementChecklist);
+    setElementTitle(localListId,  localElementId, localElementStatus, $("#elementTitle").val());
+    setElementDescription(localListId,  localElementId, localElementStatus, $("#elementDescription").val());
+    setElementComments(localListId, localElementId, localElementStatus, $("#elementComments").val());
+    // setElementCategory(localListId, localElementId, localElementStatus, $("#elementCategory").val());
+    // setElementClassification(localListId, localElementId, localElementStatus, $("#elementClassification").val());
+    // setElementUser(localListId, localElementId, localElementStatus, $("#elementUser").val());
+    setElementDue(localListId,  localElementId, localElementStatus, $("#elementDue").val());
+    // setElementCreated(localListId, localElementId, localElementStatus, $("#elementCreated").val());
+    // setElementChecklist(localListId, localElementId, localElementStatus, $("#elementChecklist").val());
     toggleElementModalVisibility();
     createListsAndElements();
 }
@@ -433,13 +444,13 @@ function buttonUpdateElement() {
 function buttonCreateNewElement() {
     var localListId = $("#modal-list").val();
     var localElementState = "open";
-    var localElementTitle = $("#modal-title").val();
-    var localElementDescription = $("#modal-description").val();
+    var localElementTitle = $("#elementTitle").val();
+    var localElementDescription = $("#elementDescription").val();
     var localElementComments = "";
     var localElementsCategory = "";
     var localElementClassification = "";
     var localElementUser = "";
-    var localElementDue = $("#due-date-input").val();
+    var localElementDue = $("#elementDue").val();
     var localElementCreated = "";
     var localElementChecklist = "";
     createElement(localListId, localElementState, localElementTitle, localElementDescription, localElementComments, localElementsCategory, localElementClassification, localElementUser, localElementDue, localElementCreated, localElementChecklist);
@@ -674,7 +685,7 @@ tail.DateTime(".tail-datetime-field", {
 });
 
 function clearDueDate() {
-    $("#due-date-input").val("");
+    $("#elementDue").val("");
 }
 
 function timeTill(futureDate) {
@@ -913,47 +924,53 @@ function createJsonElement(localListId, localElementStatus) {
     return returnState;
 }
 
-function deleteElement(localList, localElementId){
-
-}
-
-function getElement(localList, localElementId) {
+function getElement(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementTitle(localList, localElementId) {
+function getElementTitle(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementDescription(localList, localElementId) {
+function getElementDescription(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementComments(localList, localElementId) {
+function getElementComments(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementCategory(localList, localElementId) {
+function getElementCategory(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementClassification(localList, localElementId) {
+function getElementClassification(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementUser(localList, localElementId) {
+function getElementUser(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementDue(localList, localElementId) {
+function getElementDue(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementCreated(localList, localElementId) {
+function getElementCreated(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
-function getElementChecklist(localList, localElementId) {
+function getElementChecklist(localListId, localElementId, localElementStatus) {
+    var localList = getElementList(localListId, localElementStatus);
     return localList[localElementId];
 }
 
