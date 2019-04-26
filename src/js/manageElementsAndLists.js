@@ -1,30 +1,23 @@
 function createListsAndElements() {
-  updateStoredTodoList();
-  $(".list-container").empty();
-  $.each(todo, function(listId, listFields) {
-    //create the list
-    var output = createListFromJson(listId, listFields);
-    $(".list-container").append(output);
-    // access the elements of the list
-    var outputOpen = "";
-    var outputClosed = "";
-    $.each(listFields.openElements, function(elementId, elementFields) {
-      outputOpen += createElementsFromJson(listId, elementId, elementFields, "open");
+    updateStoredTodoList();                                                       //updated the local storage list with the one that is currently stored in the todo variable
+    $(".list-container").empty();                                                 //empty the list container
+    $.each(todo, function(listId, listFields) {                                   //iterate through the lists
+        var output = populateListFromJson(listId, listFields);                      //use the populateListFromJson function to create the html that goes into the list-container class
+        $(".list-container").append(output);                                        //append the output from populateListFromJson to the list-container class that is part of index.html
+        var output = "";
+        $.each(listFields.openElements, function(elementId, elementFields) {        //iterate through the openElements part of the current list that is being iterated through
+            output += populateElementsFromJson(listId, elementId, elementFields, "open");
+        });
+        $.each(listFields.closedElements, function(elementId, elementFields) {      //iterate through the closedElements part of the current list that is being iterated through
+            output += populateElementsFromJson(listId, elementId, elementFields, "closed");
+        });
+        $("#list-" + listId).append(output);                                        //append all of the elements to the list-container
     });
-    $("#list-" + listId).append(outputOpen);
-    $.each(listFields.closedElements, function(elementId, elementFields) {
-      outputClosed += createElementsFromJson(listId, elementId, elementFields, "closed");
-    });
-    $("#list-" + listId).append(outputClosed);
-  });
-  $(".list-container").append("<div class=\"add-list\" " +
-    "onclick=\"createNewList()\"><i class=\"fas fa-plus\"></i> " +
-    "Add another item</div>");
+    $(".list-container").append(populateAddAnotherList());                        //append the "create another item" button to the list-container
 }
 
-function createListFromJson(localListId, localListFields) {
-  var returnState = "";
-  returnState = "<div class='list'><div class='list-header'>" +
+function populateListFromJson(localListId, localListFields) {
+    var returnState = "<div class='list'><div class='list-header'>" +
     "<div class='list-title'>" +
     localListFields.list_name +
     "</div><div class='button-container'><div class='list-button' " +
@@ -49,37 +42,38 @@ function createListFromJson(localListId, localListFields) {
     "'></div><div class='list-footer' onclick='buttonOpenElementModalForElementCreate(" +
     localListId +
     ")'><i class='fas fa-plus'></i> Add another item</div></div>";
-  return returnState;
+    return returnState;
 }
 
-function createElementsFromJson(localListId, localElementId, localElementFields, localElementStatus) {
-  var returnState = "";
-  var statusStringA = "";
-  var statusStringB = "";
-  var statusStringC = "";
-  var statusStringD = "";
-  var dueDateTag = "";
-  //2019-04-01 14:02:00
-  if (localElementFields.due != "" && localElementStatus == "open") {
-      dueDateTag = "<div class='tag tag-" +
-      calculateRisk(localElementFields.due) +
-      "'>" +
-      timeTill(localElementFields.due) +
-      "</div>";
-  }
-  if (localElementStatus === "open") {
-    statusStringA = "status-open";
-    statusStringB = "elementStatusToClosed";
-    statusStringC = "far fa-square";
-    statusStringD = "open";
-  }
-  if (localElementStatus === "closed") {
-    statusStringA = "status-closed";
-    statusStringB = "elementStatusToOpen";
-    statusStringC = "fas fa-check-square";
-    statusStringD = "closed";
-  }
-  returnState = "<div class='list-element " +
+function populateElementsFromJson(localListId, localElementId, localElementFields, localElementStatus) {
+    var returnState = "";
+    var statusStringA = "";
+    var statusStringB = "";
+    var statusStringC = "";
+    var statusStringD = "";
+    var dueDateTag = "";
+    var categoryTag = populateCategoryField(localElementFields.category);
+    //2019-04-01 14:02:00
+    if (localElementFields.due != "" && localElementStatus == "open") {
+        dueDateTag = "<div class='tag tag-" +
+        calculateRisk(localElementFields.due) +
+        "'>" +
+        timeTill(localElementFields.due) +
+        "</div>";
+    }
+    if (localElementStatus === "open") {
+        statusStringA = "status-open";
+        statusStringB = "buttonChangeElementStatusToClosed";
+        statusStringC = "far fa-square";
+        statusStringD = "open";
+    }
+    if (localElementStatus === "closed") {
+        statusStringA = "status-closed";
+        statusStringB = "buttonChangeElementStatusToOpen";
+        statusStringC = "fas fa-check-square";
+        statusStringD = "closed";
+    }
+    returnState = "<div class='list-element " +
     statusStringA +
     "'><div class='status' onclick='" +
     statusStringB +
@@ -97,107 +91,50 @@ function createElementsFromJson(localListId, localElementId, localElementFields,
     statusStringD +
     "\")'>" +
     localElementFields.title +
+    categoryTag +
     dueDateTag +
     "</div><div class='position'>";
-  if (localElementStatus === "open") {
-    returnState += "<div class='position-up position-element' onclick='increaseElementPosition(" +
-      localListId +
-      ", " +
-      localElementId +
-      ")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element' onclick='decreaseElementPosition(" +
-      localListId +
-      ", " +
-      localElementId +
-      ")'><i class='fas fa-caret-down'></i></div>";
-  }
-  if (localElementStatus === "closed") {
-    returnState += "<div class='promote' onclick='prepareModalDelete(" +
-      localListId +
-      ", " +
-      localElementId +
-      ")'><i class=\"fas fa-trash\"></i></div></div>";
-  }
-  returnState += "</div></div>";
-  return returnState;
-}
-
-function reorderList(localListId, localElementId, direction) {
-  $.each(todo, function(listId, listFields) {
-    // if the searched for list matches one in the list
-    if (listId === parseInt(localListId)) {
-      //var localElements = listFields.elements;
-      if (direction === "up" && localElementId !== 0 && listFields.openElements.length > 1) {
-        var selectedElementUp = listFields.openElements[localElementId];
-        var swapElementUp = listFields.openElements[localElementId - 1];
-
-        listFields.openElements[localElementId] = swapElementUp;
-        listFields.openElements[localElementId - 1] = selectedElementUp;
-      }
-      if (direction === "down" && localElementId !== (listFields.openElements.length - 1) && listFields.openElements.length > 1) {
-        var selectedElementDown = listFields.openElements[localElementId];
-        var swapElementDown = listFields.openElements[localElementId + 1];
-
-        listFields.openElements[localElementId] = swapElementDown;
-        listFields.openElements[localElementId + 1] = selectedElementDown;
-      }
+    if (localElementStatus === "open") {
+        returnState += "<div class='position-up position-element' onclick='buttonIncreaseElementPosition(" +
+        localListId +
+        ", " +
+        localElementId +
+        ")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element' onclick='buttonDecreaseElementPosition(" +
+        localListId +
+        ", " +
+        localElementId +
+        ")'><i class='fas fa-caret-down'></i></div>";
     }
-  });
-  createListsAndElements();
-}
-
-function increaseElementPosition(localListId, localElementId) {
-  reorderList(localListId, localElementId, "up");
-}
-
-function decreaseElementPosition(localListId, localElementId) {
-  reorderList(localListId, localElementId, "down");
-}
-
-function changeElementStatus(listId, element, toStatus) {
-  var storedListOpen = findElementList(listId, "open");
-  var storedListClosed = findElementList(listId, "closed");
-  var storedListDeleted = findElementList(listId, "deleted");
-  var storedElement = null;
-  if (toStatus === "open") {
-    storedElement = findElement(listId, element, "closed");
-    if (storedElement !== null) {
-      storedListClosed.splice(element, 1);
-      storedListOpen.push(storedElement);
+    if (localElementStatus === "closed") {
+        returnState += "<div class='promote' onclick='prepareModalDelete(" +
+        localListId +
+        ", " +
+        localElementId +
+        ")'><i class=\"fas fa-trash\"></i></div></div>";
     }
-  }
-  if (toStatus === "closed") {
-    storedElement = findElement(listId, element, "open");
-    storedListOpen.splice(element, 1);
-    storedListClosed.push(storedElement);
-  }
-  if (toStatus === "deleted") {
-    storedElement = findElement(listId, element, "closed");
-    storedListClosed.splice(element, 1);
-    storedListDeleted.push(storedElement);
-  }
-  createListsAndElements();
+    returnState += "</div></div>";
+    return returnState;
 }
 
-function elementStatusToDeleted(listId, element) {
-  changeElementStatus(listId, element, "deleted");
+function populateAddAnotherList() {                                             //contains the divs for the "Add another item" for the list-container
+var output = "<div class=\"add-list\" " + "onclick=\"buttonCreateList()\"><i class=\"fas fa-plus\"></i> " + "Add another item</div>";
+return output;
 }
 
-function elementStatusToClosed(listId, element) {
-  changeElementStatus(listId, element, "closed");
-}
-
-function elementStatusToOpen(listId, element) {
-  changeElementStatus(listId, element, "open");
-}
-
-function createNewList() {
-  if (todo.length < 5) {
-    todo.push({
-      "list_name": "New List",
-      "openElements": [],
-      "closedElements": [],
-      "deletedElements": []
-    });
-    createListsAndElements();
-  }
+function populateCategoryField(localElementFieldsCategory) {
+    var output = "";
+    if(localElementFieldsCategory == 1) {
+        output = "<div class='category category-blue'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 2) {
+output = "<div class='category category-green'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 3) {
+output = "<div class='category category-orange'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 4) {
+output = "<div class='category category-purple'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 5) {
+output = "<div class='category category-red'><i class='fas fa-circle'></i></div>";
+    } else if(localElementFieldsCategory == 6) {
+        output = "<div class='category category-yellow'><i class='fas fa-circle'></i></div>";
+    }
+    return output;
 }

@@ -1,6 +1,7 @@
 .list-container {
   display: flex;
   padding: 0 8px 31px;
+  overflow: hidden;
 
   .list {
     border-radius: 4px;

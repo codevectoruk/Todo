@@ -4,6 +4,11 @@
   padding: 10px 0 0;
 }
 
+.button-container-no-padding {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .button {
   border: none;
   padding: 8px 14px;
