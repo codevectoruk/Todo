@@ -1401,6 +1401,15 @@
   padding: 10px 0 0;
 }
 
+.button-container-no-padding {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
 .button {
   border: none;
   padding: 8px 14px;
