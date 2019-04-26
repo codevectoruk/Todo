@@ -1,0 +1,215 @@
+function getElementList(localListId, localStatus) {
+    var returnState;
+    if(localStatus == "open") {
+        returnState = todo[localListId].openElements;
+    }
+    else if(localStatus == "closed") {
+        returnState = todo[localListId].closedElements;
+    }
+    else if(localStatus == "deleted") {
+        returnState = todo[localListId].deletedElements;
+    }
+     return returnState;
+}
+
+function createElement(localListId, localElementStatus, localElementTitle, localElementDescription, localElementComments, localElementsCategory, localElementClassification, localElementUser, localElementDue, localElementCreated, localElementChecklist) {
+    var returnState = false;
+    if(localElementTitle) { //check that the title is present
+        localElementDescription = localElementDescription || "";
+        localElementComments = localElementComments || "";
+        localElementsCategory = localElementsCategory || 0;
+        localElementClassification = localElementClassification || "";
+        localElementUser = localElementUser || "";
+        localElementDue = localElementDue || "";
+        localElementCreated = localElementCreated || "";
+        localElementChecklist = localElementChecklist || "";
+        if(createJsonElement(localListId, "open")) {  // create the skeleton element in the list
+            var localElementId = localListId.length - 1;
+            setElementTitle(localListId, localElementId, localElementStatus, localElementTitle);
+            setElementDescription(localListId, localElementId, localElementStatus, localElementDescription);
+            setElementComments(localListId, localElementId, localElementStatus, localElementComments);
+            setElementCategory(localListId, localElementId, localElementStatus, localElementsCategory);
+            setElementClassification(localListId, localElementId, localElementStatus, localElementClassification);
+            setElementUser(localListId, localElementId, localElementStatus, localElementUser);
+            setElementDue(localListId, localElementId, localElementStatus, localElementDue);
+            setElementCreated(localListId, localElementId, localElementStatus, localElementCreated);
+            setElementChecklist(localListId, localElementId, localElementStatus, localElementChecklist);
+        }
+    }
+    return returnState;
+}
+
+function createJsonElement(localListId, localElementStatus) {
+    var returnState = false;
+    var localList = getElementList(localListId, localElementStatus);
+    localList.push({
+        "title": "",
+        "description": "",
+        "classification": "",
+        "user": "",
+        "due": "",
+        "created": "",
+        "checklist": []
+    });
+    returnState = true;
+    return returnState;
+}
+
+function deleteElement(localList, localElementId){
+
+}
+
+function getElement(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementTitle(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementDescription(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementComments(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementCategory(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementClassification(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementUser(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementDue(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementCreated(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function getElementChecklist(localList, localElementId) {
+    return localList[localElementId];
+}
+
+function setElementTitle(localListId, localElementId, localElementStatus, localElementTitle) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].title = localElementTitle;
+}
+function setElementDescription(localListId, localElementId, localElementStatus, localElementDescription) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].description = localElementDescription;
+}
+function setElementComments(localListId, localElementId, localElementStatus, localElementComments) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].comments = localElementComments;
+}
+function setElementCategory(localListId, localElementId, localElementStatus, localElementsCategory) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].category = localElementsCategory;
+}
+function setElementClassification(localListId, localElementId, localElementStatus, localElementClassification) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].classification = localElementClassification;
+}
+function setElementUser(localListId, localElementId, localElementStatus, localElementUser) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].user = localElementUser;
+}
+function setElementDue(localListId, localElementId, localElementStatus, localElementDue) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].due = localElementDue;
+}
+function setElementCreated(localListId, localElementId, localElementStatus, localElementCreated) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].Created = localElementCreated;
+}
+function setElementChecklist(localListId, localElementId, localElementStatus, localElementChecklist) {
+    var localList = getElementList(localListId, localElementStatus);
+    localList[localElementId].checklist = localElementChecklist;
+}
+
+function changeElementStatus(localListId, localElementId, toStatus) {
+    var localListOpenElements =  getElementList(localListId, "open");
+    var localListClosedElements =  getElementList(localListId, "closed");
+    var localListDeletedElements =  getElementList(localListId, "deleted");
+    var localElement;
+    var remList;
+    var addList;
+    if (toStatus === "open") {
+        addList = localListOpenElements;
+        remList = localListClosedElements;
+    }
+    if (toStatus === "closed") {
+        addList = localListClosedElements;
+        remList = localListOpenElements;
+    }
+    if (toStatus === "deleted") {
+        addList = localListDeletedElements;
+        remList = localListClosedElements;
+    }
+    localElement = remList[localElementId];
+    remList.splice(localElementId, 1);
+    addList.push(localElement);
+}
+
+function changeElementStatusToDeleted(localListId, localElementId) {
+    changeElementStatus(localListId, localElementId, "deleted");
+}
+
+function changeElementStatusToClosed(localListId, localElementId) {
+    changeElementStatus(localListId, localElementId, "closed");
+}
+
+function changeElementStatusToOpen(localListId, localElementId) {
+    changeElementStatus(localListId, localElementId, "open");
+}
+
+function changeElementCategory() {
+    //// TODO:
+}
+
+function reorderList(localListId, localElementId, direction) {
+    $.each(todo, function(listId, listFields) {
+        // if the searched for list matches one in the list
+        if (listId === parseInt(localListId)) {
+            //var localElements = listFields.elements;
+            if (direction === "up" && localElementId !== 0 && listFields.openElements.length > 1) {
+                var selectedElementUp = listFields.openElements[localElementId];
+                var swapElementUp = listFields.openElements[localElementId - 1];
+
+                listFields.openElements[localElementId] = swapElementUp;
+                listFields.openElements[localElementId - 1] = selectedElementUp;
+            }
+            if (direction === "down" && localElementId !== (listFields.openElements.length - 1) && listFields.openElements.length > 1) {
+                var selectedElementDown = listFields.openElements[localElementId];
+                var swapElementDown = listFields.openElements[localElementId + 1];
+
+                listFields.openElements[localElementId] = swapElementDown;
+                listFields.openElements[localElementId + 1] = selectedElementDown;
+            }
+        }
+    });
+    createListsAndElements();
+}
+// {
+//   "title": "This is an item that is yet to be completed",
+//   "description": "This is the description for the item that is yet to be completed",
+//   "comments": "",
+//   "category": 0,
+//   "classification": "",
+//   "user": "",
+//   "due": "",
+//   "created": "",
+//   "checklist": [{
+//     "name": "checklist Item 1",
+//     "status": "unchecked"
+//   }]
+// }

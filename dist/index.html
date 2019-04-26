@@ -76,8 +76,8 @@
         </div>
       </div>
       <div class="button-container">
-        <input class="button button-success" id="element-modal-button-create" type="button" value="Create" onclick="createNewElement()">
-        <input class="button button-info" id="element-modal-button-update" type="button" value="Save" onclick="updateElement()">
+        <input class="button button-success" id="element-modal-button-create" type="button" value="Create" onclick="buttonCreateNewElement()">
+        <input class="button button-info" id="element-modal-button-update" type="button" value="Save" onclick="buttonUpdateElement()">
         <input class="button button-default" id="element-modal-button-cancel" type="button" value="Cancel" onclick="toggleElementModalVisibility()">
       </div>
     </div>
@@ -88,8 +88,8 @@
       <div class="button-container">
         <input type="hidden" id="modal-confirm-list">
         <input type="hidden" id="modal-confirm-element">
-        <input class="button button-danger" id="deleteElementButton" type="button" value="Confirm" onclick="deleteElement()">
-        <input class="button button-danger" id="deleteListButton" type="button" value="Confirm" onclick="deleteList()">
+        <input class="button button-danger" id="deleteElementButton" type="button" value="Confirm" onclick="buttonChangeElementStatusToDeleted()">
+        <input class="button button-danger" id="deleteListButton" type="button" value="Confirm" onclick="buttonDeleteList()">
         <input class="button button-default" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
       </div>
     </div>
@@ -102,7 +102,7 @@
       </div>
       <div class="button-container">
         <input type="hidden" id="modal-rename-list">
-        <input class="button button-info" type="button" value="Confirm" onclick="renameList()">
+        <input class="button button-info" type="button" value="Confirm" onclick="buttonRenameList()">
         <input class="button button-cancel" type="button" value="Cancel" onclick="toggleRenameListModal()">
       </div>
     </div>

@@ -17,9 +17,9 @@ function updateStoredTodoList() {
 //@prepros-append defaultSetup.js
 //@prepros-append manageElementsAndLists.js
 //@prepros-append findElementsAndLists.js
-//@prepros-append dropdownDeleteAndRenameLists.js
-//@prepros-append elementModal.js
-//@prepros-append confirmModal.js
+//@prepros-append modalPrepare.js
+//@prepros-append modalToggleVisibility.js
+//@prepros-append button.js
 //@prepros-append autoUpdate.js
 //@prepros-append themeChanger.js
 //@prepros-append serviceWorker.js
@@ -27,3 +27,4 @@ function updateStoredTodoList() {
 //@prepros-append userAlerts.js
 //@prepros-append dateDropdown.js
 //@prepros-append timeTill.js
+//@prepros-append jsonApi.js

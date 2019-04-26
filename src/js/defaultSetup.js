@@ -3,6 +3,8 @@ var todoListExample = [{
   "openElements": [{
     "title": "This is an item that is yet to be completed",
     "description": "This is the description for the item that is yet to be completed",
+    "comments": "",
+    "category": 0,
     "classification": "",
     "user": "",
     "due": "",
@@ -15,6 +17,8 @@ var todoListExample = [{
   "closedElements": [{
     "title": "This is an item that has been completed",
     "description": "This is the description for the item that has been completed",
+    "comments": "",
+    "category": 0,
     "classification": "",
     "user": "",
     "due": "",
