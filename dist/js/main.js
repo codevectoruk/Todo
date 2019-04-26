@@ -1,41 +1,11 @@
-var todoListExample = [{
-  "list_name": "Default List",
-  "openElements": [{
-    "title": "This is an item that is yet to be completed",
-    "description": "This is the description for the item that is yet to be completed",
-    "comments": "",
-    "category": 0,
-    "classification": "",
-    "user": "",
-    "due": "",
-    "created": "",
-    "checklist": [{
-      "name": "checklist Item 1",
-      "status": "unchecked"
-    }]
-  }],
-  "closedElements": [{
-    "title": "This is an item that has been completed",
-    "description": "This is the description for the item that has been completed",
-    "comments": "",
-    "category": 0,
-    "classification": "",
-    "user": "",
-    "due": "",
-    "created": "",
-    "checklist": [{
-      "name": "checklist Item 1",
-      "status": "unchecked"
-    }]
-  }],
-  "deletedElements": []
-}];
-
-
 function firstTimeLoadLocalStorage() {
   if (localStorage.getItem("todo") === null) {
-    localStorage.setItem("todo", JSON.stringify(todoListExample));
-    todo = JSON.parse(localStorage.getItem("todo"));
+      todo = [];
+    createList("Default List");
+    createElement(0, "open", "This is an item that is yet to be completed", "This is the description for the item that is yet to be completed");
+    createListsAndElements();
+    createElement(0, "closed", "This is an item that has been completed", "This is the description for the item that has been completed");
+    createListsAndElements();
   }
 }
 firstTimeLoadLocalStorage();
@@ -71,44 +41,14 @@ function updateStoredTodoList() {
 //@prepros-append timeTill.js
 //@prepros-append jsonApi.js
 
-var todoListExample = [{
-  "list_name": "Default List",
-  "openElements": [{
-    "title": "This is an item that is yet to be completed",
-    "description": "This is the description for the item that is yet to be completed",
-    "comments": "",
-    "category": 0,
-    "classification": "",
-    "user": "",
-    "due": "",
-    "created": "",
-    "checklist": [{
-      "name": "checklist Item 1",
-      "status": "unchecked"
-    }]
-  }],
-  "closedElements": [{
-    "title": "This is an item that has been completed",
-    "description": "This is the description for the item that has been completed",
-    "comments": "",
-    "category": 0,
-    "classification": "",
-    "user": "",
-    "due": "",
-    "created": "",
-    "checklist": [{
-      "name": "checklist Item 1",
-      "status": "unchecked"
-    }]
-  }],
-  "deletedElements": []
-}];
-
-
 function firstTimeLoadLocalStorage() {
   if (localStorage.getItem("todo") === null) {
-    localStorage.setItem("todo", JSON.stringify(todoListExample));
-    todo = JSON.parse(localStorage.getItem("todo"));
+      todo = [];
+    createList("Default List");
+    createElement(0, "open", "This is an item that is yet to be completed", "This is the description for the item that is yet to be completed");
+    createListsAndElements();
+    createElement(0, "closed", "This is an item that has been completed", "This is the description for the item that has been completed");
+    createListsAndElements();
   }
 }
 firstTimeLoadLocalStorage();
@@ -941,7 +881,7 @@ function createElement(localListId, localElementStatus, localElementTitle, local
         localElementDue = localElementDue || "";
         localElementCreated = localElementCreated || "";
         localElementChecklist = localElementChecklist || "";
-        if(createJsonElement(localListId, "open")) {  // create the skeleton element in the list
+        if(createJsonElement(localListId, localElementStatus)) {  // create the skeleton element in the list
             var localElementId = todo[localListId].openElements.length - 1;
             setElementTitle(localListId, localElementId, localElementStatus, localElementTitle);
             setElementDescription(localListId, localElementId, localElementStatus, localElementDescription);
