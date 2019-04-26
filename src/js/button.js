@@ -64,6 +64,7 @@ function buttonOpenElementModalForElementUpdate(localListId, localElementId, loc
     closeAllDropdown();
     toggleElementModalVisibility();
     autosize.update($("#elementDescription"));
+    $("#elementTitle").focus();
 }
 
 //opens the modal in the create configuration
@@ -85,6 +86,7 @@ function buttonOpenElementModalForElementCreate(listId) {
     closeAllDropdown();
     toggleElementModalVisibility();
     autosize.update($("#elementDescription"));
+    $("#elementTitle").focus();
 }
 
 //button controls

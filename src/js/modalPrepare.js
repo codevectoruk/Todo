@@ -21,4 +21,5 @@ function prepareModalRenameList(listId) {
   $("#modal-list-rename-input").val(todo[listId].list_name);
   closeAllDropdown();
   toggleRenameListModal();
+  $("#modal-list-rename-input").focus();
 }

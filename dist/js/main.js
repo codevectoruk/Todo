@@ -279,6 +279,7 @@ function prepareModalRenameList(listId) {
   $("#modal-list-rename-input").val(todo[listId].list_name);
   closeAllDropdown();
   toggleRenameListModal();
+  $("#modal-list-rename-input").focus();
 }
 
 //toggles the confirmation modal visibility
@@ -399,6 +400,7 @@ function buttonOpenElementModalForElementUpdate(localListId, localElementId, loc
     closeAllDropdown();
     toggleElementModalVisibility();
     autosize.update($("#elementDescription"));
+    $("#elementTitle").focus();
 }
 
 //opens the modal in the create configuration
@@ -420,6 +422,7 @@ function buttonOpenElementModalForElementCreate(listId) {
     closeAllDropdown();
     toggleElementModalVisibility();
     autosize.update($("#elementDescription"));
+    $("#elementTitle").focus();
 }
 
 //button controls
