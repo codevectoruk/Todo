@@ -895,6 +895,7 @@
   display: -ms-flexbox;
   display: flex;
   padding: 0 8px 31px;
+  overflow: hidden;
 }
 
 .list-container .list {

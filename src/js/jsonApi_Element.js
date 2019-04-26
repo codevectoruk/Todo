@@ -24,7 +24,7 @@ function createElement(localListId, localElementStatus, localElementTitle, local
         localElementCreated = localElementCreated || "";
         localElementChecklist = localElementChecklist || "";
         if(createJsonElement(localListId, "open")) {  // create the skeleton element in the list
-            var localElementId = localListId.length - 1;
+            var localElementId = todo[localListId].openElements.length - 1;
             setElementTitle(localListId, localElementId, localElementStatus, localElementTitle);
             setElementDescription(localListId, localElementId, localElementStatus, localElementDescription);
             setElementComments(localListId, localElementId, localElementStatus, localElementComments);
