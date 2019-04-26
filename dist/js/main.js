@@ -466,6 +466,10 @@ function buttonRenameList() {
     toggleRenameListModal();
 }
 
+function buttonClearDueDate() {
+    $("#elementDue").val("");
+}
+
 function autoUpdate() {
   var localTodo = JSON.parse(localStorage.getItem("todo"));
   if (localStorage.getItem("todo") != null) {
@@ -683,10 +687,6 @@ tail.DateTime(".tail-datetime-field", {
     viewDays: true,
     weekStart: 0
 });
-
-function clearDueDate() {
-    $("#elementDue").val("");
-}
 
 function timeTill(futureDate) {
     var dateFuture = Date.parse(futureDate);

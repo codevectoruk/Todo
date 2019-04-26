@@ -130,3 +130,7 @@ function buttonRenameList() {
     createListsAndElements();
     toggleRenameListModal();
 }
+
+function buttonClearDueDate() {
+    $("#elementDue").val("");
+}
