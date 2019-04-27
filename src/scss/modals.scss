@@ -44,6 +44,7 @@
             font-size: 16px;
         }
     }
+    
     .list-rename-modal {
         width: 768px;
         .text-container {
@@ -56,15 +57,24 @@
 .theme-default {
     .generic-modal {
         background-color: #fff;
+        .modal-title {
+            color: #595959;
+        }
     }
 }
 .theme-dark {
     .generic-modal {
         background-color: #fff;
+        .modal-title {
+            color: #595959;
+        }
     }
 }
 .theme-light {
     .generic-modal {
         background-color: #fff;
+        .modal-title {
+            color: #595959;
+        }
     }
 }
