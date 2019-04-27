@@ -1,5 +1,4 @@
 @import "variables";
-@import "theme";
 @import "modals";
 @import "helperClasses";
 @import "list";
@@ -22,4 +21,20 @@ body {
     height: 100vh;
     margin: 0;
     text-align: left;
+}
+
+.theme-default {
+    background-color: $theme-default-background;
+    color: $theme-default-font-color;
+
+}
+.theme-dark {
+    background-color: $theme-dark-background;
+    color: $theme-dark-font-color;
+
+}
+.theme-light {
+    background-color: $theme-light-background;
+    color: $theme-light-font-color;
+
 }

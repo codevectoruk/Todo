@@ -25,3 +25,30 @@
         }
     }
 }
+.theme-default {
+    .list-button {
+        color: $theme-default-font-color;
+        &:hover {
+            background-color: $theme-default-list-background-shadow;
+            color: $theme-default-font-color-shadow;
+        }
+    }
+}
+.theme-dark {
+    .list-button {
+        color: $theme-dark-font-color;
+        &:hover {
+            background-color: $theme-dark-background-highlight;
+            color: $theme-dark-font-color-highlight;
+        }
+    }
+}
+.theme-light {
+    .list-button {
+        color: $theme-light-font-color;
+        &:hover {
+            background-color: $theme-light-background-shadow;
+            color: $theme-light-font-color-shadow;
+        }
+    }
+}

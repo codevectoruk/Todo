@@ -63,3 +63,60 @@
         }
     }
 }
+
+.theme-default {
+    .main-title-container {
+        color: $white;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $white;
+                    &:hover {
+                        color: darken($white,10%);
+                    }
+                }
+            }
+            .theme-picker {
+                color: $white;
+            }
+        }
+    }
+}
+.theme-dark {
+    .main-title-container {
+        color: $theme-dark-font-color;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $theme-dark-font-color;
+                    &:hover {
+                        color: $theme-dark-font-color-highlight;
+                    }
+                }
+            }
+            .theme-picker {
+                color: $theme-dark-font-color;
+            }
+        }
+    }
+}
+.theme-light {
+    .main-title-container {
+        color: $theme-light-font-color;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $theme-light-font-color;
+                    &:hover {
+                        color: $theme-light-font-color-shadow;
+                    }
+                }
+            }
+            .theme-picker {
+                color: $theme-light-font-color-highlight;
+                .theme {
+                }
+            }
+        }
+    }
+}

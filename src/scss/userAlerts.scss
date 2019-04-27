@@ -60,3 +60,42 @@
         }
     }
 }
+.theme-default {
+    .userAlert-container {
+        .userAlert {
+            color: $white;
+            .icon {
+            }
+            .text {
+                background-color: $white;
+                color: $theme-default-font-color;
+            }
+        }
+    }
+}
+.theme-dark {
+    .userAlert-container {
+        .userAlert {
+            color: $white;
+            .icon {
+            }
+            .text {
+                background-color: $theme-dark-background-shadow;
+                color: $white;
+            }
+        }
+    }
+}
+.theme-light {
+    .userAlert-container {
+        .userAlert {
+            color: $white;
+            .icon {
+            }
+            .text {
+                background-color: $white;
+                color: $theme-light-font-color;
+            }
+        }
+    }
+}
