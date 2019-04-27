@@ -3,7 +3,6 @@
     overflow: hidden;
     padding: 0 8px 31px;
     .list {
-        border-radius: 4px;
         display: flex;
         flex-basis: 0;
         flex-direction: column;
@@ -11,7 +10,10 @@
         margin-right: 8px;
         max-height: 100%;
         max-width: 30vw;
+        border-radius: 4px;
         .list-header {
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
             display: flex;
             justify-content: space-between;
             .list-title {
@@ -19,7 +21,7 @@
                 font-weight: 700;
                 overflow: hidden;
                 overflow-wrap: break-word;
-                padding: 12px 12px 12px 20px;
+                padding: 8px 12px;
             }
             .button-container {
                 display: flex;
@@ -29,7 +31,7 @@
                     align-self: center;
                     border-radius: 4px;
                     cursor: pointer;
-                    margin-right: 8px;
+                    margin-right: 4px;
                     padding: 6px 9px;
                 }
                 .dropdown {
@@ -51,6 +53,7 @@
                             flex-grow: 1;
                             margin-left: 20px;
                             text-align: center;
+                            font-weight: 600;
                         }
                         i {
                             cursor: pointer;
@@ -59,7 +62,6 @@
                     }
                     .dropdown-element {
                         align-self: stretch;
-                        color: #333;
                         cursor: pointer;
                         flex-grow: 1;
                         padding: 6px 12px;
@@ -69,15 +71,11 @@
         }
         .list-body {
             flex-grow: 1;
-            margin: 0 4px;
             overflow-x: hidden;
             overflow-y: auto;
-            padding: 0 4px;
             .list-element {
-                border-radius: 4px;
                 cursor: pointer;
                 display: flex;
-                margin-bottom: 8px;
                 text-decoration: none;
                 .position {
                     align-self: stretch;
@@ -86,21 +84,18 @@
                     .position-element {
                         display: flex;
                         flex-grow: 1;
-                        font-size: 12px;
-                        padding: 0 8px;
+                        font-size: 14px;
+                        padding: 0 14px;
                         i {
                             align-self: center;
                         }
                     }
                     .promote {
-                        // border-bottom-right-radius: 4px;
-                        // border-top-right-radius: 4px;
                         align-items: stretch;
-                        border-radius: 4px;
                         display: flex;
                         flex-grow: 1;
-                        font-size: 14px;
-                        padding: 0 6px;
+                        font-size: 18px;
+                        padding: 0 11px 0 10px;
                         i {
                             align-self: center;
                         }
@@ -123,8 +118,8 @@
                 .status {
                     align-self: center;
                     display: flex;
-                    font-size: 20px;
-                    padding: 0 0 0 8px;
+                    font-size: 22px;
+                    padding: 8px 0 8px 8px;
                     i {
                         align-self: center;
                     }
@@ -147,7 +142,7 @@
             font-weight: 700;
             overflow: hidden;
             overflow-wrap: break-word;
-            padding: 8px 0 8px 20px;
+            padding: 8px 12px;
             &:hover {
                 text-decoration: underline;
             }
@@ -161,33 +156,35 @@
         border-radius: 4px;
         cursor: pointer;
         font-weight: 700;
-        padding: 8px;
+        padding: 8px 12px;
     }
 }
 
+$theme-default-list-bg-color-1: #fff;
+$theme-default-list-font-color-1: #595959;
+$theme-default-list-accent-color-1: #DADFE8;
+$theme-default-list-bg-color-2: #DFE3E6;
+$theme-default-list-font-color-2: #212529;
 .theme-default {
     .list-container {
         .list {
-            background-color: $theme-default-list-background;
+            background-color: $theme-default-list-bg-color-2;
+            color: $theme-default-list-font-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
             .list-header {
+                background-color: $theme-default-list-bg-color-2;
+                color: $theme-default-list-font-color-2;
                 .button-container {
                     .dropdown {
-                        background-color: $theme-default-element;
-                        box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+                        background-color: $theme-default-list-bg-color-1;
+                        color: $theme-default-list-font-color-1;
                         .dropdown-title {
-                            border-bottom: 1px solid $theme-default-list-background-shadow;
-                            i {
-                                color: $theme-default-font-color;
-                                &:hover {
-                                    color: $theme-default-font-color-shadow;
-                                }
-                            }
+                            border-bottom: 1px solid $theme-default-list-accent-color-1;
                         }
                         .dropdown-element {
-                            color: $theme-default-font-color;
                             &:hover {
-                                background-color: $theme-default-element-shadow;
-                                color: $theme-default-font-color-shadow;
+                                background-color: $theme-default-list-accent-color-1;
+                                color: darken($theme-default-list-font-color-2, 10%);
                             }
                         }
                     }
@@ -195,105 +192,89 @@
             }
             .list-body {
                 .list-element {
-                    background-color: $theme-default-element;
-                    color: $theme-default-font-color;
+                    background-color: $theme-default-list-bg-color-1;
+                    color: $theme-default-list-font-color-1;
+                    border-bottom: 1px solid $theme-default-list-accent-color-1;
+                    &:first-child {
+                        border-top: 1px solid $theme-default-list-accent-color-1;
+                    }
                     &:hover {
-                        background-color: $theme-default-element-shadow;
-                        color: $theme-default-font-color-shadow;
+                        background-color: darken($theme-default-list-bg-color-1, 10%);
+                        color: darken($theme-default-list-font-color-1, 10%);
                     }
                     .position {
+                        border-left: 1px solid $theme-default-list-accent-color-1;
+                        .position-element {
+                            &:hover {
+                                background-color: darken($theme-default-list-accent-color-1, 10%);
+                                color: darken($theme-default-list-font-color-1,10%);
+                            }
+                        }
                         .promote {
                             background-color: $red;
                             color: $white;
                             &:hover {
                                 background-color: $red-shadow;
-                                color: $white;
-                            }
-                        }
-                        .position-up {
-                            border-bottom: 1px solid $theme-default-element-shadow;
-                            border-left: 1px solid $theme-default-element-shadow;
-                            &:hover {
-                                background-color: $transparent-shadow;
                             }
                         }
                         .position-down {
-                            border-left: 1px solid $theme-default-element-shadow;
-                            &:hover {
-                                background-color: $transparent-shadow;
-                            }
-                        }
-                    }
-                }
-                .status-open {
-                    &:hover {
-                        .position {
-                            .position-up {
-                                border-bottom: 1px solid $transparent-shadow;
-                                border-left: 1px solid $transparent-shadow;
-                            }
-                            .position-down {
-                                border-left: 1px solid $transparent-shadow;
-                            }
+                            border-top: 1px solid $theme-default-list-accent-color-1;
                         }
                     }
                     .status {
                         color: $blue;
                         &:hover {
-                            color: $blue-highlight;
-                        }
-                    }
-                }
-                .status-closed {
-                    .status {
-                        color: $blue;
-                        &:hover {
-                            color: $blue-highlight;
+                            color: darken($blue, 10%);
                         }
                     }
                 }
             }
             .list-footer {
-                color: $theme-default-font-color;
+                background-color: $theme-default-list-bg-color-2;
+                color: $theme-default-list-font-color-2;
                 &:hover {
-                    background-color: $theme-default-list-background-shadow;
-                    color: $theme-default-font-color-shadow;
+                    background-color: darken($theme-default-list-bg-color-2, 10%);
+                    color: darken($theme-default-list-font-color-2, 10%);
                 }
             }
         }
         .add-list {
-            background-color: $theme-default-background-shadow;
-            color: $white;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
+            background-color: $theme-default-list-bg-color-2;
+            color: $theme-default-list-font-color-2;
             &:hover {
-                background-color: $theme-default-background-highlight;
-                color: $theme-default-font-color-shadow;
+                background-color: darken($theme-default-list-bg-color-2, 10%);
+                color: darken($theme-default-list-font-color-2, 10%);
             }
         }
     }
 }
+
+$theme-dark-list-bg-color-1: #565965;
+$theme-dark-list-font-color-1: #FFFFFF;
+$theme-dark-list-accent-color-1: #383B4B;
+$theme-dark-list-bg-color-2: #565965;
+$theme-dark-list-font-color-2: #FFFFFF;
 .theme-dark {
     .list-container {
         .list {
-            background-color: $theme-dark-background-shadow;
+            background-color: $theme-dark-list-bg-color-2;
+            color: $theme-dark-list-font-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
             .list-header {
+                background-color: $theme-dark-list-bg-color-2;
+                color: $theme-dark-list-font-color-2;
                 .button-container {
                     .dropdown {
-                        background-color: $theme-dark-element;
-                        box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+                        background-color: $theme-dark-list-bg-color-1;
+                        color: $theme-dark-list-font-color-1;
                         .dropdown-title {
-                            border-bottom: 1px solid $theme-dark-background-highlight;
-                            i {
-                                color: $theme-dark-font-color;
-                                &:hover {
-                                    color: $theme-dark-font-color-highlight;
-                                }
-                            }
+                            border-bottom: 1px solid $theme-dark-list-accent-color-1;
                         }
                         .dropdown-element {
-                            color: $theme-dark-font-color;
                             &:hover {
-                                background-color: $theme-dark-element-highlight;
-                                color: $theme-dark-font-color-highlight;
+                                background-color: $theme-dark-list-accent-color-1;
+                                color: darken($theme-dark-list-font-color-2, 10%);
                             }
                         }
                     }
@@ -301,184 +282,149 @@
             }
             .list-body {
                 .list-element {
-                    background-color: $theme-dark-element;
-                    color: $theme-dark-font-color;
+                    background-color: $theme-dark-list-bg-color-1;
+                    color: $theme-dark-list-font-color-1;
+                    border-bottom: 1px solid $theme-dark-list-accent-color-1;
+                    &:first-child {
+                        border-top: 1px solid $theme-dark-list-accent-color-1;
+                    }
                     &:hover {
-                        background-color: $theme-dark-element-highlight;
-                        color: $theme-dark-font-color-highlight;
+                        background-color: darken($theme-dark-list-bg-color-1, 10%);
+                        color: darken($theme-dark-list-font-color-1, 10%);
                     }
                     .position {
-                        .promote {
-                            background-color: $red;
-                            color: $theme-dark-font-color;
+                        border-left: 1px solid $theme-dark-list-accent-color-1;
+                        .position-element {
                             &:hover {
-                                background-color: $red-shadow;
-                                color: $theme-dark-font-color-highlight;
+                                background-color: darken($theme-dark-list-accent-color-1, 10%);
+                                color: darken($theme-dark-list-font-color-1,10%);
                             }
                         }
-                        .position-up {
-                            border-bottom: 1px solid $theme-dark-element-highlight;
-                            border-left: 1px solid $theme-dark-element-highlight;
-                            &:hover {
-                                background-color: $transparent-highlight;
-                            }
-                        }
-                        .position-down {
-                            border-left: 1px solid $theme-dark-element-highlight;
-                            &:hover {
-                                background-color: $transparent-highlight;
-                            }
-                        }
-                    }
-                }
-                .status-open {
-                    &:hover {
-                        .position {
-                            .position-up {
-                                border-bottom: 1px solid $transparent-highlight;
-                                border-left: 1px solid $transparent-highlight;
-                            }
-                            .position-down {
-                                border-left: 1px solid $transparent-highlight;
-                            }
-                        }
-                    }
-                    .status {
-                        color: $blue;
-                        &:hover {
-                            color: $blue-highlight;
-                        }
-                    }
-                }
-                .status-closed {
-                    .status {
-                        color: $blue;
-                        &:hover {
-                            color: $blue-highlight;
-                        }
-                    }
-                }
-            }
-            .list-footer {
-                color: $theme-dark-font-color;
-                &:hover {
-                    background-color: $theme-dark-background-highlight;
-                    color: $theme-dark-font-color-highlight;
-                }
-            }
-        }
-        .add-list {
-            background-color: $theme-dark-background-shadow;
-            color: $theme-dark-font-color;
-            &:hover {
-                background-color: $theme-dark-background-highlight;
-                color: $theme-dark-font-color-highlight;
-            }
-        }
-    }
-}
-.theme-light {
-    .list-container {
-        .list {
-            background-color: $theme-light-background-highlight;
-            .list-header {
-                .button-container {
-                    .dropdown {
-                        background-color: $theme-light-element;
-                        box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
-                        .dropdown-title {
-                            border-bottom: 1px solid $theme-light-background-shadow;
-                            i {
-                                color: $theme-light-font-color;
-                                &:hover {
-                                    color: $theme-light-font-color-shadow;
-                                }
-                            }
-                        }
-                        .dropdown-element {
-                            color: $theme-light-font-color;
-                            &:hover {
-                                background-color: $theme-light-element-shadow;
-                                color: $theme-light-font-color-shadow;
-                            }
-                        }
-                    }
-                }
-            }
-            .list-body {
-                .list-element {
-                    background-color: $theme-light-element;
-                    color: $theme-light-font-color;
-                    &:hover {
-                        background-color: $theme-light-element-shadow;
-                        color: $theme-light-font-color-shadow;
-                    }
-                    .position {
                         .promote {
                             background-color: $red;
                             color: $white;
                             &:hover {
                                 background-color: $red-shadow;
-                                color: darken(#fff,10%);
-                            }
-                        }
-                        .position-up {
-                            border-bottom: 1px solid $theme-light-element-highlight;
-                            border-left: 1px solid $theme-light-element-highlight;
-                            &:hover {
-                                background-color: $transparent-highlight;
                             }
                         }
                         .position-down {
-                            border-left: 1px solid $theme-light-element-highlight;
-                            &:hover {
-                                background-color: $transparent-highlight;
-                            }
-                        }
-                    }
-                }
-                .status-open {
-                    &:hover {
-                        .position {
-                            .position-up {
-                                border-bottom: 1px solid $transparent-highlight;
-                                border-left: 1px solid $transparent-highlight;
-                            }
-                            .position-down {
-                                border-left: 1px solid $transparent-highlight;
-                            }
+                            border-top: 1px solid $theme-dark-list-accent-color-1;
                         }
                     }
                     .status {
-                        color: $blue-highlight;
+                        color: $blue;
                         &:hover {
-                            color: $blue;
-                        }
-                    }
-                }
-                .status-closed {
-                    .status {
-                        color: $blue-highlight;
-                        &:hover {
-                            color: $blue;
+                            color: darken($blue, 10%);
                         }
                     }
                 }
             }
             .list-footer {
-                color: $theme-light-font-color;
+                background-color: $theme-dark-list-bg-color-2;
+                color: $theme-dark-list-font-color-2;
                 &:hover {
-                    background-color: $theme-light-element-shadow;
-                    color: $theme-light-font-color-shadow;
+                    background-color: darken($theme-dark-list-bg-color-2, 10%);
+                    color: darken($theme-dark-list-font-color-2, 10%);
                 }
             }
         }
         .add-list {
-            background-color: $theme-light-background-shadow;
-            color: $theme-light-font-color;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
+            background-color: $theme-dark-list-bg-color-2;
+            color: $theme-dark-list-font-color-2;
             &:hover {
-                background-color: $theme-light-background-highlight;
-                color: $theme-light-font-color-shadow;
+                background-color: darken($theme-dark-list-bg-color-2, 10%);
+                color: darken($theme-dark-list-font-color-2, 10%);
+            }
+        }
+    }
+}
+
+$theme-light-list-bg-color-1: #fff;
+$theme-light-list-font-color-1: #595959;
+$theme-light-list-accent-color-1: #DADFE8;
+$theme-light-list-bg-color-2: #fff;
+$theme-light-list-font-color-2: #595959;
+.theme-light {
+    .list-container {
+        .list {
+            background-color: $theme-light-list-bg-color-2;
+            color: $theme-light-list-font-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
+            .list-header {
+                background-color: $theme-light-list-bg-color-2;
+                color: $theme-light-list-font-color-2;
+                .button-container {
+                    .dropdown {
+                        background-color: $theme-light-list-bg-color-1;
+                        color: $theme-light-list-font-color-1;
+                        .dropdown-title {
+                            border-bottom: 1px solid $theme-light-list-accent-color-1;
+                        }
+                        .dropdown-element {
+                            &:hover {
+                                background-color: $theme-light-list-accent-color-1;
+                                color: darken($theme-light-list-font-color-2, 10%);
+                            }
+                        }
+                    }
+                }
+            }
+            .list-body {
+                .list-element {
+                    background-color: $theme-light-list-bg-color-1;
+                    color: $theme-light-list-font-color-1;
+                    border-bottom: 1px solid $theme-light-list-accent-color-1;
+                    &:first-child {
+                        border-top: 1px solid $theme-light-list-accent-color-1;
+                    }
+                    &:hover {
+                        background-color: darken($theme-light-list-bg-color-1, 10%);
+                        color: darken($theme-light-list-font-color-1, 10%);
+                    }
+                    .position {
+                        border-left: 1px solid $theme-light-list-accent-color-1;
+                        .position-element {
+                            &:hover {
+                                background-color: darken($theme-light-list-accent-color-1, 10%);
+                                color: darken($theme-light-list-font-color-1,10%);
+                            }
+                        }
+                        .promote {
+                            background-color: $red;
+                            color: $white;
+                            &:hover {
+                                background-color: $red-shadow;
+                            }
+                        }
+                        .position-down {
+                            border-top: 1px solid $theme-light-list-accent-color-1;
+                        }
+                    }
+                    .status {
+                        color: $blue;
+                        &:hover {
+                            color: darken($blue, 10%);
+                        }
+                    }
+                }
+            }
+            .list-footer {
+                background-color: $theme-light-list-bg-color-2;
+                color: $theme-light-list-font-color-2;
+                &:hover {
+                    background-color: darken($theme-light-list-bg-color-2, 10%);
+                    color: darken($theme-light-list-font-color-2, 10%);
+                }
+            }
+        }
+        .add-list {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
+            background-color: $theme-light-list-bg-color-2;
+            color: $theme-light-list-font-color-2;
+            &:hover {
+                background-color: darken($theme-light-list-bg-color-2, 10%);
+                color: darken($theme-light-list-font-color-2, 10%);
             }
         }
     }

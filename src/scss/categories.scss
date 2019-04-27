@@ -1,10 +1,11 @@
 .category {
     display: inline-block;
-    padding: 0 2px 0 4px;
+    width: 8px;
+    
 }
 
 @each $color, $value in $category-colors {
   .category-#{$color} {
-      color: $value;
+      background-color: $value;
   }
 }
