@@ -3,6 +3,7 @@
     overflow: hidden;
     padding: 0 8px 31px;
     .list {
+        border-radius: 4px;
         display: flex;
         flex-basis: 0;
         flex-direction: column;
@@ -10,7 +11,6 @@
         margin-right: 8px;
         max-height: 100%;
         max-width: 30vw;
-        border-radius: 4px;
         .list-header {
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
@@ -51,9 +51,9 @@
                         .dropdown-title-text {
                             align-self: center;
                             flex-grow: 1;
+                            font-weight: 600;
                             margin-left: 20px;
                             text-align: center;
-                            font-weight: 600;
                         }
                         i {
                             cursor: pointer;
@@ -159,7 +159,6 @@
         padding: 8px 12px;
     }
 }
-
 $theme-default-list-bg-color-1: #fff;
 $theme-default-list-font-color-1: #595959;
 $theme-default-list-accent-color-1: #DADFE8;
@@ -169,8 +168,8 @@ $theme-default-list-font-color-2: #212529;
     .list-container {
         .list {
             background-color: $theme-default-list-bg-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
             color: $theme-default-list-font-color-2;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
             .list-header {
                 background-color: $theme-default-list-bg-color-2;
                 color: $theme-default-list-font-color-2;
@@ -184,7 +183,7 @@ $theme-default-list-font-color-2: #212529;
                         .dropdown-element {
                             &:hover {
                                 background-color: $theme-default-list-accent-color-1;
-                                color: darken($theme-default-list-font-color-2, 10%);
+                                color: darken($theme-default-list-font-color-2,10%);
                             }
                         }
                     }
@@ -193,20 +192,20 @@ $theme-default-list-font-color-2: #212529;
             .list-body {
                 .list-element {
                     background-color: $theme-default-list-bg-color-1;
-                    color: $theme-default-list-font-color-1;
                     border-bottom: 1px solid $theme-default-list-accent-color-1;
+                    color: $theme-default-list-font-color-1;
                     &:first-child {
                         border-top: 1px solid $theme-default-list-accent-color-1;
                     }
                     &:hover {
-                        background-color: darken($theme-default-list-bg-color-1, 10%);
-                        color: darken($theme-default-list-font-color-1, 10%);
+                        background-color: darken($theme-default-list-bg-color-1,10%);
+                        color: darken($theme-default-list-font-color-1,10%);
                     }
                     .position {
                         border-left: 1px solid $theme-default-list-accent-color-1;
                         .position-element {
                             &:hover {
-                                background-color: darken($theme-default-list-accent-color-1, 10%);
+                                background-color: darken($theme-default-list-accent-color-1,10%);
                                 color: darken($theme-default-list-font-color-1,10%);
                             }
                         }
@@ -224,7 +223,7 @@ $theme-default-list-font-color-2: #212529;
                     .status {
                         color: $blue;
                         &:hover {
-                            color: darken($blue, 10%);
+                            color: darken($blue,10%);
                         }
                     }
                 }
@@ -233,23 +232,22 @@ $theme-default-list-font-color-2: #212529;
                 background-color: $theme-default-list-bg-color-2;
                 color: $theme-default-list-font-color-2;
                 &:hover {
-                    background-color: darken($theme-default-list-bg-color-2, 10%);
-                    color: darken($theme-default-list-font-color-2, 10%);
+                    background-color: darken($theme-default-list-bg-color-2,10%);
+                    color: darken($theme-default-list-font-color-2,10%);
                 }
             }
         }
         .add-list {
-            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
             background-color: $theme-default-list-bg-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
             color: $theme-default-list-font-color-2;
             &:hover {
-                background-color: darken($theme-default-list-bg-color-2, 10%);
-                color: darken($theme-default-list-font-color-2, 10%);
+                background-color: darken($theme-default-list-bg-color-2,10%);
+                color: darken($theme-default-list-font-color-2,10%);
             }
         }
     }
 }
-
 $theme-dark-list-bg-color-1: #565965;
 $theme-dark-list-font-color-1: #FFFFFF;
 $theme-dark-list-accent-color-1: #383B4B;
@@ -259,8 +257,8 @@ $theme-dark-list-font-color-2: #FFFFFF;
     .list-container {
         .list {
             background-color: $theme-dark-list-bg-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
             color: $theme-dark-list-font-color-2;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
             .list-header {
                 background-color: $theme-dark-list-bg-color-2;
                 color: $theme-dark-list-font-color-2;
@@ -274,7 +272,7 @@ $theme-dark-list-font-color-2: #FFFFFF;
                         .dropdown-element {
                             &:hover {
                                 background-color: $theme-dark-list-accent-color-1;
-                                color: darken($theme-dark-list-font-color-2, 10%);
+                                color: darken($theme-dark-list-font-color-2,10%);
                             }
                         }
                     }
@@ -283,20 +281,20 @@ $theme-dark-list-font-color-2: #FFFFFF;
             .list-body {
                 .list-element {
                     background-color: $theme-dark-list-bg-color-1;
-                    color: $theme-dark-list-font-color-1;
                     border-bottom: 1px solid $theme-dark-list-accent-color-1;
+                    color: $theme-dark-list-font-color-1;
                     &:first-child {
                         border-top: 1px solid $theme-dark-list-accent-color-1;
                     }
                     &:hover {
-                        background-color: darken($theme-dark-list-bg-color-1, 10%);
-                        color: darken($theme-dark-list-font-color-1, 10%);
+                        background-color: darken($theme-dark-list-bg-color-1,10%);
+                        color: darken($theme-dark-list-font-color-1,10%);
                     }
                     .position {
                         border-left: 1px solid $theme-dark-list-accent-color-1;
                         .position-element {
                             &:hover {
-                                background-color: darken($theme-dark-list-accent-color-1, 10%);
+                                background-color: darken($theme-dark-list-accent-color-1,10%);
                                 color: darken($theme-dark-list-font-color-1,10%);
                             }
                         }
@@ -314,7 +312,7 @@ $theme-dark-list-font-color-2: #FFFFFF;
                     .status {
                         color: $blue;
                         &:hover {
-                            color: darken($blue, 10%);
+                            color: darken($blue,10%);
                         }
                     }
                 }
@@ -323,23 +321,22 @@ $theme-dark-list-font-color-2: #FFFFFF;
                 background-color: $theme-dark-list-bg-color-2;
                 color: $theme-dark-list-font-color-2;
                 &:hover {
-                    background-color: darken($theme-dark-list-bg-color-2, 10%);
-                    color: darken($theme-dark-list-font-color-2, 10%);
+                    background-color: darken($theme-dark-list-bg-color-2,10%);
+                    color: darken($theme-dark-list-font-color-2,10%);
                 }
             }
         }
         .add-list {
-            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
             background-color: $theme-dark-list-bg-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
             color: $theme-dark-list-font-color-2;
             &:hover {
-                background-color: darken($theme-dark-list-bg-color-2, 10%);
-                color: darken($theme-dark-list-font-color-2, 10%);
+                background-color: darken($theme-dark-list-bg-color-2,10%);
+                color: darken($theme-dark-list-font-color-2,10%);
             }
         }
     }
 }
-
 $theme-light-list-bg-color-1: #fff;
 $theme-light-list-font-color-1: #595959;
 $theme-light-list-accent-color-1: #DADFE8;
@@ -349,8 +346,8 @@ $theme-light-list-font-color-2: #595959;
     .list-container {
         .list {
             background-color: $theme-light-list-bg-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
             color: $theme-light-list-font-color-2;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
             .list-header {
                 background-color: $theme-light-list-bg-color-2;
                 color: $theme-light-list-font-color-2;
@@ -364,7 +361,7 @@ $theme-light-list-font-color-2: #595959;
                         .dropdown-element {
                             &:hover {
                                 background-color: $theme-light-list-accent-color-1;
-                                color: darken($theme-light-list-font-color-2, 10%);
+                                color: darken($theme-light-list-font-color-2,10%);
                             }
                         }
                     }
@@ -373,20 +370,20 @@ $theme-light-list-font-color-2: #595959;
             .list-body {
                 .list-element {
                     background-color: $theme-light-list-bg-color-1;
-                    color: $theme-light-list-font-color-1;
                     border-bottom: 1px solid $theme-light-list-accent-color-1;
+                    color: $theme-light-list-font-color-1;
                     &:first-child {
                         border-top: 1px solid $theme-light-list-accent-color-1;
                     }
                     &:hover {
-                        background-color: darken($theme-light-list-bg-color-1, 10%);
-                        color: darken($theme-light-list-font-color-1, 10%);
+                        background-color: darken($theme-light-list-bg-color-1,10%);
+                        color: darken($theme-light-list-font-color-1,10%);
                     }
                     .position {
                         border-left: 1px solid $theme-light-list-accent-color-1;
                         .position-element {
                             &:hover {
-                                background-color: darken($theme-light-list-accent-color-1, 10%);
+                                background-color: darken($theme-light-list-accent-color-1,10%);
                                 color: darken($theme-light-list-font-color-1,10%);
                             }
                         }
@@ -404,7 +401,7 @@ $theme-light-list-font-color-2: #595959;
                     .status {
                         color: $blue;
                         &:hover {
-                            color: darken($blue, 10%);
+                            color: darken($blue,10%);
                         }
                     }
                 }
@@ -413,18 +410,18 @@ $theme-light-list-font-color-2: #595959;
                 background-color: $theme-light-list-bg-color-2;
                 color: $theme-light-list-font-color-2;
                 &:hover {
-                    background-color: darken($theme-light-list-bg-color-2, 10%);
-                    color: darken($theme-light-list-font-color-2, 10%);
+                    background-color: darken($theme-light-list-bg-color-2,10%);
+                    color: darken($theme-light-list-font-color-2,10%);
                 }
             }
         }
         .add-list {
-            box-shadow: 0 3px 6px rgba(0,0,0,0.32);
             background-color: $theme-light-list-bg-color-2;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
             color: $theme-light-list-font-color-2;
             &:hover {
-                background-color: darken($theme-light-list-bg-color-2, 10%);
-                color: darken($theme-light-list-font-color-2, 10%);
+                background-color: darken($theme-light-list-bg-color-2,10%);
+                color: darken($theme-light-list-font-color-2,10%);
             }
         }
     }

@@ -22,19 +22,27 @@ body {
     margin: 0;
     text-align: left;
 }
-
 .theme-default {
-    background-color: $theme-default-background;
+    background: #5d5dff;
+    background: -moz-linear-gradient(-45deg,#5d5dff 0%,#3498db 100%);
+    background: -webkit-linear-gradient(-45deg,#5d5dff 0%,#3498db 100%);
+    background: linear-gradient(135deg,#5d5dff 0%,#3498db 100%);
     color: $theme-default-font-color;
-
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d5dff',endColorstr='#3498db',GradientType=1 );
 }
 .theme-dark {
-    background-color: $theme-dark-background;
+    background: #383b4b;
+    background: -moz-linear-gradient(-45deg,#383b4b 0%,#3b3d4e 100%);
+    background: -webkit-linear-gradient(-45deg,#383b4b 0%,#3b3d4e 100%);
+    background: linear-gradient(135deg,#383b4b 0%,#3b3d4e 100%);
     color: $theme-dark-font-color;
-
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383b4b',endColorstr='#3b3d4e',GradientType=1 );
 }
 .theme-light {
-    background-color: $theme-light-background;
+    background: #ecf0f1;
+    background: -moz-linear-gradient(-45deg,#ecf0f1 0%,#ffffff 100%);
+    background: -webkit-linear-gradient(-45deg,#ecf0f1 0%,#ffffff 100%);
+    background: linear-gradient(135deg,#ecf0f1 0%,#ffffff 100%);
     color: $theme-light-font-color;
-
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ecf0f1',endColorstr='#ffffff',GradientType=1 );
 }
