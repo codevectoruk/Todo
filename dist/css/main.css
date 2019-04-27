@@ -2107,7 +2107,7 @@
 /* $end RTL */
 .tag {
   display: inline-block;
-  padding: 3px 5px;
+  padding: 2px 4px;
   font-size: 12px;
   border-radius: 4px;
   font-weight: 700;
@@ -2119,53 +2119,118 @@
 }
 
 .tag-default {
-  background-color: #7f8fa6;
-  color: #fff;
+  border: 2px solid #7f8fa6;
 }
 
 .tag-default:hover {
-  background-color: #63758f;
-  color: #fff;
+  border: 2px solid #63758f;
+}
+
+.theme-default .tag-default {
+  color: #212529;
+  background-color: #fff;
+}
+
+.theme-dark .tag-default {
+  color: #eee;
+  background-color: #353b48;
+}
+
+.theme-light .tag-default {
+  color: #333;
+  background-color: #fff;
 }
 
 .tag-success {
-  background-color: #2ecc71;
-  color: #fff;
+  border: 2px solid #2ecc71;
 }
 
 .tag-success:hover {
-  background-color: #25a25a;
-  color: #fff;
+  border: 2px solid #25a25a;
+}
+
+.theme-default .tag-success {
+  color: #212529;
+  background-color: #fff;
+}
+
+.theme-dark .tag-success {
+  color: #eee;
+  background-color: #353b48;
+}
+
+.theme-light .tag-success {
+  color: #333;
+  background-color: #fff;
 }
 
 .tag-info {
-  background-color: #00a8ff;
-  color: #fff;
+  border: 2px solid #00a8ff;
 }
 
 .tag-info:hover {
-  background-color: #0086cc;
-  color: #fff;
+  border: 2px solid #0086cc;
+}
+
+.theme-default .tag-info {
+  color: #212529;
+  background-color: #fff;
+}
+
+.theme-dark .tag-info {
+  color: #eee;
+  background-color: #353b48;
+}
+
+.theme-light .tag-info {
+  color: #333;
+  background-color: #fff;
 }
 
 .tag-warning {
-  background-color: #f1c40f;
-  color: #fff;
+  border: 2px solid #f1c40f;
 }
 
 .tag-warning:hover {
-  background-color: #c29d0b;
-  color: #fff;
+  border: 2px solid #c29d0b;
+}
+
+.theme-default .tag-warning {
+  color: #212529;
+  background-color: #fff;
+}
+
+.theme-dark .tag-warning {
+  color: #eee;
+  background-color: #353b48;
+}
+
+.theme-light .tag-warning {
+  color: #333;
+  background-color: #fff;
 }
 
 .tag-danger {
-  background-color: #e74c3c;
-  color: #fff;
+  border: 2px solid #e74c3c;
 }
 
 .tag-danger:hover {
-  background-color: #d62c1a;
-  color: #fff;
+  border: 2px solid #d62c1a;
+}
+
+.theme-default .tag-danger {
+  color: #212529;
+  background-color: #fff;
+}
+
+.theme-dark .tag-danger {
+  color: #eee;
+  background-color: #353b48;
+}
+
+.theme-light .tag-danger {
+  color: #333;
+  background-color: #fff;
 }
 
 .category {

@@ -1,12 +1,38 @@
-// .button-container {
-//   display: flex;
-//   justify-content: flex-end;
-//   padding: 10px 0 0;
+// // .button-container {
+// //   display: flex;
+// //   justify-content: flex-end;
+// //   padding: 10px 0 0;
+// // }
+//
+// .tag {
+//     display: inline-block;
+//     padding: 3px 5px;
+//     font-size: 12px;
+//     border-radius: 4px;
+//     font-weight: 700;
+//     line-height: 1;
+//     text-align: center;
+//     white-space: nowrap;
+//     vertical-align: baseline;
+//     margin: 0 0 0 2px;
 // }
+//
+// @each $color, $value in $theme-colors {
+//   .tag-#{$color} {
+//       background-color: $value;
+//       color: $white;
+//
+//       &:hover {
+//         background-color: darken($value, 10%);
+//         color: $white;
+//       }
+//   }
+// }
+
 
 .tag {
     display: inline-block;
-    padding: 3px 5px;
+    padding: 2px 4px;
     font-size: 12px;
     border-radius: 4px;
     font-weight: 700;
@@ -19,12 +45,24 @@
 
 @each $color, $value in $theme-colors {
   .tag-#{$color} {
-      background-color: $value;
-      color: $white;
+      border: 2px solid $value;
 
       &:hover {
-        background-color: darken($value, 10%);
-        color: $white;
+        border: 2px solid darken($value, 10%);
       }
   }
+    .theme-default .tag-#{$color} {
+        color: $theme-default-font-color;
+        background-color: $white;
+    }
+
+    .theme-dark .tag-#{$color} {
+        color: $theme-dark-font-color;
+        background-color: $theme-dark-element;
+    }
+
+    .theme-light .tag-#{$color} {
+        color: $theme-light-font-color;
+        background-color: $white;
+    }
 }
