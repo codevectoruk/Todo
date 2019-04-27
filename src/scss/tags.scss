@@ -1,35 +1,31 @@
 .tag {
-    display: inline-block;
-    padding: 2px 4px;
-    font-size: 12px;
     border-radius: 4px;
+    display: inline-block;
+    font-size: 12px;
     line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
     margin: 0 0 0 2px;
+    padding: 2px 4px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
 }
-
 @each $color, $value in $theme-colors {
-  .tag-#{$color} {
-      border: 2px solid $value;
-
-      &:hover {
-        border: 2px solid darken($value, 10%);
-      }
-  }
+    .tag-#{$color} {
+        border: 2px solid $value;
+        &:hover {
+            border: 2px solid darken($value,10%);
+        }
+    }
     .theme-default .tag-#{$color} {
+        background-color: $white;
         color: $theme-default-font-color;
-        background-color: $white;
     }
-
     .theme-dark .tag-#{$color} {
-        color: $theme-dark-font-color;
         background-color: $theme-dark-element;
+        color: $theme-dark-font-color;
     }
-
     .theme-light .tag-#{$color} {
-        color: $theme-light-font-color;
         background-color: $white;
+        color: $theme-light-font-color;
     }
 }

@@ -1,0 +1,105 @@
+.input-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0 0 5px 0;
+    .input-title {
+        font-weight: 600;
+        padding: 5px 0 2px 0;
+    }
+    input[type=text], textarea, select {
+        border-radius: 4px;
+        flex-grow: 1;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        padding: 10px;
+        resize: none;
+        &:active, &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+    .user-save-alert-border {
+        border: 1px solid $red !important;
+        &:active, &:focus {
+            border: 1px solid $red !important;
+            box-shadow: inset 0 0 0 2px $red !important;
+            outline: none;
+        }
+    }
+    .input-button-group-container {
+        display: flex;
+        input {
+            border-bottom-right-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+        .button {
+            border-bottom-left-radius: 0px;
+            border-top-left-radius: 0px;
+            margin: 0;
+        }
+    }
+    .user-save-alert {
+        color: $red;
+    }
+}
+.input-container-padding {
+    padding: 0 0 5px 10px;
+}
+.theme-default {
+    .modal-title {
+        color: #595959;
+    }
+    .input-container {
+        .input-title {
+            color: #595959;
+        }
+        input[type=text], textarea, select {
+            border: 1px solid #dadfe8;
+            color: #595959;
+            &:active, &:focus {
+                border: 1px solid #00a8ff;
+                box-shadow: inset 0 0 0 2px #00a8ff;
+            }
+        }
+    }
+}
+
+.theme-dark {
+    .modal-title {
+        color: #595959;
+    }
+    .input-container {
+        .input-title {
+            color: #595959;
+        }
+        input[type=text], textarea, select {
+            border: 1px solid #dadfe8;
+            color: #595959;
+            &:active, &:focus {
+                border: 1px solid #00a8ff;
+                box-shadow: inset 0 0 0 2px #00a8ff;
+            }
+        }
+    }
+}
+
+.theme-light {
+    .modal-title {
+        color: #595959;
+    }
+    .input-container {
+        .input-title {
+            color: #595959;
+        }
+        input[type=text], textarea, select {
+            border: 1px solid #dadfe8;
+            color: #595959;
+            &:active, &:focus {
+                border: 1px solid #00a8ff;
+                box-shadow: inset 0 0 0 2px #00a8ff;
+            }
+        }
+    }
+}

@@ -1,72 +1,62 @@
 .userAlert-container {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 0 8px;
-
-  .userAlert {
-    margin: 0 0 8px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    border-radius: 8px;
+    bottom: 0;
     display: flex;
-    max-width: 40vw;
-    min-width: 20vw;
-    min-height: 71px;
-
-    .icon {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-      font-size: 35px;
-      align-self: center;
-      padding: 0 16px;
-      align-self: stretch;
-      vertical-align: middle;
-      display: flex;
-
-      i {
-        align-self: center;
-      }
+    flex-direction: column;
+    margin: 0 0 0 8px;
+    position: absolute;
+    .userAlert {
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+        display: flex;
+        margin: 0 0 8px;
+        max-width: 40vw;
+        min-height: 71px;
+        min-width: 20vw;
+        .icon {
+            align-self: center;
+            align-self: stretch;
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+            display: flex;
+            font-size: 35px;
+            padding: 0 16px;
+            vertical-align: middle;
+            i {
+                align-self: center;
+            }
+        }
+        .text {
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+            padding: 6px 16px;
+            width: 100%;
+            .text-title {
+                font-size: 16px;
+                font-weight: 600;
+            }
+            .text-body {
+                font-size: 14px;
+            }
+        }
     }
-
-    .text {
-      width: 100%;
-      padding: 6px 16px;
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
-
-      .text-title {
-        font-size: 16px;
-        font-weight: 600;
-      }
-
-      .text-body {
-        font-size: 14px;
-      }
+    .userAlert-info {
+        .icon {
+            background-color: $blue-highlight;
+        }
     }
-  }
-
-  .userAlert-info {
-    .icon {
-      background-color: $blue-highlight;
+    .userAlert-success {
+        .icon {
+            background-color: $green;
+        }
     }
-  }
-
-  .userAlert-success {
-    .icon {
-      background-color: $green;
+    .userAlert-warning {
+        .icon {
+            background-color: $yellow;
+        }
     }
-  }
-
-  .userAlert-warning {
-    .icon {
-      background-color: $yellow;
+    .userAlert-error {
+        .icon {
+            background-color: $red;
+        }
     }
-  }
-
-  .userAlert-error {
-    .icon {
-      background-color: $red;
-    }
-  }
 }

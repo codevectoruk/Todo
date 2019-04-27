@@ -62,6 +62,8 @@ function buttonOpenElementModalForElementUpdate(localListId, localElementId, loc
     // $("#elementCategory").val(localElement.category);
     $("#element-modal-button-create").hide();
     $("#element-modal-button-update").show();
+    $("#element-modal-update-title").show();
+    $("#element-modal-create-title").hide();
     closeAllDropdown();
     toggleElementModalVisibility();
     autosize.update($("#elementDescription"));
@@ -84,6 +86,8 @@ function buttonOpenElementModalForElementCreate(listId) {
     // $("#elementCategory").val("");
     $("#element-modal-button-create").show();
     $("#element-modal-button-update").hide();
+    $("#element-modal-update-title").hide();
+    $("#element-modal-create-title").show();
     $("#modal-list").val(listId);
     closeAllDropdown();
     toggleElementModalVisibility();
