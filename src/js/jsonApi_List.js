@@ -22,7 +22,6 @@ function createList(localListName, localOpenElements, localClosedElements, local
 
 function createJsonList() {
     var returnState = false;
-    if (todo.length < 5) {  //limit to a max of 5 lists
         todo.push({
             "list_name": "",
             "openElements": [],
@@ -30,7 +29,6 @@ function createJsonList() {
             "deletedElements": []
         });
         returnState = true;
-    }
     return returnState;
 }
 
