@@ -14,6 +14,28 @@
     margin: 0 0 0 5px;
     min-width: 75px;
     padding: 10px 16px;
+
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+            transition: box-shadow .28s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1);
+                padding: 0 16px;
+                font-weight: 500;
+
+    text-transform: uppercase;
+    min-width: 64px;
+height: 36px;
+vertical-align: middle;
+border-radius: 4px;
+will-change: transform,opacity;
+transition: opacity 15ms linear,background-color 15ms linear;
+    &:active {
+            box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+            border: none;
+    }
+    &:focus {
+            box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+            border: none;
+            outline: none;
+    }
 }
 @each $color, $value in $theme-colors {
     .button-#{$color} {
@@ -27,28 +49,28 @@
 }
 .theme-default {
     .list-button {
-        color: $theme-default-list-font-color-1;
+        color: $theme-default-font-color-1;
         &:hover {
-            background-color: darken($theme-default-list-bg-color-2, 10%);
-            color: darken($theme-default-list-font-color-1, 10%);
+            background-color: darken($theme-default-bg-color-2, 10%);
+            color: darken($theme-default-font-color-1, 10%);
         }
     }
 }
 .theme-dark {
     .list-button {
-        color: $theme-dark-list-font-color-1;
+        color: $theme-dark-font-color-1;
         &:hover {
-            background-color: darken($theme-dark-list-bg-color-2, 10%);
-            color: darken($theme-dark-list-font-color-1, 10%);
+            background-color: darken($theme-dark-bg-color-2, 10%);
+            color: darken($theme-dark-font-color-1, 10%);
         }
     }
 }
 .theme-light {
     .list-button {
-        color: $theme-light-list-font-color-1;
+        color: $theme-light-font-color-1;
         &:hover {
-            background-color: darken($theme-light-list-bg-color-2, 10%);
-            color: darken($theme-light-list-font-color-1, 10%);
+            background-color: darken($theme-light-bg-color-2, 10%);
+            color: darken($theme-light-font-color-1, 10%);
         }
     }
 }

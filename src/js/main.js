@@ -1,4 +1,4 @@
-//@prepros-prepend defaultSetup.js
+
 
 var todo = JSON.parse(localStorage.getItem("todo"));
 

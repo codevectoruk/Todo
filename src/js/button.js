@@ -29,14 +29,14 @@ function buttonChangeElementStatusToDeleted() {
 }
 
 function buttonCreateList() {
-    createList('New List')
+    createList("New List");
     updateStoredTodoList();
     createListsAndElements();
 }
 
 function buttonDeleteList() {
     var localListId = $("#modal-confirm-list").val();
-    deleteList(localListId)
+    deleteList(localListId);
     createListsAndElements();
     toggleConfirmationModalVisibility();
     generateUserAlert("List successfully deleted.", "success", 5000);
@@ -134,7 +134,7 @@ function buttonCreateNewElement() {
 function buttonRenameList() {
   var localListId = $("#modal-rename-list").val();
    var localListName = $("#modal-list-rename-input").val();
-  setListName(localListId, localListName)
+  setListName(localListId, localListName);
     createListsAndElements();
     toggleRenameListModal();
 }

@@ -4,7 +4,7 @@ function prepareModalDelete(localListId, localElementId) {
   $("#modal-confirm-element").val(localElementId);
   $("#deleteElementButton").show();
   $("#deleteListButton").hide();
-  closeAllDropdown()
+  closeAllDropdown();
   toggleConfirmationModalVisibility();
 }
 
@@ -12,7 +12,7 @@ function prepareModalDeleteList(localListId) {
   $("#modal-confirm-list").val(localListId);
   $("#deleteElementButton").hide();
   $("#deleteListButton").show();
-  closeAllDropdown()
+  closeAllDropdown();
   toggleConfirmationModalVisibility();
 }
 

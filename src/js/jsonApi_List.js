@@ -5,7 +5,7 @@ function createList(localListName, localOpenElements, localClosedElements, local
     var returnState = false;
     if (createJsonList()) {  //create the barebone json list
         var locaListId = todo.length - 1;
-        setListName(locaListId, localListName); //as the list will be added on the end it's id will be todo.length - 1
+        setListName(locaListId, localListName); //as the list will be added on the end it's id will be length - 1
         if(localOpenElements != "") {
             setListOpenElements(locaListId, localOpenElements);
         }
@@ -22,7 +22,6 @@ function createList(localListName, localOpenElements, localClosedElements, local
 
 function createJsonList() {
     var returnState = false;
-    if (todo.length < 5) {  //limit to a max of 5 lists
         todo.push({
             "list_name": "",
             "openElements": [],
@@ -30,7 +29,6 @@ function createJsonList() {
             "deletedElements": []
         });
         returnState = true;
-    }
     return returnState;
 }
 
