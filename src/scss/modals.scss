@@ -43,7 +43,6 @@
             font-size: 16px;
         }
     }
-
     .list-rename-modal {
         width: 768px;
         .text-container {
@@ -60,6 +59,9 @@
         .modal-title {
             color: $theme-default-font-color-1;
         }
+        .text-container {
+            color: $theme-default-font-color-1;
+        }
     }
 }
 .theme-dark {
@@ -69,6 +71,9 @@
         .modal-title {
             color: $theme-dark-font-color-1;
         }
+        .text-container {
+            color: $theme-dark-font-color-1;
+        }
     }
 }
 .theme-light {
@@ -76,6 +81,9 @@
         border: 1px solid $theme-light-accent-color-1;
         background-color: $theme-light-bg-color-1;
         .modal-title {
+            color: $theme-light-font-color-1;
+        }
+        .text-container {
             color: $theme-light-font-color-1;
         }
     }
