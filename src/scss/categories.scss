@@ -1,28 +1,11 @@
 .category {
     display: inline-block;
-    padding: 0 2px 0 4px;
+    width: 8px;
+    
 }
 
-.category-blue {
-    color: $blue;
-}
-
-.category-green {
-    color: $green;
-}
-
-.category-ornage {
-    color: $orange;
-}
-
-.category-purple {
-    color: $purple;
-}
-
-.category-red {
-    color: $red;
-}
-
-.category-yellow {
-    color: $yellow;
+@each $color, $value in $category-colors {
+  .category-#{$color} {
+      background-color: $value;
+  }
 }

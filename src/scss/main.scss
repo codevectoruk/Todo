@@ -1,5 +1,4 @@
 @import "variables";
-@import "theme";
 @import "modals";
 @import "helperClasses";
 @import "list";
@@ -11,14 +10,39 @@
 @import "dropdowns";
 @import "tags";
 @import "categories";
+@import "inputs";
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 14px;
-  font-weight: 400;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 14px;
+    font-weight: 400;
+    height: 100vh;
+    margin: 0;
+    text-align: left;
+}
+.theme-default {
+    background: #5d5dff;
+    background: -moz-linear-gradient(-45deg,#5d5dff 0%,#3498db 100%);
+    background: -webkit-linear-gradient(-45deg,#5d5dff 0%,#3498db 100%);
+    background: linear-gradient(135deg,#5d5dff 0%,#3498db 100%);
+    color: $theme-default-list-font-color-1;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d5dff',endColorstr='#3498db',GradientType=1 );
+}
+.theme-dark {
+    background: #383b4b;
+    background: -moz-linear-gradient(-45deg,#383b4b 0%,#3b3d4e 100%);
+    background: -webkit-linear-gradient(-45deg,#383b4b 0%,#3b3d4e 100%);
+    background: linear-gradient(135deg,#383b4b 0%,#3b3d4e 100%);
+    color: $theme-dark-list-font-color-1;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383b4b',endColorstr='#3b3d4e',GradientType=1 );
+}
+.theme-light {
+    background: #ecf0f1;
+    background: -moz-linear-gradient(-45deg,#ecf0f1 0%,#ffffff 100%);
+    background: -webkit-linear-gradient(-45deg,#ecf0f1 0%,#ffffff 100%);
+    background: linear-gradient(135deg,#ecf0f1 0%,#ffffff 100%);
+    color: $theme-light-list-font-color-1;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ecf0f1',endColorstr='#ffffff',GradientType=1 );
 }

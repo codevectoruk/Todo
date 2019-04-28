@@ -34,79 +34,57 @@
     <div class="list-container"></div>
     <div class="modal-container hidden" id="id-element-modal">
         <div class="element-modal generic-modal">
+            <div class="flex-horizontal">
+            <div class="modal-title" id="element-modal-create-title">
+                Create Item
+            </div>
+            <div class="modal-title" id="element-modal-update-title">
+                Update Item
+            </div>
             <div class="close-container" onclick="toggleElementModalVisibility()">
                 <i class="fas fa-times"></i>
             </div>
-            <div class="generic-container">
-                <div class="icon-container">
-                    <i class="fas fa-heading"></i>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="elementTitle" placeholder="Enter a title…">
-                    <input type="hidden" id="modal-list">
-                    <input type="hidden" id="modal-element">
-                    <input type="hidden" id="modal-status">
-                </div>
+        </div>
+            <div class="input-container">
+                <div class="input-title">Title</div>
+                <input type="text" id="elementTitle" placeholder="Enter a title…">
+                <input type="hidden" id="modal-list">
+                <input type="hidden" id="modal-element">
+                <input type="hidden" id="modal-status">
             </div>
             <div class="flex-horizontal">
-                <div class="generic-container">
-                    <div class="icon-container">
-                        <i class="fas fa-grip-horizontal"></i>
-                    </div>
-                    <div class="input-container">
-                        <div class="description">
-                            Category
-                        </div>
-                        <select name="category" id="elementCategory">
-                            <option value="0">None</option>
-                            <option value="1">Blue</option>
-                            <option value="2">Green</option>
-                            <option value="3">Orange</option>
-                            <option value="4">Purple</option>
-                            <option value="5">Red</option>
-                            <option value="6">Yellow</option>
-                        </select>
-                    </div>
+                <div class="input-container">
+                    <div class="input-title">Category</div>
+                    <select name="category" id="elementCategory">
+                        <option value="0">None</option>
+                        <option value="1">Blue</option>
+                        <option value="2">Green</option>
+                        <option value="3">Orange</option>
+                        <option value="4">Purple</option>
+                        <option value="5">Red</option>
+                        <option value="6">Yellow</option>
+                    </select>
                 </div>
-                <div class="generic-container">
-                    <div class="icon-container">
-                        <i class="far fa-clock"></i>
-                    </div>
-                    <div class="input-container">
-                        <div class="description">
-                            Due Date
-                        </div>
-                        <!-- <input type="text" id="elementDue" class="tail-datetime-field" /> -->
-                        <div class="button-container-no-padding">
-                            <input type="text" id="elementDue" class="tail-datetime-field" />
-                            <button class="button button-danger" onclick="buttonClearDueDate()">Remove Due Date</button>
-                        </div>
+
+                <div class="input-container input-container-padding">
+                    <div class="input-title">Due Date</div>
+                    <div class="input-button-group-container">
+                        <input type="text" id="elementDue" class="tail-datetime-field" />
+                        <button class="button button-danger" onclick="buttonClearDueDate()">Remove Due Date</button>
                     </div>
                 </div>
             </div>
-            <div class="generic-container">
-                <div class="icon-container">
-                    <i class="fas fa-align-left"></i>
-                </div>
-                <div class="input-container">
-                    <div class="description">
-                        Description
-                    </div>
-                    <textarea type="text" class="scrollbar" id="elementDescription" placeholder="Add a more detailed description…" rows='4'></textarea>
-                    <div class="user-save-alert hidden" id="elementDescriptionWarning">There are unsaved changes</div>
-                </div>
+            <div class="input-container">
+                <div class="input-title">Description</div>
+                <textarea type="text" class="scrollbar" id="elementDescription" placeholder="Add a more detailed description…" rows='2'></textarea>
+                <div class="user-save-alert hidden" id="elementDescriptionWarning">There are unsaved changes</div>
             </div>
-            <div class="generic-container">
-                <div class="icon-container">
-                    <i class="far fa-comment"></i>
-                </div>
-                <div class="input-container">
-                    <div class="description">
-                        Comments
-                    </div>
-                    <textarea type="text" class="scrollbar" id="elementComments" placeholder="Add comments on the work that has been done…" rows='2'></textarea>
-                    <div class="user-save-alert hidden" id="elementCommentsWarning">There are unsaved changes</div>
-                </div>
+
+
+            <div class="input-container">
+                <div class="input-title">Comments</div>
+                <textarea type="text" class="scrollbar" id="elementComments" placeholder="Add comments on the work that has been done…" rows='2'></textarea>
+                <div class="user-save-alert hidden" id="elementCommentsWarning">There are unsaved changes</div>
             </div>
             <div class="button-container">
                 <input class="button button-success" id="element-modal-button-create" type="button" value="Create" onclick="buttonCreateNewElement()">
@@ -129,8 +107,8 @@
     </div>
     <div class="modal-container hidden" id="id-rename-modal">
         <div class="list-rename-modal generic-modal">
-            <div class="text-container">Rename List Title</div>
             <div class="input-container">
+                <div class="input-title">Rename List Title</div>
                 <input type="text" id="modal-list-rename-input" placeholder="Change List's Name…">
             </div>
             <div class="button-container">

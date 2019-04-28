@@ -1,77 +1,119 @@
 .main-title-container {
-  display: flex;
-  justify-content: space-between;
-
-  .main-title {
-    font-size: 34px;
-    font-weight: lighter;
-    padding: 8px 10px;
-  }
-
-  .flex-right {
     display: flex;
-
-    .import-export {
-      display: flex;
-      padding: 0 5px 0 0;
-
-      i {
-        padding: 10px;
-        align-self: center;
-        font-size: 18px;
-        cursor: pointer;
-      }
+    justify-content: space-between;
+    .main-title {
+        font-size: 34px;
+        font-weight: lighter;
+        padding: 8px 10px;
     }
-
-    .theme-picker {
-      display: flex;
-      padding: 0 8px 0 0;
-      align-items: center;
-      vertical-align: middle;
-      font-size: 16px;
-      align-self: center;
-
-      .theme {
-        margin: 0 6px;
-        width: 34px;
-        height: 34px;
-        border: 1px solid #fff;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
-        align-self: center;
-        cursor: pointer;
-        border-radius: 4px;
-        //transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-        &:hover {
-          box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-          margin: 0 4px;
-          width: 38px;
-          height: 38px;
+    .flex-right {
+        display: flex;
+        .import-export {
+            display: flex;
+            padding: 0 5px 0 0;
+            i {
+                align-self: center;
+                cursor: pointer;
+                font-size: 18px;
+                padding: 10px;
+            }
         }
-      }
-
-      .theme-picker-default {
-        background-color: #0056B5;
-
-        &:hover {
-          background-color: lighten(#0056B5, 10%);
+        .theme-picker {
+            align-items: center;
+            align-self: center;
+            display: flex;
+            font-size: 16px;
+            padding: 0 8px 0 0;
+            vertical-align: middle;
+            .theme {
+                //transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                align-self: center;
+                border: 1px solid #fff;
+                border-radius: 4px;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12),0 2px 4px 0 rgba(0,0,0,0.08);
+                cursor: pointer;
+                height: 34px;
+                margin: 0 6px;
+                width: 34px;
+                &:hover {
+                    box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
+                    height: 38px;
+                    margin: 0 4px;
+                    width: 38px;
+                }
+            }
+            .theme-picker-default {
+                background-color: #0056B5;
+                &:hover {
+                    background-color: lighten(#0056B5,10%);
+                }
+            }
+            .theme-picker-dark {
+                background-color: #2f3640;
+                &:hover {
+                    background-color: lighten(#2f3640,5%);
+                }
+            }
+            .theme-picker-light {
+                background-color: #f5f6f7;
+                &:hover {
+                    background-color: #fff;
+                }
+            }
         }
-      }
-
-      .theme-picker-dark {
-        background-color: #2f3640;
-
-        &:hover {
-          background-color: lighten(#2f3640, 5%);
-        }
-      }
-
-      .theme-picker-light {
-        background-color: #f5f6f7;
-
-        &:hover {
-          background-color: #fff;
-        }
-      }
     }
-  }
+}
+.theme-default {
+    .main-title-container {
+        color: $white;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $white;
+                    &:hover {
+                        color: darken($white,10%);
+                    }
+                }
+            }
+            .theme-picker {
+                color: $white;
+            }
+        }
+    }
+}
+.theme-dark {
+    .main-title-container {
+        color: $theme-dark-list-font-color-1;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $theme-dark-list-font-color-1;
+                    &:hover {
+                        color: lighten($theme-dark-list-font-color-1, 10%);
+                    }
+                }
+            }
+            .theme-picker {
+                color: $theme-dark-list-font-color-1;
+            }
+        }
+    }
+}
+.theme-light {
+    .main-title-container {
+        color: $theme-light-list-font-color-2;
+        .flex-right {
+            .import-export {
+                i {
+                    color: $theme-light-list-font-color-2;
+                    &:hover {
+                        color: darken($theme-light-list-font-color-2, 10%);
+                    }
+                }
+            }
+            .theme-picker {
+                color: $theme-light-list-font-color-2;
+            }
+        }
+    }
 }

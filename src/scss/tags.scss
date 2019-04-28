@@ -1,68 +1,31 @@
-// // .button-container {
-// //   display: flex;
-// //   justify-content: flex-end;
-// //   padding: 10px 0 0;
-// // }
-//
-// .tag {
-//     display: inline-block;
-//     padding: 3px 5px;
-//     font-size: 12px;
-//     border-radius: 4px;
-//     font-weight: 700;
-//     line-height: 1;
-//     text-align: center;
-//     white-space: nowrap;
-//     vertical-align: baseline;
-//     margin: 0 0 0 2px;
-// }
-//
-// @each $color, $value in $theme-colors {
-//   .tag-#{$color} {
-//       background-color: $value;
-//       color: $white;
-//
-//       &:hover {
-//         background-color: darken($value, 10%);
-//         color: $white;
-//       }
-//   }
-// }
-
-
 .tag {
-    display: inline-block;
-    padding: 2px 4px;
-    font-size: 12px;
     border-radius: 4px;
-    font-weight: 700;
+    display: inline-block;
+    font-size: 12px;
     line-height: 1;
+    margin: 0 0 0 4px;
+    padding: 2px 4px;
     text-align: center;
-    white-space: nowrap;
     vertical-align: baseline;
-    margin: 0 0 0 2px;
+    white-space: nowrap;
 }
-
 @each $color, $value in $theme-colors {
-  .tag-#{$color} {
-      border: 2px solid $value;
-
-      &:hover {
-        border: 2px solid darken($value, 10%);
-      }
-  }
+    .tag-#{$color} {
+        border: 2px solid $value;
+        &:hover {
+            border: 2px solid darken($value,10%);
+        }
+    }
     .theme-default .tag-#{$color} {
-        color: $theme-default-font-color;
-        background-color: $white;
+        background-color: $theme-default-list-bg-color-1;
+        color: $theme-default-list-font-color-1;
     }
-
     .theme-dark .tag-#{$color} {
-        color: $theme-dark-font-color;
-        background-color: $theme-dark-element;
+        background-color: $theme-dark-list-bg-color-1;
+        color: $theme-dark-list-font-color-1;
     }
-
     .theme-light .tag-#{$color} {
-        color: $theme-light-font-color;
-        background-color: $white;
+        background-color: $theme-light-list-bg-color-1;
+        color: $theme-light-list-font-color-1;
     }
 }

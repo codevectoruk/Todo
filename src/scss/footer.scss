@@ -1,10 +1,25 @@
 .main-footer-container {
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-  padding: 6px 0;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  z-index: 1;
+    bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 0;
+    position: absolute;
+    text-align: center;
+    width: 100vw;
+    z-index: 1;
+}
+.theme-default {
+    .main-footer-container {
+        color: $white;
+    }
+}
+.theme-dark {
+    .main-footer-container {
+        color: $white;
+    }
+}
+.theme-light {
+    .main-footer-container {
+        color: $theme-light-list-font-color-2;
+    }
 }

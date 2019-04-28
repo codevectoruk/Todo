@@ -75,7 +75,9 @@ function populateElementsFromJson(localListId, localElementId, localElementField
     }
     returnState = "<div class='list-element " +
     statusStringA +
-    "'><div class='status' onclick='" +
+    "'>" +
+    categoryTag +
+    "<div class='status' onclick='" +
     statusStringB +
     "(" +
     localListId +
@@ -91,7 +93,6 @@ function populateElementsFromJson(localListId, localElementId, localElementField
     statusStringD +
     "\")'>" +
     localElementFields.title +
-    categoryTag +
     dueDateTag +
     "</div><div class='position'>";
     if (localElementStatus === "open") {
@@ -110,7 +111,7 @@ function populateElementsFromJson(localListId, localElementId, localElementField
         localListId +
         ", " +
         localElementId +
-        ")'><i class=\"fas fa-trash\"></i></div></div>";
+        ")'><i class=\"far fa-trash-alt\"></i></div></div>";
     }
     returnState += "</div></div>";
     return returnState;
@@ -123,18 +124,20 @@ return output;
 
 function populateCategoryField(localElementFieldsCategory) {
     var output = "";
-    if(localElementFieldsCategory == 1) {
-        output = "<div class='category category-blue'><i class='fas fa-circle'></i></div>";
+    if(localElementFieldsCategory == 0) {
+        output = "<div class='category'></div>";
+    } else if(localElementFieldsCategory == 1) {
+        output = "<div class='category category-blue'></div>";
     } else if(localElementFieldsCategory == 2) {
-output = "<div class='category category-green'><i class='fas fa-circle'></i></div>";
+output = "<div class='category category-green'></div>";
     } else if(localElementFieldsCategory == 3) {
-output = "<div class='category category-orange'><i class='fas fa-circle'></i></div>";
+output = "<div class='category category-orange'></div>";
     } else if(localElementFieldsCategory == 4) {
-output = "<div class='category category-purple'><i class='fas fa-circle'></i></div>";
+output = "<div class='category category-purple'></div>";
     } else if(localElementFieldsCategory == 5) {
-output = "<div class='category category-red'><i class='fas fa-circle'></i></div>";
+output = "<div class='category category-red'></div>";
     } else if(localElementFieldsCategory == 6) {
-        output = "<div class='category category-yellow'><i class='fas fa-circle'></i></div>";
+        output = "<div class='category category-yellow'></div>";
     }
     return output;
 }

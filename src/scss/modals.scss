@@ -1,94 +1,45 @@
 .modal-container {
-    z-index: 2;
+    align-items: center;
+    background-color: rgba(39,60,117,0.5) !important;
+    flex-wrap: nowrap;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
     position: fixed;
     top: 0;
-    left: 0;
-    height: 100vh;
     width: 100vw;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-
+    z-index: 2;
     .generic-modal {
-        padding: 20px;
+        border: 1px solid #595959;
         border-radius: 4px;
+        padding: 20px;
         z-index: 1000;
+        .modal-title {
+            flex-grow: 1;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 0 0 10px;
+        }
     }
-
     .element-modal {
         width: 768px;
-
-        .icon-container {
-            display: flex;
-
-            i {
-                align-self: center;
-                padding: 0 15px 0 0;
-                font-size: 18px;
-            }
-        }
-
-        .input-container {
-            display: flex;
-            flex-grow: 1;
-            flex-direction: column;
-        }
-
         .close-container {
             display: flex;
+            flex-grow: 1;
             justify-content: flex-end;
             padding: 0;
-
             i {
                 cursor: pointer;
-                padding: 10px;
                 margin: -15px -15px 0 0;
+                padding: 10px;
             }
         }
         .flex-horizontal {
             display: flex;
-
-
-            .generic-container {
-                flex-grow: 1;
-
-            }
-            .generic-container:last-child {
-                .icon-container {
-                    i {
-                        padding: 0 15px;
-                    }
-                }
-
-            }
-        }
-        .generic-container {
-            display: flex;
-            padding: 0 0 8px 0;
-            .description {
-                font-size: 16px;
-                line-height: 20px;
-                font-weight: bold;
-                padding: 0 0 5px 10px;
-            }
-            .due-button {
-                display: flex;
-                flex-direction: column;
-            }
-            .user-save-alert-border {
-                box-shadow: inset 0 0 0 2px $red;
-            }
-            .user-save-alert {
-                color: $red;
-                text-align: right;
-                padding: 0 0 0 5px;
-            }
         }
     }
-
     .confirmation-modal {
         width: 512px;
-
         .text-container {
             font-size: 16px;
         }
@@ -96,68 +47,34 @@
 
     .list-rename-modal {
         width: 768px;
-
         .text-container {
             font-size: 16px;
             font-weight: 700;
             padding: 0 0 5px 10px;
         }
-
-        .input-container {
-            display: flex;
+    }
+}
+.theme-default {
+    .generic-modal {
+        background-color: $theme-default-list-bg-color-1;
+        .modal-title {
+            color: $theme-default-list-font-color-1;
         }
     }
-
-    input[type=text] {
-        flex-grow: 1;
-        border: none;
-        padding: 4px 8px;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 24px;
-        border-radius: 4px;
-
-        &:active,
-        &:focus {
-            border: none;
-            outline: none;
-            box-shadow: inset 0 0 0 2px #00a8ff;
+}
+.theme-dark {
+    .generic-modal {
+        background-color: $theme-dark-list-bg-color-1;
+        .modal-title {
+            color: $theme-dark-list-font-color-1;
         }
     }
-
-    textarea {
-        border: none;
-        padding: 8px;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 24px;
-        border-radius: 4px;
-        resize: vertical;
-        max-height: 50vh;
-        overflow-y: scroll;
-
-        &:active,
-        &:focus {
-            border: none;
-            outline: none;
-            box-shadow: inset 0 0 0 2px #00a8ff;
-        }
-    }
-
-    select {
-        flex-grow: 1;
-        border: none;
-        padding: 4px 8px;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 24px;
-        border-radius: 4px;
-
-        &:active,
-        &:focus {
-            border: none;
-            outline: none;
-            box-shadow: inset 0 0 0 2px #00a8ff;
+}
+.theme-light {
+    .generic-modal {
+        background-color: $theme-light-list-bg-color-1;
+        .modal-title {
+            color: $theme-light-list-font-color-1;
         }
     }
 }
