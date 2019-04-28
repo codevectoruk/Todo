@@ -10,7 +10,6 @@
     width: 100vw;
     z-index: 2;
     .generic-modal {
-        border: 1px solid #595959;
         border-radius: 4px;
         padding: 20px;
         z-index: 1000;
@@ -56,6 +55,7 @@
 }
 .theme-default {
     .generic-modal {
+        border: 1px solid $theme-default-accent-color-1;
         background-color: $theme-default-bg-color-1;
         .modal-title {
             color: $theme-default-font-color-1;
@@ -64,6 +64,7 @@
 }
 .theme-dark {
     .generic-modal {
+        border: 1px solid $theme-dark-accent-color-1;
         background-color: $theme-dark-bg-color-1;
         .modal-title {
             color: $theme-dark-font-color-1;
@@ -72,6 +73,7 @@
 }
 .theme-light {
     .generic-modal {
+        border: 1px solid $theme-light-accent-color-1;
         background-color: $theme-light-bg-color-1;
         .modal-title {
             color: $theme-light-font-color-1;
