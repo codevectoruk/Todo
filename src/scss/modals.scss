@@ -56,25 +56,25 @@
 }
 .theme-default {
     .generic-modal {
-        background-color: #fff;
+        background-color: $theme-default-list-bg-color-1;
         .modal-title {
-            color: #595959;
+            color: $theme-default-list-font-color-1;
         }
     }
 }
 .theme-dark {
     .generic-modal {
-        background-color: #fff;
+        background-color: $theme-dark-list-bg-color-1;
         .modal-title {
-            color: #595959;
+            color: $theme-dark-list-font-color-1;
         }
     }
 }
 .theme-light {
     .generic-modal {
-        background-color: #fff;
+        background-color: $theme-light-list-bg-color-1;
         .modal-title {
-            color: #595959;
+            color: $theme-light-list-font-color-1;
         }
     }
 }
