@@ -36,7 +36,7 @@ function populateListFromJson(localListId, localListFields) {
     ")'>Rename List</div><div class='dropdown-element' " +
     "onclick='prepareModalDeleteList(" +
     localListId +
-    ")'>Delete List</div></div></div></div><div class='list-body scrollbar' " +
+    ")'>Delete List</div></div></div></div><div class='list-body scrollbar-alt' " +
     "id='list-" +
     localListId +
     "'></div><div class='list-footer' onclick='buttonOpenElementModalForElementCreate(" +

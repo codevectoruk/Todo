@@ -1,11 +1,11 @@
 .list-container {
+    align-items: flex-start;
     display: flex;
+    flex-grow: 1;
+    margin: 0 0 8px 0;
     overflow: hidden;
     overflow-x: auto;
     padding: 0 5px;
-    flex-grow: 1;
-    align-items: flex-start;
-
     .list {
         border-radius: 4px;
         display: flex;
@@ -160,10 +160,10 @@
         align-self: baseline;
         border-radius: 4px;
         cursor: pointer;
-        font-weight: 700;
-        padding: 8px 12px;
         flex-shrink: 0;
+        font-weight: 700;
         margin-right: 5px;
+        padding: 8px 12px;
     }
 }
 .theme-default {
@@ -178,8 +178,8 @@
                 .button-container {
                     .dropdown {
                         background-color: $theme-default-bg-color-1;
-                        color: $theme-default-font-color-1;
                         box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+                        color: $theme-default-font-color-1;
                         .dropdown-title {
                             border-bottom: 1px solid $theme-default-accent-color-1;
                         }
@@ -216,7 +216,7 @@
                             background-color: $red;
                             color: $white;
                             &:hover {
-                                background-color: darken($red, 10%);
+                                background-color: darken($red,10%);
                             }
                         }
                         .position-down {
@@ -263,8 +263,8 @@
                 .button-container {
                     .dropdown {
                         background-color: $theme-dark-bg-color-1;
-                        color: $theme-dark-font-color-1;
                         box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+                        color: $theme-dark-font-color-1;
                         .dropdown-title {
                             border-bottom: 1px solid $theme-dark-accent-color-1;
                         }
@@ -301,7 +301,7 @@
                             background-color: $red;
                             color: $white;
                             &:hover {
-                                background-color: darken($red, 10%);
+                                background-color: darken($red,10%);
                             }
                         }
                         .position-down {
@@ -348,8 +348,8 @@
                 .button-container {
                     .dropdown {
                         background-color: $theme-light-bg-color-1;
-                        color: $theme-light-font-color-1;
                         box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+                        color: $theme-light-font-color-1;
                         .dropdown-title {
                             border-bottom: 1px solid $theme-light-accent-color-1;
                         }
@@ -386,7 +386,7 @@
                             background-color: $red;
                             color: $white;
                             &:hover {
-                                background-color: darken($red, 10%);
+                                background-color: darken($red,10%);
                             }
                         }
                         .position-down {
@@ -419,5 +419,10 @@
                 color: darken($theme-light-font-color-2,10%);
             }
         }
+    }
+}
+@-moz-document url-prefix() {
+    .list-container {
+        margin: 0 !important;
     }
 }
