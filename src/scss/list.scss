@@ -208,7 +208,7 @@
                             background-color: $red;
                             color: $white;
                             &:hover {
-                                background-color: $red-shadow;
+                                background-color: darken($red, 10%);
                             }
                         }
                         .position-down {
@@ -292,7 +292,7 @@
                             background-color: $red;
                             color: $white;
                             &:hover {
-                                background-color: $red-shadow;
+                                background-color: darken($red, 10%);
                             }
                         }
                         .position-down {
@@ -376,7 +376,7 @@
                             background-color: $red;
                             color: $white;
                             &:hover {
-                                background-color: $red-shadow;
+                                background-color: darken($red, 10%);
                             }
                         }
                         .position-down {
