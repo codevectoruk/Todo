@@ -1,10 +1,10 @@
 function createListsAndElements() {
-    updateStoredTodoList();                                                       //updated the local storage list with the one that is currently stored in the todo variable
+    updateStoredTodoList();                                                       //updated the local storage list with the one that is currently stored in the variable
     $(".list-container").empty();                                                 //empty the list container
     $.each(todo, function(listId, listFields) {                                   //iterate through the lists
         var output = populateListFromJson(listId, listFields);                      //use the populateListFromJson function to create the html that goes into the list-container class
         $(".list-container").append(output);                                        //append the output from populateListFromJson to the list-container class that is part of index.html
-        var output = "";
+        output = "";
         $.each(listFields.openElements, function(elementId, elementFields) {        //iterate through the openElements part of the current list that is being iterated through
             output += populateElementsFromJson(listId, elementId, elementFields, "open");
         });

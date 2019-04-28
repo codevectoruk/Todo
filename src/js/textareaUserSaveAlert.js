@@ -1,9 +1,9 @@
 //elementModalTextAreaUserSaveAlerts
 
 function compareElementModalTextarea() {
-    localListId = $("#modal-list").val();
-    localElementId = $("#modal-element").val();
-    localElementStatus = $("#modal-status").val();
+    var localListId = $("#modal-list").val();
+    var localElementId = $("#modal-element").val();
+    var localElementStatus = $("#modal-status").val();
     var localElement = getElement(localListId, localElementId, localElementStatus);
     if(localElement.description != $("#elementDescription").val()){
         //console.log("desc diif");
@@ -35,6 +35,6 @@ function resetElementModalUserAlert() {
     $("#elementComments").removeClass("user-save-alert-border");
 }
 
-$(document).on('keyup',function(e) {
+$(document).on("keyup",function(e) {
     compareElementModalTextarea();
 });

@@ -178,9 +178,9 @@ function changeElementStatusToOpen(localListId, localElementId) {
     changeElementStatus(localListId, localElementId, "open");
 }
 
-function changeElementCategory() {
-    //// TODO:
-}
+// function changeElementCategory() {
+//
+// }
 
 function reorderList(localListId, localElementId, direction) {
     $.each(todo, function(listId, listFields) {

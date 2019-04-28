@@ -22,7 +22,8 @@ function compareJsonArrays(x, y) {
   if (x.constructor !== y.constructor) {
     return false;
   }
-  for (var p in x) {
+  var p;
+  for (p in x) {
     if (x.hasOwnProperty(p)) {
       if (!y.hasOwnProperty(p)) {
         return false;
