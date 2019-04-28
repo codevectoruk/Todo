@@ -17,15 +17,15 @@
         }
     }
     .theme-default .tag-#{$color} {
-        background-color: $white;
-        color: $theme-default-font-color;
+        background-color: $theme-default-list-bg-color-1;
+        color: $theme-default-list-font-color-1;
     }
     .theme-dark .tag-#{$color} {
-        background-color: $theme-dark-element;
-        color: $theme-dark-font-color;
+        background-color: $theme-dark-list-bg-color-1;
+        color: $theme-dark-list-font-color-1;
     }
     .theme-light .tag-#{$color} {
-        background-color: $white;
-        color: $theme-light-font-color;
+        background-color: $theme-light-list-bg-color-1;
+        color: $theme-light-list-font-color-1;
     }
 }

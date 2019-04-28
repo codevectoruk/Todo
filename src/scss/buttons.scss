@@ -27,28 +27,28 @@
 }
 .theme-default {
     .list-button {
-        color: $theme-default-font-color;
+        color: $theme-default-list-font-color-1;
         &:hover {
-            background-color: $theme-default-list-background-shadow;
-            color: $theme-default-font-color-shadow;
+            background-color: darken($theme-default-list-bg-color-2, 10%);
+            color: darken($theme-default-list-font-color-1, 10%);
         }
     }
 }
 .theme-dark {
     .list-button {
-        color: $theme-dark-font-color;
+        color: $theme-dark-list-font-color-1;
         &:hover {
-            background-color: $theme-dark-background-highlight;
-            color: $theme-dark-font-color-highlight;
+            background-color: darken($theme-dark-list-bg-color-2, 10%);
+            color: darken($theme-dark-list-font-color-1, 10%);
         }
     }
 }
 .theme-light {
     .list-button {
-        color: $theme-light-font-color;
+        color: $theme-light-list-font-color-1;
         &:hover {
-            background-color: $theme-light-background-shadow;
-            color: $theme-light-font-color-shadow;
+            background-color: darken($theme-light-list-bg-color-2, 10%);
+            color: darken($theme-light-list-font-color-1, 10%);
         }
     }
 }
