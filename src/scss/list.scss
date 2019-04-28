@@ -172,6 +172,7 @@
                     .dropdown {
                         background-color: $theme-default-bg-color-1;
                         color: $theme-default-font-color-1;
+                        box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
                         .dropdown-title {
                             border-bottom: 1px solid $theme-default-accent-color-1;
                         }
@@ -256,6 +257,7 @@
                     .dropdown {
                         background-color: $theme-dark-bg-color-1;
                         color: $theme-dark-font-color-1;
+                        box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
                         .dropdown-title {
                             border-bottom: 1px solid $theme-dark-accent-color-1;
                         }
@@ -284,8 +286,8 @@
                         border-left: 1px solid $theme-dark-accent-color-1;
                         .position-element {
                             &:hover {
-                                background-color: darken($theme-dark-accent-color-1,10%);
-                                color: darken($theme-dark-font-color-1,10%);
+                                background-color: darken($theme-dark-accent-color-1,5%);
+                                color: $white;
                             }
                         }
                         .promote {
@@ -340,6 +342,7 @@
                     .dropdown {
                         background-color: $theme-light-bg-color-1;
                         color: $theme-light-font-color-1;
+                        box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
                         .dropdown-title {
                             border-bottom: 1px solid $theme-light-accent-color-1;
                         }
