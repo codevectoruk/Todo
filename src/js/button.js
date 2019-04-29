@@ -8,13 +8,11 @@ function buttonDecreaseElementPosition(localListId, localElementId) {
 
 function buttonChangeElementStatusToOpen(listId, localElementId) {
     changeElementStatusToOpen(listId, localElementId);
-    updateStoredTodoList();
     createListsAndElements();
 }
 
 function buttonChangeElementStatusToClosed(listId, localElementId) {
     changeElementStatusToClosed(listId, localElementId);
-    updateStoredTodoList();
     createListsAndElements();
 }
 
@@ -22,7 +20,6 @@ function buttonChangeElementStatusToDeleted() {
     var localListId = $("#modal-confirm-list").val();
     var localElementId = $("#modal-confirm-element").val();
     changeElementStatusToDeleted(localListId, localElementId);
-    updateStoredTodoList();
     createListsAndElements();
     toggleConfirmationModalVisibility();
     generateUserAlert("List item successfully deleted.", "success", 5000);
@@ -30,7 +27,6 @@ function buttonChangeElementStatusToDeleted() {
 
 function buttonCreateList() {
     createList("New List");
-    updateStoredTodoList();
     createListsAndElements();
 }
 

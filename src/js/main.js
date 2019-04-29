@@ -1,8 +1,4 @@
-
-
 var todo = JSON.parse(localStorage.getItem("todo"));
-
-createListsAndElements();
 
 autosize($("#elementDescription"));
 autosize($("#elementComments"));
