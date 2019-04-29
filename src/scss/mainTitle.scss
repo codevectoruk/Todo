@@ -2,9 +2,13 @@
     display: flex;
     justify-content: space-between;
     .main-title {
-        font-size: 34px;
-        font-weight: lighter;
-        padding: 8px 10px;
+        padding: 12px 8px;
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-start;
+        img {
+            max-height: 55px;
+        }
     }
     .flex-right {
         display: flex;
@@ -112,6 +116,11 @@
 .theme-light {
     .main-title-container {
         color: $theme-light-font-color-2;
+        .main-title {
+            img {
+                filter: invert(50%);
+            }
+        }
         .flex-right {
             .import-export {
                 i {
