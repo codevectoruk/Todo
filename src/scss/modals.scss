@@ -3,6 +3,7 @@
     background-color: $modal-background-color !important;
     flex-wrap: nowrap;
     height: 100vh;
+    max-height: 100vh;
     justify-content: center;
     left: 0;
     position: fixed;
@@ -11,13 +12,15 @@
     z-index: 2;
     .generic-modal {
         border-radius: 4px;
-        padding: 20px;
+        padding: 12px 18px;
         z-index: 1000;
+        max-height: calc(100vh - 24px);
+        overflow-y: auto;
         .modal-title {
             flex-grow: 1;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
-            padding: 0 0 10px;
+            padding: 0 0 8px;
         }
     }
     .element-modal {
@@ -29,8 +32,8 @@
             padding: 0;
             i {
                 cursor: pointer;
-                margin: -15px -15px 0 0;
-                padding: 10px;
+                margin: 0;
+                padding: 0 0 10px 10px;
             }
         }
         .flex-horizontal {
