@@ -1,144 +1,188 @@
 .input-container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 0 0 5px 0;
-    .input-title {
-        font-weight: 600;
-        padding: 5px 0 2px 0;
-    }
-    input[type=text], textarea, select {
-        border-radius: 4px;
-        flex-grow: 1;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 24px;
-        padding: 10px;
-        resize: none;
-        &:active, &:focus {
-            border: none;
-            outline: none;
-        }
-        &::placeholder {
-            font-size: 14px;
-        }
-    }
-    .user-save-alert-border {
-        border: 1px solid $red !important;
-        &:active, &:focus {
-            border: 1px solid $red !important;
-            box-shadow: inset 0 0 0 2px $red !important;
-            outline: none;
-        }
-    }
-    .input-button-group-container {
-        display: flex;
-        input {
-            border-bottom-right-radius: 0px;
-            border-top-right-radius: 0px;
-            border-right: none !important;
-        }
-        i {
-            border-radius: 4px;
-            border-bottom-left-radius: 0px;
-            border-top-left-radius: 0px;
-            border-left: none !important;
-            flex-grow: 0;
-            font-size: 14px;
-            line-height: 24px;
-            padding: 10px 12px;
-            cursor: pointer;
-        }
-    }
-    .user-save-alert {
-        color: $red;
-    }
-}
-.input-container-padding {
-    padding: 0 0 5px 10px;
-}
-.theme-default {
-    .input-container {
-        .input-title {
-            color: $theme-default-font-color-1;
-        }
-        input[type=text], textarea, select {
-            background-color: $theme-default-bg-color-1;
-            border: 1px solid $theme-default-accent-color-1;
-            color: $theme-default-font-color-1;
-            &:active, &:focus {
-                border: 1px solid #00a8ff;
-                box-shadow: inset 0 0 0 2px #00a8ff;
-            }
-            &::placeholder {
-                color: $theme-default-font-color-1;
-            }
-        }
-        .input-button-group-container {
-            i {
-                border: 1px solid $theme-default-accent-color-1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 0 2px;
 
-                &:hover {
-                    color: $red;
-                    text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                }
-            }
-        }
+  .input-title {
+    font-weight: 600;
+    padding: 2px 0 0;
+  }
+
+  input[type=text],
+  select,
+  textarea {
+    border-radius: 4px;
+    flex-grow: 1;
+    padding: 8px;
+    resize: none;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 14px;
+    word-break: break-word;
+    word-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+
+    &:active,
+    &:focus {
+      border: none;
+      outline: none;
     }
+
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+
+  .user-save-alert-border {
+    border: 1px solid $red !important;
+
+    &:active,
+    &:focus {
+      border: 1px solid $red !important;
+      box-shadow: inset 0 0 0 2px $red !important;
+      outline: none;
+    }
+  }
+
+  .input-button-group-container {
+    display: flex;
+
+    input {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      border-right: none !important;
+    }
+
+    i {
+      border-radius: 4px;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      border-left: none !important;
+      flex-grow: 0;
+      font-size: 14px;
+      line-height: 24px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+  }
+
+  .user-save-alert {
+    color: $red;
+  }
 }
+
+.input-container-padding {
+  padding: 0 0 5px 10px;
+}
+
+.theme-default {
+  .input-container {
+    .input-title {
+      color: $theme-default-font-color-1;
+    }
+
+    input[type=text],
+    select,
+    textarea {
+      background-color: $theme-default-bg-color-1;
+      border: 1px solid $theme-default-accent-color-1;
+      color: $theme-default-font-color-1;
+
+      &:active,
+      &:focus {
+        border: 1px solid #00a8ff;
+        box-shadow: inset 0 0 0 2px #00a8ff;
+      }
+
+      &::placeholder {
+        color: $theme-default-font-color-1;
+      }
+    }
+
+    .input-button-group-container {
+      i {
+        border: 1px solid $theme-default-accent-color-1;
+
+        &:hover {
+          color: $red;
+          text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+      }
+    }
+  }
+}
+
 .theme-dark {
-    .input-container {
-        .input-title {
-            color: $theme-dark-font-color-1;
-        }
-        input[type=text], textarea, select {
-            background-color: $theme-dark-bg-color-1;
-            border: 1px solid $theme-dark-accent-color-1;
-            color: $theme-dark-font-color-1;
-            &:active, &:focus {
-                border: 1px solid #00a8ff;
-                box-shadow: inset 0 0 0 2px #00a8ff;
-            }
-            &::placeholder {
-                color: $theme-dark-font-color-1;
-            }
-        }
-        .input-button-group-container {
-            i {
-                border: 1px solid $theme-dark-accent-color-1;
-                &:hover {
-                    color: $red;
-                    text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                }
-            }
-        }
+  .input-container {
+    .input-title {
+      color: $theme-dark-font-color-1;
     }
+
+    input[type=text],
+    select,
+    textarea {
+      background-color: $theme-dark-bg-color-1;
+      border: 1px solid $theme-dark-accent-color-1;
+      color: $theme-dark-font-color-1;
+
+      &:active,
+      &:focus {
+        border: 1px solid #00a8ff;
+        box-shadow: inset 0 0 0 2px #00a8ff;
+      }
+
+      &::placeholder {
+        color: $theme-dark-font-color-1;
+      }
+    }
+
+    .input-button-group-container {
+      i {
+        border: 1px solid $theme-dark-accent-color-1;
+
+        &:hover {
+          color: $red;
+          text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+      }
+    }
+  }
 }
+
 .theme-light {
-    .input-container {
-        .input-title {
-            color: $theme-light-font-color-1;
-        }
-        input[type=text], textarea, select {
-            background-color: $theme-light-bg-color-1;
-            border: 1px solid $theme-light-accent-color-1;
-            color: $theme-light-font-color-1;
-            &:active, &:focus {
-                border: 1px solid #00a8ff;
-                box-shadow: inset 0 0 0 2px #00a8ff;
-            }
-            &::placeholder {
-                color: $theme-light-font-color-1;
-            }
-        }
-        .input-button-group-container {
-            i {
-                border: 1px solid $theme-light-accent-color-1;
-                &:hover {
-                    color: $red;
-                    text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                }
-            }
-        }
+  .input-container {
+    .input-title {
+      color: $theme-light-font-color-1;
     }
+
+    input[type=text],
+    select,
+    textarea {
+      background-color: $theme-light-bg-color-1;
+      border: 1px solid $theme-light-accent-color-1;
+      color: $theme-light-font-color-1;
+
+      &:active,
+      &:focus {
+        border: 1px solid #00a8ff;
+        box-shadow: inset 0 0 0 2px #00a8ff;
+      }
+
+      &::placeholder {
+        color: $theme-light-font-color-1;
+      }
+    }
+
+    .input-button-group-container {
+      i {
+        border: 1px solid $theme-light-accent-color-1;
+
+        &:hover {
+          color: $red;
+          text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+      }
+    }
+  }
 }

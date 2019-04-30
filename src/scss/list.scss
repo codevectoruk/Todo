@@ -5,17 +5,17 @@
     margin: 0 0 8px 0;
     overflow: hidden;
     overflow-x: auto;
-    padding: 0 5px;
+    padding: 0 8px;
     .list {
         border-radius: 4px;
         display: flex;
         flex-basis: 1;
         flex-direction: column;
         flex-grow: 1;
-        margin-right: 5px;
+        margin-right: 8px;
         max-height: 100%;
         max-width: 30vw;
-        min-width: 378px;
+        min-width: 370px;
         .list-header {
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
@@ -213,10 +213,11 @@
                             }
                         }
                         .promote {
-                            background-color: $red;
-                            color: $white;
+                            background-color: transparent;
+                            color: $red;
                             &:hover {
-                                background-color: darken($red,10%);
+                                background-color: $red;
+                                color: $white;
                             }
                         }
                         .position-down {
@@ -288,6 +289,7 @@
                     &:hover {
                         background-color: darken($theme-dark-bg-color-1,10%);
                         color: darken($theme-dark-font-color-1,10%);
+
                     }
                     .position {
                         border-left: 1px solid $theme-dark-accent-color-1;
@@ -298,10 +300,11 @@
                             }
                         }
                         .promote {
-                            background-color: $red;
-                            color: $white;
+                            background-color: transparent;
+                            color: $red;
                             &:hover {
-                                background-color: darken($red,10%);
+                                background-color: $red;
+                                color: $white;
                             }
                         }
                         .position-down {
@@ -383,10 +386,10 @@
                             }
                         }
                         .promote {
-                            background-color: $red;
-                            color: $white;
+                            color: $red;
                             &:hover {
-                                background-color: darken($red,10%);
+                                background-color: $red;
+                                color: $white;
                             }
                         }
                         .position-down {
