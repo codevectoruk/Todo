@@ -47,6 +47,7 @@ function setDefaultTheme() {
 setDefaultTheme();
 loadTheme();
 
+//check every 5 seconds for the theme being changed on another tab
 window.setInterval(function() {
   autoChangeTheme();
-}, 1000);
+}, 5000);

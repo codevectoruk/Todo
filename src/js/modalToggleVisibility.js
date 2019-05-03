@@ -17,6 +17,7 @@ function toggleElementModalVisibility() {
     } else {
         $("#id-element-modal").removeClass("flex");
         $("#id-element-modal").addClass("hidden");
+        elementCreateFlag = false;
     }
 }
 

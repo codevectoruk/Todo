@@ -48,6 +48,12 @@ function compareJsonArrays(x, y) {
   return true;
 }
 
+// every 5 seconds second check for the list being updated on another tab
 window.setInterval(function() {
   autoUpdate();
-}, 1000);
+}, 5000);
+
+// auto update the lists and elements one a minute
+window.setInterval(function() {
+  createListsAndElements();
+}, 60000);
