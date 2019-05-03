@@ -25,8 +25,6 @@ function compareElementModalTextarea() {
             $("#elementCommentsWarning").removeClass("flex");
             $("#elementComments").removeClass("user-save-alert-border");
         }
-    } else {
-        console.log("no");
     }
 }
 
