@@ -8,7 +8,7 @@ function checkVersion() {
   ) {
     updateVersion();
   } else if (
-    version < localstorage.getItem("version") ||
+    version < localStorage.getItem("version") ||
     devStatus === "development"
   ) {
     updateVersion();
