@@ -460,9 +460,15 @@ function compareJsonArrays(x, y) {
   return true;
 }
 
+// every 5 seconds second check for the list being updated on another tab
 window.setInterval(function() {
   autoUpdate();
-}, 1000);
+}, 5000);
+
+// auto update the lists and elements one a minute
+window.setInterval(function() {
+  createListsAndElements();
+}, 60000);
 
 var currentTheme = "";
 
@@ -513,9 +519,10 @@ function setDefaultTheme() {
 setDefaultTheme();
 loadTheme();
 
+//check every 5 seconds for the theme being changed on another tab
 window.setInterval(function() {
   autoChangeTheme();
-}, 1000);
+}, 5000);
 // if ('serviceWorker' in navigator) {
 //   window.addEventListener('load', function() {
 //     navigator.serviceWorker.register('sw.js').then(function(registration) {
