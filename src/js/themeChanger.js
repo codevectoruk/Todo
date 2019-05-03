@@ -31,7 +31,11 @@ function autoChangeTheme() {
   if (localStorage.getItem("theme") != null) {
     if (localStorage.getItem("theme") !== currentTheme) {
       loadTheme();
-      generateUserAlert("It looks like you updated your theme on another tab, it has been updated on this tab too!", "information", 5000);
+      generateUserAlert(
+        "It looks like you updated your theme on another tab, it has been updated on this tab too!",
+        "information",
+        5000
+      );
     }
   } else {
     setDefaultTheme();

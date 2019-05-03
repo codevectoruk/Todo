@@ -1,4 +1,3 @@
-
 # Todo
 
 This project was spawned from the requirement for a to do list application that did not connect to any external services and upload the contents of the list. By utilising the browsers local storage to store the list in a json format that javascript code has access to it feels like a 'online' application. Inspiration for the theming of the application is taken from Trello.
@@ -16,11 +15,13 @@ If you just want to use the application the easiest way is to go to the github p
 ### Building the Application Yourself
 
 This application is currently built using the following:
+
 - Windows 10 PC (10.0.17134)
 - Atom
 - Prepros
 
 The only requirement is that Prepros is installed. The Prepros config file is included in the repository when you clone. There are two folder that are important.
+
 - /dist
 - /src
 
@@ -32,12 +33,14 @@ The /dist folder contains everything that you require for deployment. Just put t
 
 ## Built With
 
-* [Atom (1.36.0)](https://atom.io/) - IDE
-* [Prepros (6.3.0)](https://prepros.io/) - Used to compile SCSS and JS
-* [jQuery (3.4.0)](https://jquery.com/) - JS Library
-* [Autosize (4.0.2)](http://www.jacklmoore.com/autosize/) - Textarea resize JS library
-* [Font Awesome (5.8.1)](https://fontawesome.com/) - Icon Library
-* [tail.DateTime (0.4.9)](https://github.com/pytesNET/tail.DateTime) - Date Picker JS Library
+- [Atom (1.36.0)](https://atom.io/) - IDE
+- [Prepros (6.3.0)](https://prepros.io/) - Used to compile SCSS and JS
+- [jQuery (3.4.0)](https://jquery.com/) - JS Library
+- [Autosize (4.0.2)](http://www.jacklmoore.com/autosize/) - Textarea resize JS library
+- [Font Awesome (5.8.1)](https://fontawesome.com/) - Icon Library
+- [tail.DateTime (0.4.9)](https://github.com/pytesNET/tail.DateTime) - Date Picker JS Library
+- [Marked (0.6.2)](https://github.com/markedjs/marked/) - Markdown to HTML Converter
+- [hightlight.js (9.15.6)](git.io/hljslicense) - Markdown Code Highlighter
 
 ## License
 

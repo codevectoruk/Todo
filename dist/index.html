@@ -1,128 +1,221 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>TODO</title>
-    <meta name="description" content="To Do List">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#5d5dff">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="icon" href="images/todo-icon.ico">
-    <link rel="apple-touch-icon-precomposed" href="images/ed2.png">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#5d5dff">
-    <link rel="manifest" href="manifest.json">
-</head>
-
-<body class="theme-default">
+    <meta name="description" content="To Do List" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#5d5dff" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="icon" href="images/todo-icon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="images/ed2.png" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#5d5dff" />
+    <link rel="manifest" href="manifest.json" />
+  </head>
+  <body class="theme-default">
     <div class="main-title-container" role="main">
-        <div class="main-title"><img src="./images/todo.png" alt="Todo Logo"></div>
-        <div class="flex-right">
-            <div class="import-export">
-                <i class="fas fa-file-import"></i>
-                <i class="fas fa-file-export" onclick="downloadObjectAsJson()"></i>
-            </div>
-            <div class="theme-picker">
-                Theme:
-                <div class="theme theme-picker-default" onclick="themeChanger('default')"></div>
-                <div class="theme theme-picker-dark" onclick="themeChanger('dark')"></div>
-                <div class="theme theme-picker-light" onclick="themeChanger('light')"></div>
-            </div>
+      <div class="main-title">
+        <img src="./images/todo.png" alt="Todo Logo" />
+      </div>
+      <div class="flex-right">
+        <div class="import-export">
+          <i class="fas fa-file-import"></i>
+          <i class="fas fa-file-export" onclick="downloadObjectAsJson()"></i>
         </div>
+        <div class="theme-picker">
+          Theme:
+          <div
+            class="theme theme-picker-default"
+            onclick="themeChanger('default')"
+          ></div>
+          <div
+            class="theme theme-picker-dark"
+            onclick="themeChanger('dark')"
+          ></div>
+          <div
+            class="theme theme-picker-light"
+            onclick="themeChanger('light')"
+          ></div>
+        </div>
+      </div>
     </div>
     <div class="list-container scrollbar"></div>
     <div class="modal-container hidden" id="id-element-modal">
-        <div class="element-modal generic-modal">
-            <div class="flex-horizontal">
-            <div class="modal-title" id="element-modal-create-title">
-                Create Item
-            </div>
-            <div class="modal-title" id="element-modal-update-title">
-                Update Item
-            </div>
-            <div class="close-container" onclick="toggleElementModalVisibility()">
-                <i class="fas fa-times"></i>
-            </div>
+      <div class="element-modal generic-modal">
+        <div class="flex-horizontal">
+          <div class="modal-title" id="element-modal-create-title">
+            Create Item
+          </div>
+          <div class="modal-title" id="element-modal-update-title">
+            Update Item
+          </div>
+          <div class="close-container" onclick="toggleElementModalVisibility()">
+            <i class="fas fa-times"></i>
+          </div>
         </div>
-            <div class="input-container">
-                <div class="input-title">Title</div>
-                <input type="text" id="elementTitle" placeholder="Enter a title…">
-                <input type="hidden" id="modal-list">
-                <input type="hidden" id="modal-element">
-                <input type="hidden" id="modal-status">
-            </div>
-            <div class="flex-horizontal">
-                <div class="input-container">
-                    <div class="input-title">Category</div>
-                    <select name="category" id="elementCategory">
-                        <option value="0">None</option>
-                        <option value="1">Blue</option>
-                        <option value="2">Green</option>
-                        <option value="3">Orange</option>
-                        <option value="4">Purple</option>
-                        <option value="5">Red</option>
-                        <option value="6">Yellow</option>
-                    </select>
-                </div>
-
-                <div class="input-container input-container-padding">
-                    <div class="input-title">Due Date</div>
-                    <div class="input-button-group-container">
-                        <input type="text" id="elementDue" class="tail-datetime-field" />
-                        <i class="fas fa-times" onclick="buttonClearDueDate()"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="input-container">
-                <div class="input-title">Description</div>
-                <textarea type="text" class="scrollbar" id="elementDescription" placeholder="Add a more detailed description…" rows='2'></textarea>
-                <div class="user-save-alert hidden" id="elementDescriptionWarning">There are unsaved changes</div>
-            </div>
-
-
-            <div class="input-container">
-                <div class="input-title">Comments</div>
-                <textarea type="text" class="scrollbar" id="elementComments" placeholder="Add comments on the work that has been done…" rows='2'></textarea>
-                <div class="user-save-alert hidden" id="elementCommentsWarning">There are unsaved changes</div>
-            </div>
-            <div class="button-container">
-                <input class="button button-success" id="element-modal-button-create" type="button" value="Create" onclick="buttonCreateNewElement()">
-                <input class="button button-info" id="element-modal-button-update" type="button" value="Save" onclick="buttonUpdateElement()">
-                <input class="button button-default" id="element-modal-button-cancel" type="button" value="Cancel" onclick="toggleElementModalVisibility()">
-            </div>
+        <div class="input-container">
+          <div class="input-title"><span>Title</span></div>
+          <input type="text" id="elementTitle" placeholder="Enter a title…" />
+          <input type="hidden" id="modal-list" />
+          <input type="hidden" id="modal-element" />
+          <input type="hidden" id="modal-status" />
         </div>
+        <div class="flex-horizontal">
+          <div class="input-container">
+            <div class="input-title"><span>Category</span></div>
+            <select name="category" id="elementCategory">
+              <option value="0">None</option>
+              <option value="1">Blue</option>
+              <option value="2">Green</option>
+              <option value="3">Orange</option>
+              <option value="4">Purple</option>
+              <option value="5">Red</option>
+              <option value="6">Yellow</option>
+            </select>
+          </div>
+          <div class="input-container input-container-padding">
+            <div class="input-title"><span>Due Date</span></div>
+            <div class="input-button-group-container">
+              <input type="text" id="elementDue" class="tail-datetime-field" />
+              <i class="fas fa-times" onclick="buttonClearDueDate()"></i>
+            </div>
+          </div>
+        </div>
+        <div class="input-container">
+          <div class="input-title"><span>Description</span></div>
+          <div
+            class="markdown-container"
+            id="elementDescriptionMarkdownContainer"
+          >
+            <div
+              class="markdown-body markdown"
+              id="elementDescriptionMarkdownBody"
+              onclick="clickDescriptionMarkdownContainer()"
+            ></div>
+            <div class="markdown-edit-button"><i class="fas fa-pen"></i></div>
+          </div>
+          <textarea
+            type="text"
+            class="scrollbar hidden"
+            id="elementDescription"
+            placeholder="Add a more detailed description…"
+            rows="2"
+            onfocusout="loseDescriptionMarkdownContainerFocus()"
+          ></textarea>
+          <div class="user-save-alert hidden" id="elementDescriptionWarning">
+            There are unsaved changes
+          </div>
+        </div>
+        <div class="input-container">
+          <div class="input-title"><span>Comments</span></div>
+          <div class="markdown-container" id="elementCommentsMarkdownContainer">
+            <div
+              class="markdown-body markdown"
+              id="elementCommentsMarkdownBody"
+              onclick="clickCommentsMarkdownContainer()"
+            ></div>
+            <div class="markdown-edit-button"><i class="fas fa-pen"></i></div>
+          </div>
+          <textarea
+            type="text"
+            class="scrollbar hidden"
+            id="elementComments"
+            placeholder="Add comments on the work that has been done…"
+            rows="2"
+            onfocusout="loseCommentsMarkdownContainerFocus()"
+          ></textarea>
+          <div class="user-save-alert hidden" id="elementCommentsWarning">
+            There are unsaved changes
+          </div>
+        </div>
+        <div class="button-container">
+          <input
+            class="button button-success"
+            id="element-modal-button-create"
+            type="button"
+            value="Create"
+            onclick="buttonCreateNewElement()"
+          />
+          <input
+            class="button button-info"
+            id="element-modal-button-update"
+            type="button"
+            value="Save"
+            onclick="buttonUpdateElement()"
+          />
+          <input
+            class="button button-default"
+            id="element-modal-button-cancel"
+            type="button"
+            value="Cancel"
+            onclick="toggleElementModalVisibility()"
+          />
+        </div>
+      </div>
     </div>
     <div class="modal-container hidden" id="id-confirmation-modal">
-        <div class="confirmation-modal generic-modal">
-            <div class="text-container">Are you sure you want to delete this?</div>
-            <div class="button-container">
-                <input type="hidden" id="modal-confirm-list">
-                <input type="hidden" id="modal-confirm-element">
-                <input class="button button-danger" id="deleteElementButton" type="button" value="Confirm" onclick="buttonChangeElementStatusToDeleted()">
-                <input class="button button-danger" id="deleteListButton" type="button" value="Confirm" onclick="buttonDeleteList()">
-                <input class="button button-default" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
-            </div>
+      <div class="confirmation-modal generic-modal">
+        <div class="text-container">Are you sure you want to delete this?</div>
+        <div class="button-container">
+          <input type="hidden" id="modal-confirm-list" />
+          <input type="hidden" id="modal-confirm-element" />
+          <input
+            class="button button-danger"
+            id="deleteElementButton"
+            type="button"
+            value="Confirm"
+            onclick="buttonChangeElementStatusToDeleted()"
+          />
+          <input
+            class="button button-danger"
+            id="deleteListButton"
+            type="button"
+            value="Confirm"
+            onclick="buttonDeleteList()"
+          />
+          <input
+            class="button button-default"
+            type="button"
+            value="Cancel"
+            onclick="toggleConfirmationModalVisibility()"
+          />
         </div>
+      </div>
     </div>
     <div class="modal-container hidden" id="id-rename-modal">
-        <div class="list-rename-modal generic-modal">
-            <div class="input-container">
-                <div class="input-title">Rename List Title</div>
-                <input type="text" id="modal-list-rename-input" placeholder="Change List's Name…">
-            </div>
-            <div class="button-container">
-                <input type="hidden" id="modal-rename-list">
-                <input class="button button-info" type="button" value="Confirm" onclick="buttonRenameList()">
-                <input class="button button-cancel" type="button" value="Cancel" onclick="toggleRenameListModal()">
-            </div>
+      <div class="list-rename-modal generic-modal">
+        <div class="input-container">
+          <div class="input-title"><span>List Title</span></div>
+          <input
+            type="text"
+            id="modal-list-rename-input"
+            placeholder="Change List's Name…"
+          />
         </div>
+        <div class="button-container">
+          <input type="hidden" id="modal-rename-list" />
+          <input
+            class="button button-info"
+            type="button"
+            value="Confirm"
+            onclick="buttonRenameList()"
+          />
+          <input
+            class="button button-cancel"
+            type="button"
+            value="Cancel"
+            onclick="toggleRenameListModal()"
+          />
+        </div>
+      </div>
     </div>
     <div class="userAlert-container"></div>
     <script src="js/jquery-3.4.0.min.js"></script>
     <script src="js/autosize.min.js"></script>
     <script src="js/tail.datetime.min.js"></script>
+    <script src="js/marked.min.js"></script>
+    <script src="js/highlight.min.js"></script>
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>

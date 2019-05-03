@@ -11,14 +11,24 @@ function toggleConfirmationModalVisibility() {
 
 //toggles the element modal visibility
 function toggleElementModalVisibility() {
-    if ($("#id-element-modal").hasClass("hidden")) {
-        $("#id-element-modal").addClass("flex");
-        $("#id-element-modal").removeClass("hidden");
-    } else {
-        $("#id-element-modal").removeClass("flex");
-        $("#id-element-modal").addClass("hidden");
-        elementCreateFlag = false;
-    }
+  if ($("#id-element-modal").hasClass("hidden")) {
+    $("#id-element-modal").addClass("flex");
+    $("#id-element-modal").removeClass("hidden");
+  } else {
+    $("#id-element-modal").removeClass("flex");
+    $("#id-element-modal").addClass("hidden");
+    elementCreateFlag = false;
+
+    $("#elementDescription").removeClass("flex");
+    $("#elementDescription").addClass("hidden");
+    $("#elementComments").removeClass("flex");
+    $("#elementComments").addClass("hidden");
+
+    $("#elementDescriptionMarkdownContainer").addClass("flex");
+    $("#elementDescriptionMarkdownContainer").removeClass("hidden");
+    $("#elementCommentsMarkdownContainer").addClass("flex");
+    $("#elementCommentsMarkdownContainer").removeClass("hidden");
+  }
 }
 
 function closeAllDropdown() {
