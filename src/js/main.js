@@ -1,4 +1,5 @@
 var todo = JSON.parse(localStorage.getItem("todo"));
+var elementCreateFlag = false;
 
 autosize($("#elementDescription"));
 autosize($("#elementComments"));

@@ -63,6 +63,7 @@ function buttonOpenElementModalForElementUpdate(localListId, localElementId, loc
     closeAllDropdown();
     toggleElementModalVisibility();
     autosize.update($("#elementDescription"));
+    autosize.update($("#elementComments"));
     $("#elementTitle").focus();
 }
 
@@ -70,6 +71,7 @@ function buttonOpenElementModalForElementUpdate(localListId, localElementId, loc
 //prepareModalCreate
 //buttonOpenElementModalForElementCreate
 function buttonOpenElementModalForElementCreate(listId) {
+    elementCreateFlag = true;
     resetElementModalUserAlert();
     $("#elementTitle").val("");
     $("#elementDescription").val("");
@@ -88,6 +90,7 @@ function buttonOpenElementModalForElementCreate(listId) {
     closeAllDropdown();
     toggleElementModalVisibility();
     autosize.update($("#elementDescription"));
+    autosize.update($("#elementComments"));
     $("#elementTitle").focus();
 }
 
@@ -125,6 +128,7 @@ function buttonCreateNewElement() {
     createElement(localListId, localElementState, localElementTitle, localElementDescription, localElementComments, localElementsCategory, localElementClassification, localElementUser, localElementDue, localElementCreated, localElementChecklist);
     toggleElementModalVisibility();
     createListsAndElements();
+    elementCreateFlag = false;
 }
 
 function buttonRenameList() {
