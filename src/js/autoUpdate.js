@@ -4,7 +4,11 @@ function autoUpdate() {
     if (!compareJsonArrays(todo, localTodo)) {
       todo = JSON.parse(localStorage.getItem("todo"));
       createListsAndElements();
-      generateUserAlert("It looks like you updated your list on another tab, it has been updated on this tab too!", "information", 5000);
+      generateUserAlert(
+        "It looks like you updated your list on another tab, it has been updated on this tab too!",
+        "information",
+        5000
+      );
     }
   } else {
     firstTimeLoadLocalStorage();
@@ -31,7 +35,7 @@ function compareJsonArrays(x, y) {
       if (x[p] === y[p]) {
         continue;
       }
-      if (typeof(x[p]) !== "object") {
+      if (typeof x[p] !== "object") {
         return false;
       }
       if (!compareJsonArrays(x[p], y[p])) {

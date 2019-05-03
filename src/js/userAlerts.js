@@ -27,7 +27,8 @@ function generateUserAlert(inputBody, inputAlertType, lifespan) {
     title = "Error";
     alertClass = "userAlert-error";
   }
-  output = "<div class='userAlert " +
+  output =
+    "<div class='userAlert " +
     alertClass +
     "'id='alertId-" +
     random +
@@ -48,7 +49,6 @@ function generateUserAlert(inputBody, inputAlertType, lifespan) {
       });
     }, lifespan);
   }
-
 }
 
 //user alert demo messages

@@ -27,3 +27,4 @@ function updateStoredTodoList() {
 //@prepros-append timeTill.js
 //@prepros-append jsonApi.js
 //@prepros-append textareaUserSaveAlert.js
+//@prepros-append bringUpToLatestVersion.js
