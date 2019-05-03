@@ -28,3 +28,4 @@ function updateStoredTodoList() {
 //@prepros-append jsonApi.js
 //@prepros-append textareaUserSaveAlert.js
 //@prepros-append bringUpToLatestVersion.js
+//@prepros-append markdown.js

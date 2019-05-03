@@ -18,6 +18,16 @@ function toggleElementModalVisibility() {
     $("#id-element-modal").removeClass("flex");
     $("#id-element-modal").addClass("hidden");
     elementCreateFlag = false;
+
+    $("#elementDescription").removeClass("flex");
+    $("#elementDescription").addClass("hidden");
+    $("#elementComments").removeClass("flex");
+    $("#elementComments").addClass("hidden");
+
+    $("#elementDescriptionMarkdownContainer").addClass("flex");
+    $("#elementDescriptionMarkdownContainer").removeClass("hidden");
+    $("#elementCommentsMarkdownContainer").addClass("flex");
+    $("#elementCommentsMarkdownContainer").removeClass("hidden");
   }
 }
 

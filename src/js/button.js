@@ -57,7 +57,9 @@ function buttonOpenElementModalForElementUpdate(
   $("#modal-status").val(localElementStatus);
   $("#elementTitle").val(localElement.title);
   $("#elementDescription").val(localElement.description);
+  setMarkdownDescription(localElement.description);
   $("#elementComments").val(localElement.comments);
+  setMarkdownComments(localElement.comments);
   $("#elementCategory").val(parseInt(localElement.category));
   //$("#elementClassification").val(localElement.classification);
   //$("#elementUser").val(localElement.user);
@@ -83,7 +85,9 @@ function buttonOpenElementModalForElementCreate(listId) {
   resetElementModalUserAlert();
   $("#elementTitle").val("");
   $("#elementDescription").val("");
+  setMarkdownDescription("");
   $("#elementComments").val("");
+  setMarkdownComments("");
   $("#elementCategory").val(0);
   //$("#elementClassification").val("");
   //$("#elementUser").val("");
