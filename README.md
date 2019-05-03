@@ -40,6 +40,7 @@ The /dist folder contains everything that you require for deployment. Just put t
 - [Font Awesome (5.8.1)](https://fontawesome.com/) - Icon Library
 - [tail.DateTime (0.4.9)](https://github.com/pytesNET/tail.DateTime) - Date Picker JS Library
 - [Marked (0.6.2)](https://github.com/markedjs/marked/) - Markdown to HTML Converter
+- [hightlight.js (9.15.6)](git.io/hljslicense) - Markdown Code Highlighter
 
 ## License
 
