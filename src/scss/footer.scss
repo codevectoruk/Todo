@@ -1,0 +1,31 @@
+.footer-container {
+  justify-content: center;
+  z-index: -1;
+  .footer {
+    z-index: -1;
+    padding: 0 0 4px 0;
+    font-size: 12px;
+  }
+}
+
+.theme-default {
+  .footer-container {
+    .footer {
+      color: #fff;
+    }
+  }
+}
+.theme-dark {
+  .footer-container {
+    .footer {
+      color: #fff;
+    }
+  }
+}
+.theme-light {
+  .footer-container {
+    .footer {
+      color: $theme-light-font-color-1;
+    }
+  }
+}

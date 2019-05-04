@@ -61,3 +61,16 @@ window.setInterval(function() {
 window.setInterval(function() {
   createListsAndElements();
 }, 60000);
+
+window.setInterval(function() {
+  if (
+    $(".list-container").get(0).scrollWidth >
+    $(".list-container").get(0).clientWidth
+  ) {
+    $(".footer-container").addClass("hidden");
+    $(".footer-container").removeClass("flex");
+  } else {
+    $(".footer-container").removeClass("hidden");
+    $(".footer-container").addClass("flex");
+  }
+}, 500);
