@@ -34,6 +34,7 @@ The /dist folder contains everything that you require for deployment. Just put t
 ## Built With
 
 - [Atom (1.36.0)](https://atom.io/) - IDE
+- [Visual Studio Code (1.33.1)](https://code.visualstudio.com/) - IDE
 - [Prepros (6.3.0)](https://prepros.io/) - Used to compile SCSS and JS
 - [jQuery (3.4.0)](https://jquery.com/) - JS Library
 - [Autosize (4.0.2)](http://www.jacklmoore.com/autosize/) - Textarea resize JS library
