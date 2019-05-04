@@ -9,38 +9,38 @@ $purple: #5f27cd;
 
 $theme-default-bg-color-1: #fff;
 $theme-default-font-color-1: #595959;
-$theme-default-accent-color-1: #DADFE8;
-$theme-default-bg-color-2: #DFE3E6;
+$theme-default-accent-color-1: #dadfe8;
+$theme-default-bg-color-2: #dfe3e6;
 $theme-default-font-color-2: #212529;
 
 $theme-dark-bg-color-1: #565965;
-$theme-dark-font-color-1: #FFFFFF;
-$theme-dark-accent-color-1: #383B4B;
+$theme-dark-font-color-1: #ffffff;
+$theme-dark-accent-color-1: #383b4b;
 $theme-dark-bg-color-2: #565965;
-$theme-dark-font-color-2: #FFFFFF;
+$theme-dark-font-color-2: #d3d3d3;
 
 $theme-light-bg-color-1: #fff;
 $theme-light-font-color-1: #595959;
-$theme-light-accent-color-1: #DADFE8;
+$theme-light-accent-color-1: #dadfe8;
 $theme-light-bg-color-2: #fff;
 $theme-light-font-color-2: #595959;
 
-$modal-background-color: rgba(0,0,0,0.5);
+$modal-background-color: rgba(0, 0, 0, 0.5);
 
-$default:    $grey !default;
-$success:    $green !default;
-$info:       $blue !default;
-$warning:    $yellow !default;
-$danger:     $red !default;
+$default: $grey !default;
+$success: $green !default;
+$info: $blue !default;
+$warning: $yellow !default;
+$danger: $red !default;
 
 $theme-colors: () !default;
 $theme-colors: map-merge(
   (
-    "default":    $default,
-    "success":    $success,
-    "info":       $info,
-    "warning":    $warning,
-    "danger":     $danger
+    "default": $default,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger
   ),
   $theme-colors
 );
@@ -48,12 +48,12 @@ $theme-colors: map-merge(
 $category-colors: () !default;
 $category-colors: map-merge(
   (
-    "blue":     $blue,
-    "green":    $green,
-    "orange":   $orange,
-    "purple":   $purple,
-    "red":      $red,
-    "yellow":   $yellow
+    "blue": $blue,
+    "green": $green,
+    "orange": $orange,
+    "purple": $purple,
+    "red": $red,
+    "yellow": $yellow
   ),
   $category-colors
 );

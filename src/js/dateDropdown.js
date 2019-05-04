@@ -23,9 +23,9 @@ tail.DateTime(".tail-datetime-field", {
   today: true,
   tooltips: [],
   viewDefault: "days",
-  viewDecades: true,
+  viewDecades: false,
   viewYears: true,
   viewMonths: true,
   viewDays: true,
-  weekStart: 0
+  weekStart: 1
 });

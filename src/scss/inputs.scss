@@ -7,14 +7,10 @@
   .input-title {
     font-weight: 600;
     padding: 2px 0 0;
-
     width: 100%;
-    border-bottom: 1px solid $theme-default-accent-color-1;
     line-height: 0.1em;
-    //margin: 10px 0 20px;
     margin: 9px 0 8px 0;
     span {
-      background: #fff;
       padding: 0 5px 0 0;
     }
   }
@@ -92,6 +88,10 @@
   .input-container {
     .input-title {
       color: $theme-default-font-color-1;
+      border-bottom: 1px solid $theme-default-accent-color-1;
+      span {
+        background: $theme-default-bg-color-1;
+      }
     }
 
     input[type="text"],
@@ -130,6 +130,10 @@
   .input-container {
     .input-title {
       color: $theme-dark-font-color-1;
+      border-bottom: 1px solid $theme-dark-accent-color-1;
+      span {
+        background: $theme-dark-bg-color-2;
+      }
     }
 
     input[type="text"],
@@ -137,7 +141,7 @@
     textarea {
       background-color: $theme-dark-bg-color-1;
       border: 1px solid $theme-dark-accent-color-1;
-      color: $theme-dark-font-color-1;
+      color: $theme-dark-font-color-2;
 
       &:active,
       &:focus {
@@ -146,7 +150,7 @@
       }
 
       &::placeholder {
-        color: $theme-dark-font-color-1;
+        color: $theme-dark-font-color-2;
       }
     }
 
@@ -168,6 +172,10 @@
   .input-container {
     .input-title {
       color: $theme-light-font-color-1;
+      border-bottom: 1px solid $theme-light-accent-color-1;
+      span {
+        background: $theme-light-bg-color-1;
+      }
     }
 
     input[type="text"],
