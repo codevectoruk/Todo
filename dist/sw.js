@@ -1,1 +1,81 @@
-"use strict";var version="v1:3:1",offlineFundamentals=["index.html","css/main.css","css/font-awesome.min.css","images/todo-logo256.png","images/todo-logo512.png","images/todo-logo.ico","js/autosize.min.js","js/jquery-3.4.0.min.js","js/tail.datetime.min.js","js/main.js","manifest.json","webfonts/fa-brands-400.woff","webfonts/fa-brands-400.woff2","webfonts/fa-regular-400.woff","webfonts/fa-regular-400.woff2","webfonts/fa-solid-900.woff","webfonts/fa-solid-900.woff2"];self.addEventListener("install",function(e){e.waitUntil(caches.open(version+"fundamentals").then(function(e){return e.addAll(offlineFundamentals)}).then(function(){}))}),self.addEventListener("fetch",function(s){"GET"===s.request.method&&s.respondWith(caches.match(s.request).then(function(e){function n(){return new Response("<h1>Service Unavailable</h1>",{status:503,statusText:"Service Unavailable",headers:new Headers({"Content-Type":"text/html"})})}var t=fetch(s.request).then(function(e){var n=e.clone();return caches.open(version+"pages").then(function(e){return e.put(s.request,n)}).then(function(){}),e},n).catch(n);return e||t}))}),self.addEventListener("activate",function(e){e.waitUntil(caches.keys().then(function(e){return Promise.all(e.filter(function(e){return!e.startsWith(version)}).map(function(e){return caches.delete(e)}))}).then(function(){}))});
+var CACHE = "1.10.3";
+
+// On install, cache some resource.
+self.addEventListener("install", function(evt) {
+  console.log("The service worker is being installed.");
+
+  // Ask the service worker to keep installing until the returning promise
+  // resolves.
+  evt.waitUntil(precache());
+});
+
+// On fetch, use cache but update the entry with the latest contents
+// from the server.
+self.addEventListener("fetch", function(evt) {
+  console.log("The service worker is serving the asset.");
+  // Try network and if it fails, go for the cached copy.
+  evt.respondWith(
+    fromNetwork(evt.request, 400).catch(function() {
+      return fromCache(evt.request);
+    })
+  );
+});
+
+// Open a cache and use `addAll()` with an array of assets to add all of them
+// to the cache. Return a promise resolving when all the assets are added.
+function precache() {
+  return caches.open(CACHE).then(function(cache) {
+    return cache.addAll([
+      "./index.html",
+      "./manifest.json",
+      "./robots.txt",
+      "./sw.js",
+      "css/font-awesome.min.css",
+      "css/main.css",
+      "images/todo.png",
+      "images/todo-icon.ico",
+      "images/todo-icon256.png",
+      "images/todo-logo256.png",
+      "images/todo-logo512.png",
+      "js/autosize.min.js",
+      "js/highlight.min.js",
+      "js/jquery-3.4.0.min.js",
+      "js/main.js",
+      "js/marked.min.js",
+      "js/tail.datetime.min.js",
+      "webfonts/fa-brands-400.woff",
+      "webfonts/fa-brands-400.woff2",
+      "webfonts/fa-regular-400.woff",
+      "webfonts/fa-regular-400.woff2",
+      "webfonts/fa-solid-900.woff",
+      "webfonts/fa-solid-900.woff2"
+    ]);
+  });
+}
+
+// Time limited network request. If the network fails or the response is not
+// served before timeout, the promise is rejected.
+function fromNetwork(request, timeout) {
+  return new Promise(function(fulfill, reject) {
+    // Reject in case of timeout.
+    var timeoutId = setTimeout(reject, timeout);
+    // Fulfill in case of success.
+    fetch(request).then(function(response) {
+      clearTimeout(timeoutId);
+      fulfill(response);
+      // Reject also if network fetch rejects.
+    }, reject);
+  });
+}
+
+// Open the cache where the assets were stored and search for the requested
+// resource. Notice that in case of no matching, the promise still resolves
+// but it does with `undefined` as value.
+function fromCache(request) {
+  return caches.open(CACHE).then(function(cache) {
+    return cache.match(request).then(function(matching) {
+      return matching || Promise.reject("no-match");
+    });
+  });
+}
+
