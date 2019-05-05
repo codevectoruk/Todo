@@ -1,6 +1,11 @@
 {
   "short_name": "TODO",
   "name": "TODO",
+  "start_url": "index.html",
+  "scope": "./",
+  "background_color": "#5d5dff",
+  "display": "standalone",
+  "theme_color": "#5d5dff",
   "icons": [
     {
       "src": "images/todo-logo512.png",
@@ -12,9 +17,5 @@
       "type": "image/png",
       "sizes": "256x256"
     }
-  ],
-
-  "background_color": "#5d5dff",
-  "display": "standalone",
-  "theme_color": "#5d5dff"
+  ]
 }

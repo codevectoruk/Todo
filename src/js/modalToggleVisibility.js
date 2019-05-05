@@ -31,6 +31,11 @@ function toggleElementModalVisibility() {
   }
 }
 
+function closeAllModals() {
+  $(".modal-container").removeClass("flex");
+  $(".modal-container").addClass("hidden");
+}
+
 function closeAllDropdown() {
   $(".dropdown").removeClass("flex");
   $(".dropdown").addClass("hidden");

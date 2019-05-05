@@ -1,93 +1,93 @@
 .modal-container {
-    align-items: center;
-    background-color: $modal-background-color !important;
-    flex-wrap: nowrap;
-    height: 100vh;
-    max-height: 100vh;
-    justify-content: center;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    z-index: 2;
-    .generic-modal {
-        border-radius: 4px;
-        padding: 12px 18px;
-        z-index: 1000;
-        max-height: calc(100vh - 24px);
-        overflow-y: auto;
-        .modal-title {
-            flex-grow: 1;
-            font-size: 20px;
-            font-weight: 700;
-            padding: 0 0 8px;
-        }
+  align-items: center;
+  background-color: $modal-background-color !important;
+  flex-wrap: nowrap;
+  height: 100vh;
+  max-height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  //z-index: -1;
+  .generic-modal {
+    border-radius: 4px;
+    padding: 12px 18px;
+    //z-index: 1000;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    .modal-title {
+      flex-grow: 1;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 0 0 8px;
     }
-    .element-modal {
-        width: 768px;
-        .close-container {
-            display: flex;
-            flex-grow: 1;
-            justify-content: flex-end;
-            padding: 0;
-            i {
-                cursor: pointer;
-                margin: 0;
-                padding: 0 0 10px 10px;
-            }
-        }
-        .flex-horizontal {
-            display: flex;
-        }
+  }
+  .element-modal {
+    width: 768px;
+    .close-container {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
+      padding: 0;
+      i {
+        cursor: pointer;
+        margin: 0;
+        padding: 0 0 10px 10px;
+      }
     }
-    .confirmation-modal {
-        width: 512px;
-        .text-container {
-            font-size: 16px;
-        }
+    .flex-horizontal {
+      display: flex;
     }
-    .list-rename-modal {
-        width: 768px;
-        .text-container {
-            font-size: 16px;
-            font-weight: 700;
-            padding: 0 0 5px 10px;
-        }
+  }
+  .confirmation-modal {
+    width: 512px;
+    .text-container {
+      font-size: 16px;
     }
+  }
+  .list-rename-modal {
+    width: 768px;
+    .text-container {
+      font-size: 16px;
+      font-weight: 700;
+      padding: 0 0 5px 10px;
+    }
+  }
 }
 .theme-default {
-    .generic-modal {
-        border: 1px solid $theme-default-accent-color-1;
-        background-color: $theme-default-bg-color-1;
-        .modal-title {
-            color: $theme-default-font-color-1;
-        }
-        .text-container {
-            color: $theme-default-font-color-1;
-        }
+  .generic-modal {
+    border: 1px solid $theme-default-accent-color-1;
+    background-color: $theme-default-bg-color-1;
+    .modal-title {
+      color: $theme-default-font-color-1;
     }
+    .text-container {
+      color: $theme-default-font-color-1;
+    }
+  }
 }
 .theme-dark {
-    .generic-modal {
-        border: 1px solid $theme-dark-accent-color-1;
-        background-color: $theme-dark-bg-color-1;
-        .modal-title {
-            color: $theme-dark-font-color-1;
-        }
-        .text-container {
-            color: $theme-dark-font-color-1;
-        }
+  .generic-modal {
+    border: 1px solid $theme-dark-accent-color-1;
+    background-color: $theme-dark-bg-color-1;
+    .modal-title {
+      color: $theme-dark-font-color-1;
     }
+    .text-container {
+      color: $theme-dark-font-color-1;
+    }
+  }
 }
 .theme-light {
-    .generic-modal {
-        border: 1px solid $theme-light-accent-color-1;
-        background-color: $theme-light-bg-color-1;
-        .modal-title {
-            color: $theme-light-font-color-1;
-        }
-        .text-container {
-            color: $theme-light-font-color-1;
-        }
+  .generic-modal {
+    border: 1px solid $theme-light-accent-color-1;
+    background-color: $theme-light-bg-color-1;
+    .modal-title {
+      color: $theme-light-font-color-1;
     }
+    .text-container {
+      color: $theme-light-font-color-1;
+    }
+  }
 }
