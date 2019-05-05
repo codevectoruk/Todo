@@ -289,6 +289,23 @@ function changeElementStatusToOpen(localListId, localElementId) {
   changeElementStatus(localListId, localElementId, "open");
 }
 
+function deleteElement(localListId, localElementId, localElementStatus) {
+  var localListOpenElements = getElementList(localListId, "open");
+  var localListClosedElements = getElementList(localListId, "closed");
+  var localListDeletedElements = getElementList(localListId, "deleted");
+  var remList;
+  if (localElementStatus === "open") {
+    remList = localListOpenElements;
+  }
+  if (localElementStatus === "closed") {
+    remList = localListClosedElements;
+  }
+  if (localElementStatus === "deleted") {
+    remList = localListDeletedElements;
+  }
+  remList.splice(localElementId, 1);
+}
+
 // function changeElementCategory() {
 //
 // }

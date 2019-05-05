@@ -31,7 +31,9 @@ function createListsAndElements() {
 
 function populateListFromJson(localListId, localListFields) {
   var returnState =
-    "<div class='list'><div class='list-header'>" +
+    "<div class='list' ondrop='listOnDropEvent(event, " +
+    localListId +
+    ")' ondragover='allowDrop(event)'><div class='list-header'>" +
     "<div class='list-title'>" +
     localListFields.list_name +
     "</div><div class='button-container'><div class='list-button' " +
@@ -72,7 +74,6 @@ function populateElementsFromJson(
   var statusStringD = "";
   var dueDateTag = "";
   var categoryTag = populateCategoryField(localElementFields.category);
-  //2019-04-01 14:02:00
   if (localElementFields.due != "" && localElementStatus == "open") {
     dueDateTag =
       "<div class='tag tag-" +
@@ -96,7 +97,13 @@ function populateElementsFromJson(
   returnState =
     "<div class='list-element " +
     statusStringA +
-    "'>" +
+    "' draggable='true' ondragstart='elementOnDragStartEvent(event," +
+    localListId +
+    ", " +
+    localElementId +
+    ', "' +
+    localElementStatus +
+    "\")'>" +
     categoryTag +
     "<div class='status' onclick='" +
     statusStringB +
