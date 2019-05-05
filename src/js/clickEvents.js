@@ -4,6 +4,13 @@ $(".modal-container").on("click", function(e) {
 });
 
 $(document).click(function() {
-  //do something
   closeAllDropdown();
+});
+
+$(".dropdown").click(function(e) {
+  e.stopPropagation();
+});
+
+$(".list-button").click(function(e) {
+  e.stopPropagation();
 });

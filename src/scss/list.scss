@@ -40,39 +40,6 @@
           margin-right: 4px;
           padding: 6px 9px;
         }
-        .dropdown {
-          border-radius: 4px;
-          flex-direction: column;
-          left: 0;
-          min-width: 160px;
-          padding: 0 0 5px;
-          position: absolute;
-          top: 0;
-          transform: translate3d(0px, 40px, 0px);
-          will-change: transform;
-          z-index: 1000;
-          .dropdown-title {
-            display: flex;
-            margin: 0 5px 5px;
-            .dropdown-title-text {
-              align-self: center;
-              flex-grow: 1;
-              font-weight: 600;
-              margin-left: 20px;
-              text-align: center;
-            }
-            i {
-              cursor: pointer;
-              padding: 10px 5px;
-            }
-          }
-          .dropdown-element {
-            align-self: stretch;
-            cursor: pointer;
-            flex-grow: 1;
-            padding: 6px 12px;
-          }
-        }
       }
     }
     .list-body {
@@ -176,23 +143,6 @@
       .list-header {
         background-color: $theme-default-bg-color-2;
         color: $theme-default-font-color-2;
-        .button-container {
-          .dropdown {
-            background-color: $theme-default-bg-color-1;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
-              0 3px 6px rgba(0, 0, 0, 0.23);
-            color: $theme-default-font-color-1;
-            .dropdown-title {
-              border-bottom: 1px solid $theme-default-accent-color-1;
-            }
-            .dropdown-element {
-              &:hover {
-                background-color: $theme-default-accent-color-1;
-                color: darken($theme-default-font-color-2, 10%);
-              }
-            }
-          }
-        }
       }
       .list-body {
         .list-element {
@@ -263,23 +213,6 @@
       .list-header {
         background-color: $theme-dark-bg-color-2;
         color: $theme-dark-font-color-1;
-        .button-container {
-          .dropdown {
-            background-color: $theme-dark-bg-color-1;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
-              0 3px 6px rgba(0, 0, 0, 0.23);
-            color: $theme-dark-font-color-2;
-            .dropdown-title {
-              border-bottom: 1px solid $theme-dark-accent-color-1;
-            }
-            .dropdown-element {
-              &:hover {
-                background-color: $theme-dark-accent-color-1;
-                color: darken($theme-dark-font-color-1, 10%);
-              }
-            }
-          }
-        }
       }
       .list-body {
         .list-element {
@@ -350,23 +283,6 @@
       .list-header {
         background-color: $theme-light-bg-color-2;
         color: $theme-light-font-color-2;
-        .button-container {
-          .dropdown {
-            background-color: $theme-light-bg-color-1;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
-              0 3px 6px rgba(0, 0, 0, 0.23);
-            color: $theme-light-font-color-1;
-            .dropdown-title {
-              border-bottom: 1px solid $theme-light-accent-color-1;
-            }
-            .dropdown-element {
-              &:hover {
-                background-color: $theme-light-accent-color-1;
-                color: darken($theme-light-font-color-2, 10%);
-              }
-            }
-          }
-        }
       }
       .list-body {
         .list-element {
