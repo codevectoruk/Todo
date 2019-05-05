@@ -1,4 +1,4 @@
-var CACHE = "1.10.3";
+var CACHE = "1.10.8";
 
 // On install, cache some resource.
 self.addEventListener("install", function(evt) {
@@ -29,7 +29,6 @@ function precache() {
       "./index.html",
       "./manifest.json",
       "./robots.txt",
-      "./sw.js",
       "css/font-awesome.min.css",
       "css/main.css",
       "images/todo.png",
