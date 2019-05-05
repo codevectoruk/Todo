@@ -7,10 +7,33 @@ function elementOnDragStartEvent(
   event.dataTransfer.setData("localListId", localListId);
   event.dataTransfer.setData("localElementId", localElementId);
   event.dataTransfer.setData("localElementStatus", localElementStatus);
+  //console.log(event.target.id);
+
+  $("#" + event.target.id).addClass("hideListElement");
+  //   $("#" + event.target.id).addClass("hidden");
+  //$("#" + event.target.id).append(populateListElementPlaceholder());
+  //console.log($("#list-" + localListId));
+  //console.log(localElementId);
+  //console.log($("#list-" + localListId)[0].children[0]);
+
+  $(populateListElementPlaceholder()).insertAfter(
+    $("#list-" + localListId)[0].children[localElementId]
+  );
+  //   $("#list-" + localListId)[0].children[localElementId]
+  //   $("#list-" + localListId).insertBefore(
+  //     populateListElementPlaceholder(),
+  //     $("#list-" + localListId)[0].children[localElementId]
+  //   );
+
+  //parentElement.insertBefore(newElement, parentElement.children[2]);
 }
 
 function allowDrop(event) {
   event.preventDefault();
+}
+
+function elementDragEnd(event) {
+  createListsAndElements();
 }
 
 function listOnDropEvent(event, destList) {
@@ -33,6 +56,6 @@ function listOnDropEvent(event, destList) {
       getElementChecklist(localListId, localElementId, localElementStatus)
     );
     deleteElement(localListId, localElementId, localElementStatus);
-    createListsAndElements();
   }
+  createListsAndElements();
 }

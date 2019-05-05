@@ -25,6 +25,7 @@ function createListsAndElements() {
       );
     });
     $("#list-" + listId).append(output); //append all of the elements to the list-container
+    // $("#list-" + listId).append(populateListElementPlaceholder());
   });
   $(".list-container").append(populateAddAnotherList()); //append the "create another item" button to the list-container
 }
@@ -97,7 +98,12 @@ function populateElementsFromJson(
   returnState =
     "<div class='list-element " +
     statusStringA +
-    "' draggable='true' ondragstart='elementOnDragStartEvent(event," +
+    "' id=\"" +
+    localListId +
+    "-" +
+    localElementId +
+    '"' +
+    " draggable='true' ondragend='elementDragEnd()' ondragstart='elementOnDragStartEvent(event," +
     localListId +
     ", " +
     localElementId +
@@ -145,6 +151,11 @@ function populateElementsFromJson(
   }
   returnState += "</div></div>";
   return returnState;
+}
+
+function populateListElementPlaceholder() {
+  var output = '<div class="list-element-placeholder"></div>';
+  return output;
 }
 
 function populateAddAnotherList() {

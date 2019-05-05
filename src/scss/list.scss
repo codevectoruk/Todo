@@ -98,6 +98,23 @@
           }
         }
       }
+      .list-element-placeholder {
+        padding: 4px 0 6px 0;
+        cursor: pointer;
+        display: flex;
+        text-decoration: none;
+        height: 31px;
+        margin: 3px 4px;
+        margin-top: -34px;
+        border-radius: 4px;
+        text-align: center;
+        align-self: center;
+        justify-content: center;
+      }
+      .hideListElement {
+        opacity: 0;
+        //height: 1px;
+      }
       .status-closed {
         .position {
           border-left: 1px solid transparent;
@@ -183,6 +200,10 @@
             }
           }
         }
+        .list-element-placeholder {
+          background-color: $theme-default-bg-color-1;
+          border: 2px dashed darken($theme-default-accent-color-1, 10%);
+        }
       }
       .list-footer {
         background-color: $theme-default-bg-color-2;
@@ -253,6 +274,10 @@
             }
           }
         }
+        .list-element-placeholder {
+          background-color: $theme-dark-bg-color-1;
+          border: 2px dashed darken($theme-dark-accent-color-1, 10%);
+        }
       }
       .list-footer {
         background-color: $theme-dark-bg-color-2;
@@ -321,6 +346,10 @@
               color: darken($blue, 10%);
             }
           }
+        }
+        .list-element-placeholder {
+          background-color: $theme-light-bg-color-1;
+          border: 2px dashed darken($theme-light-accent-color-1, 10%);
         }
       }
       .list-footer {
