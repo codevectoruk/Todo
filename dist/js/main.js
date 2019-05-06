@@ -1374,28 +1374,34 @@ function elementDragEnd(event) {
   createListsAndElements();
 }
 
+// function listOnDragOver(event) {
+//   // if (listen) {
+//   //   $("list-body").append(populateListElementDrop(localListId, localElementId, localElementStatus))
+//   // }
+// }
+
 function listOnDropEvent(event, destList) {
-  // var localListId = event.dataTransfer.getData("localListId");
-  // var localElementId = event.dataTransfer.getData("localElementId");
-  // var localElementStatus = event.dataTransfer.getData("localElementStatus");
-  // if (destList != localListId) {
-  //   //stop elements moving to the same list (for now...)
-  //   createElement(
-  //     destList,
-  //     localElementStatus,
-  //     getElementTitle(localListId, localElementId, localElementStatus),
-  //     getElementDescription(localListId, localElementId, localElementStatus),
-  //     getElementComments(localListId, localElementId, localElementStatus),
-  //     getElementCategory(localListId, localElementId, localElementStatus),
-  //     getElementClassification(localListId, localElementId, localElementStatus),
-  //     getElementUser(localListId, localElementId, localElementStatus),
-  //     getElementDue(localListId, localElementId, localElementStatus),
-  //     getElementCreated(localListId, localElementId, localElementStatus),
-  //     getElementChecklist(localListId, localElementId, localElementStatus)
-  //   );
-  //   deleteElement(localListId, localElementId, localElementStatus);
-  // }
-  // createListsAndElements();
+  var listen = globalListenToDrag;
+  if (listen) {
+    if (getList(destList).openElements.length === 0 && getList(destList).closedElements.length === 0) {
+      //remove old placeholder
+      $(".list-element-placeholder").remove();
+      $(".list-element-drop").remove();
+      var localListId = event.dataTransfer.getData("localListId");
+      var localElementId = event.dataTransfer.getData("localElementId");
+      var localElementStatus = event.dataTransfer.getData("localElementStatus");
+
+      var itemBeingMoved = getElement(localListId, localElementId, localElementStatus);
+
+      //getList(destList);
+      if (localElementStatus == "open") {
+        getList(destList).openElements.push(itemBeingMoved);
+      } else if (localElementStatus == "closed") {
+        getList(destList).closedElements.push(itemBeingMoved);
+      }
+      deleteElement(localListId, localElementId, localElementStatus);
+    }
+  }
 }
 
 function moveWithinList(localListId, localElementId, localElementStatus, localListIdDest, localElementIdDest, localElementStatusDest) {
@@ -1404,12 +1410,13 @@ function moveWithinList(localListId, localElementId, localElementStatus, localLi
   var list = getElementList(localListIdDest, localElementStatus);
   if (localElementStatus == localElementStatusDest) {
     // splice to new pos
-    list.splice(localElementIdDest, 0, itemBeingMoved);
+
     if (localElementIdDest < localElementId) {
+      list.splice(localElementIdDest, 0, itemBeingMoved);
       var elementModifier = parseInt(localElementId) + 1;
       deleteElement(localListId, elementModifier, localElementStatus);
-    }
-    if (localElementIdDest > localElementId) {
+    } else if (localElementIdDest > localElementId) {
+      list.splice(localElementIdDest, 0, itemBeingMoved);
       deleteElement(localListId, localElementId, localElementStatus);
     }
   } else {
