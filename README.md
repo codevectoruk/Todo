@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 If you just want to use the application the easiest way is to go to the github pages link to this repository.
 
-[https://ed-wright.github.io/Todo/](https://ed-wright.github.io/Todo/)
+[https://todo.journeys.io/](https://todo.journeys.io/)
 
 ### Building the Application Yourself
 
