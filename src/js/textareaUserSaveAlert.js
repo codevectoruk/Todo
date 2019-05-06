@@ -42,5 +42,7 @@ function resetElementModalUserAlert() {
 }
 
 $(document).on("keyup", function(e) {
-  compareElementModalTextarea();
+  if ($("#elementDescription").is(":visible")) {
+    compareElementModalTextarea();
+  }
 });

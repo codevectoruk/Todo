@@ -37,7 +37,14 @@ function createElement(
     localElementChecklist = localElementChecklist || [];
     if (createJsonElement(localListId, localElementStatus)) {
       // create the skeleton element in the list
-      var localElementId = todo[localListId].openElements.length - 1;
+      var localElementId;
+      if (localElementStatus == "open") {
+        localElementId = todo[localListId].openElements.length - 1;
+      } else if (localElementStatus == "closed") {
+        localElementId = todo[localListId].closedElements.length - 1;
+      } else if (localElementStatus == "deleted") {
+        localElementId = todo[localListId].deletedElements.length - 1;
+      }
       setElementTitle(
         localListId,
         localElementId,
@@ -287,6 +294,23 @@ function changeElementStatusToClosed(localListId, localElementId) {
 
 function changeElementStatusToOpen(localListId, localElementId) {
   changeElementStatus(localListId, localElementId, "open");
+}
+
+function deleteElement(localListId, localElementId, localElementStatus) {
+  var localListOpenElements = getElementList(localListId, "open");
+  var localListClosedElements = getElementList(localListId, "closed");
+  var localListDeletedElements = getElementList(localListId, "deleted");
+  var remList;
+  if (localElementStatus === "open") {
+    remList = localListOpenElements;
+  }
+  if (localElementStatus === "closed") {
+    remList = localListClosedElements;
+  }
+  if (localElementStatus === "deleted") {
+    remList = localListDeletedElements;
+  }
+  remList.splice(localElementId, 1);
 }
 
 // function changeElementCategory() {

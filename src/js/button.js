@@ -1,10 +1,10 @@
-function buttonIncreaseElementPosition(localListId, localElementId) {
-  reorderList(localListId, localElementId, "up");
-}
+// function buttonIncreaseElementPosition(localListId, localElementId) {
+//   reorderList(localListId, localElementId, "up");
+// }
 
-function buttonDecreaseElementPosition(localListId, localElementId) {
-  reorderList(localListId, localElementId, "down");
-}
+// function buttonDecreaseElementPosition(localListId, localElementId) {
+//   reorderList(localListId, localElementId, "down");
+// }
 
 function buttonChangeElementStatusToOpen(listId, localElementId) {
   changeElementStatusToOpen(listId, localElementId);
@@ -184,8 +184,9 @@ function buttonRenameList() {
   var localListId = $("#modal-rename-list").val();
   var localListName = $("#modal-list-rename-input").val();
   setListName(localListId, localListName);
-  createListsAndElements();
   toggleRenameListModal();
+  closeAllDropdown();
+  createListsAndElements();
 }
 
 function buttonClearDueDate() {

@@ -54,30 +54,15 @@
           align-self: stretch;
           display: flex;
           flex-direction: column;
-          .position-element {
-            display: flex;
-            flex-grow: 1;
-            font-size: 14px;
-            padding: 0 14px;
-            i {
-              align-self: center;
-            }
-          }
           .promote {
             align-items: stretch;
             display: flex;
             flex-grow: 1;
-            font-size: 18px;
-            padding: 0 11px 0 10px;
+            font-size: 16px;
+            padding: 0 8px;
             i {
               align-self: center;
             }
-          }
-          .position-up {
-            border-top-right-radius: 4px;
-          }
-          .position-down {
-            border-bottom-right-radius: 4px;
           }
         }
         .title {
@@ -97,6 +82,27 @@
             align-self: center;
           }
         }
+      }
+      .element-background {
+        //position: absolute !important;
+        //width: 400px;
+        //opacity: 0;
+      }
+      .list-element-placeholder,
+      .list-element-drop {
+        padding: 4px 0 6px 0;
+        cursor: pointer;
+        display: flex;
+        text-decoration: none;
+        height: 31px;
+        margin: 3px 4px;
+        border-radius: 4px;
+        text-align: center;
+        align-self: center;
+        justify-content: center;
+      }
+      .list-element-placeholder {
+        margin-top: -34px;
       }
       .status-closed {
         .position {
@@ -157,13 +163,6 @@
             color: darken($theme-default-font-color-1, 10%);
           }
           .position {
-            border-left: 1px solid $theme-default-accent-color-1;
-            .position-element {
-              &:hover {
-                background-color: darken($theme-default-accent-color-1, 10%);
-                color: darken($theme-default-font-color-1, 10%);
-              }
-            }
             .promote {
               background-color: transparent;
               color: $red;
@@ -172,9 +171,6 @@
                 color: $white;
               }
             }
-            .position-down {
-              border-top: 1px solid $theme-default-accent-color-1;
-            }
           }
           .status {
             color: $blue;
@@ -182,6 +178,14 @@
               color: darken($blue, 10%);
             }
           }
+        }
+        .element-background {
+          background-color: $theme-default-bg-color-2;
+        }
+        .list-element-placeholder,
+        .list-element-drop {
+          background-color: $theme-default-bg-color-1;
+          border: 2px dashed darken($theme-default-accent-color-1, 10%);
         }
       }
       .list-footer {
@@ -227,13 +231,6 @@
             color: darken($theme-dark-font-color-2, 10%);
           }
           .position {
-            border-left: 1px solid $theme-dark-accent-color-1;
-            .position-element {
-              &:hover {
-                background-color: darken($theme-dark-accent-color-1, 5%);
-                color: $white;
-              }
-            }
             .promote {
               background-color: transparent;
               color: $red;
@@ -242,9 +239,6 @@
                 color: $white;
               }
             }
-            .position-down {
-              border-top: 1px solid $theme-dark-accent-color-1;
-            }
           }
           .status {
             color: $blue;
@@ -252,6 +246,14 @@
               color: darken($blue, 10%);
             }
           }
+        }
+        .element-background {
+          background-color: $theme-dark-bg-color-2;
+        }
+        .list-element-placeholder,
+        .list-element-drop {
+          background-color: $theme-dark-bg-color-1;
+          border: 2px dashed darken($theme-dark-accent-color-1, 10%);
         }
       }
       .list-footer {
@@ -297,22 +299,12 @@
             color: darken($theme-light-font-color-1, 10%);
           }
           .position {
-            border-left: 1px solid $theme-light-accent-color-1;
-            .position-element {
-              &:hover {
-                background-color: darken($theme-light-accent-color-1, 10%);
-                color: darken($theme-light-font-color-1, 10%);
-              }
-            }
             .promote {
               color: $red;
               &:hover {
                 background-color: $red;
                 color: $white;
               }
-            }
-            .position-down {
-              border-top: 1px solid $theme-light-accent-color-1;
             }
           }
           .status {
@@ -321,6 +313,11 @@
               color: darken($blue, 10%);
             }
           }
+        }
+        .list-element-placeholder,
+        .list-element-drop {
+          background-color: $theme-light-bg-color-1;
+          border: 2px dashed darken($theme-light-accent-color-1, 10%);
         }
       }
       .list-footer {

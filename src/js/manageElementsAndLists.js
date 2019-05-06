@@ -25,13 +25,19 @@ function createListsAndElements() {
       );
     });
     $("#list-" + listId).append(output); //append all of the elements to the list-container
+    // $("#list-" + listId).append(populateListElementPlaceholder());
   });
   $(".list-container").append(populateAddAnotherList()); //append the "create another item" button to the list-container
+  registerDropdownClickInterrupts();
 }
 
 function populateListFromJson(localListId, localListFields) {
   var returnState =
-    "<div class='list'><div class='list-header'>" +
+    "<div class='list' ondrop='listOnDropEvent(event, " +
+    localListId +
+    ")' ondragover='listOnDragOver(event," +
+    localListId +
+    ")'><div class='list-header'>" +
     "<div class='list-title'>" +
     localListFields.list_name +
     "</div><div class='button-container'><div class='list-button' " +
@@ -71,8 +77,8 @@ function populateElementsFromJson(
   var statusStringC = "";
   var statusStringD = "";
   var dueDateTag = "";
+  var idStatusCode = 0;
   var categoryTag = populateCategoryField(localElementFields.category);
-  //2019-04-01 14:02:00
   if (localElementFields.due != "" && localElementStatus == "open") {
     dueDateTag =
       "<div class='tag tag-" +
@@ -86,17 +92,44 @@ function populateElementsFromJson(
     statusStringB = "buttonChangeElementStatusToClosed";
     statusStringC = "far fa-square";
     statusStringD = "open";
+    idStatusCode = 0;
   }
   if (localElementStatus === "closed") {
     statusStringA = "status-closed";
     statusStringB = "buttonChangeElementStatusToOpen";
     statusStringC = "fas fa-check-square";
     statusStringD = "closed";
+    idStatusCode = 1;
   }
   returnState =
     "<div class='list-element " +
     statusStringA +
-    "'>" +
+    "' id=\"" +
+    localListId +
+    "-" +
+    localElementId +
+    "-" +
+    idStatusCode +
+    '"' +
+    " draggable='true' ondragend='elementDragEnd(event)' ondrop='elementonDropEvent(event," +
+    localListId +
+    ", " +
+    localElementId +
+    ', "' +
+    localElementStatus +
+    "\")' ondragover='onElementDragOver(event," +
+    localListId +
+    ", " +
+    localElementId +
+    ', "' +
+    localElementStatus +
+    "\")' ondragstart='elementOnDragStartEvent(event," +
+    localListId +
+    ", " +
+    localElementId +
+    ', "' +
+    localElementStatus +
+    "\")'>" +
     categoryTag +
     "<div class='status' onclick='" +
     statusStringB +
@@ -116,18 +149,6 @@ function populateElementsFromJson(
     localElementFields.title +
     dueDateTag +
     "</div><div class='position'>";
-  if (localElementStatus === "open") {
-    returnState +=
-      "<div class='position-up position-element' onclick='buttonIncreaseElementPosition(" +
-      localListId +
-      ", " +
-      localElementId +
-      ")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element' onclick='buttonDecreaseElementPosition(" +
-      localListId +
-      ", " +
-      localElementId +
-      ")'><i class='fas fa-caret-down'></i></div>";
-  }
   if (localElementStatus === "closed") {
     returnState +=
       "<div class='promote' onclick='prepareModalDelete(" +
@@ -138,6 +159,28 @@ function populateElementsFromJson(
   }
   returnState += "</div></div>";
   return returnState;
+}
+
+function populateListElementPlaceholder() {
+  var output =
+    '<div ondragover="onPlaceholderDragOver()" class="list-element-placeholder"></div>';
+  return output;
+}
+
+function populateListElementDrop(
+  localListId,
+  localElementId,
+  localElementStatus
+) {
+  var output =
+    "<div class='list-element-drop' ondrop='elementonDropEvent(event," +
+    localListId +
+    "," +
+    localElementId +
+    ', "' +
+    localElementStatus +
+    "\")'></div>";
+  return output;
 }
 
 function populateAddAnotherList() {
