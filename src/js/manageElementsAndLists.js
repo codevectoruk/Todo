@@ -74,6 +74,7 @@ function populateElementsFromJson(
   var statusStringC = "";
   var statusStringD = "";
   var dueDateTag = "";
+  var idStatusCode = 0;
   var categoryTag = populateCategoryField(localElementFields.category);
   if (localElementFields.due != "" && localElementStatus == "open") {
     dueDateTag =
@@ -88,12 +89,14 @@ function populateElementsFromJson(
     statusStringB = "buttonChangeElementStatusToClosed";
     statusStringC = "far fa-square";
     statusStringD = "open";
+    idStatusCode = 0;
   }
   if (localElementStatus === "closed") {
     statusStringA = "status-closed";
     statusStringB = "buttonChangeElementStatusToOpen";
     statusStringC = "fas fa-check-square";
     statusStringD = "closed";
+    idStatusCode = 1;
   }
   returnState =
     "<div class='list-element " +
@@ -102,8 +105,22 @@ function populateElementsFromJson(
     localListId +
     "-" +
     localElementId +
+    "-" +
+    idStatusCode +
     '"' +
-    " draggable='true' ondragend='elementDragEnd()' ondragstart='elementOnDragStartEvent(event," +
+    " draggable='true' ondragend='elementDragEnd(event)' ondrop='elementonDropEvent(event," +
+    localListId +
+    ", " +
+    localElementId +
+    ', "' +
+    localElementStatus +
+    "\")' ondragover='onElementDragOver(event," +
+    localListId +
+    ", " +
+    localElementId +
+    ', "' +
+    localElementStatus +
+    "\")' ondragstart='elementOnDragStartEvent(event," +
     localListId +
     ", " +
     localElementId +
@@ -154,7 +171,24 @@ function populateElementsFromJson(
 }
 
 function populateListElementPlaceholder() {
-  var output = '<div class="list-element-placeholder"></div>';
+  var output =
+    '<div ondragover="onPlaceholderDragOver()" class="list-element-placeholder"></div>';
+  return output;
+}
+
+function populateListElementDrop(
+  localListId,
+  localElementId,
+  localElementStatus
+) {
+  var output =
+    "<div class='list-element-drop' ondrop='elementonDropEvent(event," +
+    localListId +
+    "," +
+    localElementId +
+    ', "' +
+    localElementStatus +
+    "\")'></div>";
   return output;
 }
 

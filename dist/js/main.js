@@ -1,1 +1,1432 @@
-"use strict";function updateStoredTodoList(){localStorage.setItem("todo",JSON.stringify(todo))}function firstTimeLoadLocalStorage(){("null"===localStorage.getItem("todo")||null===localStorage.getItem("todo"))&&(todo=[],createList("Default List"),createElement(0,"open","This is an item that is yet to be completed","This is the description for the item that is yet to be completed"),createListsAndElements(),createElement(0,"closed","This is an item that has been completed","This is the description for the item that has been completed")),createListsAndElements()}function createListsAndElements(){updateStoredTodoList(),$(".list-container").empty(),$.each(todo,function(n,e){var o=populateListFromJson(n,e);$(".list-container").append(o),o="",$.each(e.openElements,function(e,t){o+=populateElementsFromJson(n,e,t,"open")}),$.each(e.closedElements,function(e,t){o+=populateElementsFromJson(n,e,t,"closed")}),$("#list-"+n).append(o)}),$(".list-container").append(populateAddAnotherList())}function populateListFromJson(e,t){return"<div class='list' ondrop='listOnDropEvent(event, "+e+")' ondragover='allowDrop(event)'><div class='list-header'><div class='list-title'>"+t.list_name+"</div><div class='button-container'><div class='list-button' onclick='toggleDropdown("+e+")'><i class='fas fa-ellipsis-h'></i></div><div class='dropdown hidden' id='id-dropdown-"+e+"'><div class='dropdown-title'><div class='dropdown-title-text'>List Actions</div><i class='fas fa-times' onclick='toggleDropdown("+e+")'></i></div><div class='dropdown-element' onclick='prepareModalRenameList("+e+")'>Rename List</div><div class='dropdown-element' onclick='prepareModalDeleteList("+e+")'>Delete List</div></div></div></div><div class='list-body scrollbar-alt' id='list-"+e+"'></div><div class='list-footer' onclick='buttonOpenElementModalForElementCreate("+e+")'><i class='fas fa-plus'></i> Add another item</div></div>"}function populateElementsFromJson(e,t,n,o){var l="",s="",a="",i="",r="",d="",m=populateCategoryField(n.category);return""!=n.due&&"open"==o&&(d="<div class='tag tag-"+calculateRisk(n.due)+"'>"+timeTill(n.due)+"</div>"),"open"===o&&(s="status-open",a="buttonChangeElementStatusToClosed",i="far fa-square",r="open"),"closed"===o&&(s="status-closed",a="buttonChangeElementStatusToOpen",i="fas fa-check-square",r="closed"),l="<div class='list-element "+s+"' id=\""+e+"-"+t+"\" draggable='true' ondragend='elementDragEnd()' ondragstart='elementOnDragStartEvent(event,"+e+", "+t+', "'+o+"\")'>"+m+"<div class='status' onclick='"+a+"("+e+", "+t+")'><i class=\""+i+"\"></i></div><div class='title' onclick='buttonOpenElementModalForElementUpdate("+e+", "+t+', "'+r+"\")'>"+n.title+d+"</div><div class='position'>","open"===o&&(l+="<div class='position-up position-element' onclick='buttonIncreaseElementPosition("+e+", "+t+")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element' onclick='buttonDecreaseElementPosition("+e+", "+t+")'><i class='fas fa-caret-down'></i></div>"),"closed"===o&&(l+="<div class='promote' onclick='prepareModalDelete("+e+", "+t+')\'><i class="far fa-trash-alt"></i></div></div>'),l+="</div></div>"}function populateListElementPlaceholder(){return'<div class="list-element-placeholder"></div>'}function populateAddAnotherList(){return'<div class="add-list" onclick="buttonCreateList()"><i class="fas fa-plus"></i> Add another item</div>'}function populateCategoryField(e){var t="";return 0==e?t="<div class='category'></div>":1==e?t="<div class='category category-blue'></div>":2==e?t="<div class='category category-green'></div>":3==e?t="<div class='category category-orange'></div>":4==e?t="<div class='category category-purple'></div>":5==e?t="<div class='category category-red'></div>":6==e&&(t="<div class='category category-yellow'></div>"),t}function prepareModalDelete(e,t){$("#modal-confirm-list").val(e),$("#modal-confirm-element").val(t),$("#deleteElementButton").show(),$("#deleteListButton").hide(),closeAllDropdown(),toggleConfirmationModalVisibility()}function prepareModalDeleteList(e){$("#modal-confirm-list").val(e),$("#deleteElementButton").hide(),$("#deleteListButton").show(),closeAllDropdown(),toggleConfirmationModalVisibility()}function prepareModalRenameList(e){$("#modal-rename-list").val(e),$("#modal-list-rename-input").val(todo[e].list_name),closeAllDropdown(),toggleRenameListModal(),$("#modal-list-rename-input").focus()}function toggleConfirmationModalVisibility(){$("#id-confirmation-modal").hasClass("hidden")?($("#id-confirmation-modal").addClass("flex"),$("#id-confirmation-modal").removeClass("hidden")):($("#id-confirmation-modal").removeClass("flex"),$("#id-confirmation-modal").addClass("hidden"))}function toggleElementModalVisibility(){$("#id-element-modal").hasClass("hidden")?($("#id-element-modal").addClass("flex"),$("#id-element-modal").removeClass("hidden")):($("#id-element-modal").removeClass("flex"),$("#id-element-modal").addClass("hidden"),elementCreateFlag=!1,$("#elementDescription").removeClass("flex"),$("#elementDescription").addClass("hidden"),$("#elementComments").removeClass("flex"),$("#elementComments").addClass("hidden"),$("#elementDescriptionMarkdownContainer").addClass("flex"),$("#elementDescriptionMarkdownContainer").removeClass("hidden"),$("#elementCommentsMarkdownContainer").addClass("flex"),$("#elementCommentsMarkdownContainer").removeClass("hidden"))}function closeAllModals(){$(".modal-container").removeClass("flex"),$(".modal-container").addClass("hidden")}function closeAllDropdown(){$(".dropdown").removeClass("flex"),$(".dropdown").addClass("hidden")}function toggleRenameListModal(){$("#id-rename-modal").hasClass("hidden")?($("#id-rename-modal").addClass("flex"),$("#id-rename-modal").removeClass("hidden")):($("#id-rename-modal").removeClass("flex"),$("#id-rename-modal").addClass("hidden"))}function toggleDropdown(e){$("#id-dropdown-"+e).hasClass("hidden")?($(".dropdown").removeClass("flex"),$(".dropdown").addClass("hidden"),$("#id-dropdown-"+e).addClass("flex"),$("#id-dropdown-"+e).removeClass("hidden")):($("#id-dropdown-"+e).removeClass("flex"),$("#id-dropdown-"+e).addClass("hidden"))}function buttonIncreaseElementPosition(e,t){reorderList(e,t,"up")}function buttonDecreaseElementPosition(e,t){reorderList(e,t,"down")}function buttonChangeElementStatusToOpen(e,t){changeElementStatusToOpen(e,t),createListsAndElements()}function buttonChangeElementStatusToClosed(e,t){changeElementStatusToClosed(e,t),createListsAndElements()}function buttonChangeElementStatusToDeleted(){changeElementStatusToDeleted($("#modal-confirm-list").val(),$("#modal-confirm-element").val()),createListsAndElements(),toggleConfirmationModalVisibility(),generateUserAlert("List item successfully deleted.","success",5e3)}function buttonCreateList(){createList("New List"),createListsAndElements()}function buttonDeleteList(){deleteList($("#modal-confirm-list").val()),createListsAndElements(),toggleConfirmationModalVisibility(),generateUserAlert("List successfully deleted.","success",5e3)}function buttonOpenElementModalForElementUpdate(e,t,n){var o=getElement(e,t,n);resetElementModalUserAlert(),$("#modal-list").val(e),$("#modal-element").val(t),$("#modal-status").val(n),$("#elementTitle").val(o.title),$("#elementDescription").val(o.description),setMarkdownDescription(o.description),$("#elementComments").val(o.comments),setMarkdownComments(o.comments),$("#elementCategory").val(parseInt(o.category)),$("#elementDue").val(o.due),$("#element-modal-button-create").hide(),$("#element-modal-button-update").show(),$("#element-modal-update-title").show(),$("#element-modal-create-title").hide(),closeAllDropdown(),toggleElementModalVisibility(),autosize.update($("#elementDescription")),autosize.update($("#elementComments")),$("#elementTitle").focus()}function buttonOpenElementModalForElementCreate(e){elementCreateFlag=!0,resetElementModalUserAlert(),$("#elementTitle").val(""),$("#elementDescription").val(""),setMarkdownDescription(""),$("#elementComments").val(""),setMarkdownComments(""),$("#elementCategory").val(0),$("#elementDue").val(""),$("#element-modal-button-create").show(),$("#element-modal-button-update").hide(),$("#element-modal-update-title").hide(),$("#element-modal-create-title").show(),$("#modal-list").val(e),closeAllDropdown(),toggleElementModalVisibility(),autosize.update($("#elementDescription")),autosize.update($("#elementComments")),$("#elementTitle").focus()}function buttonUpdateElement(){var e=$("#modal-list").val(),t=$("#modal-element").val(),n=$("#modal-status").val();setElementTitle(e,t,n,$("#elementTitle").val()),setElementDescription(e,t,n,$("#elementDescription").val()),setElementComments(e,t,n,$("#elementComments").val()),setElementCategory(e,t,n,parseInt($("#elementCategory").val())),setElementDue(e,t,n,$("#elementDue").val()),toggleElementModalVisibility(),createListsAndElements()}function buttonCreateNewElement(){createElement($("#modal-list").val(),"open",$("#elementTitle").val(),$("#elementDescription").val(),$("#elementComments").val(),parseInt($("#elementCategory").val()),"","",$("#elementDue").val(),"",""),toggleElementModalVisibility(),createListsAndElements(),elementCreateFlag=!1}function buttonRenameList(){setListName($("#modal-rename-list").val(),$("#modal-list-rename-input").val()),createListsAndElements(),toggleRenameListModal()}function buttonClearDueDate(){$("#elementDue").val("")}function autoUpdate(){var e=JSON.parse(localStorage.getItem("todo"));null!=localStorage.getItem("todo")?compareJsonArrays(todo,e)||(todo=JSON.parse(localStorage.getItem("todo")),createListsAndElements(),generateUserAlert("It looks like you updated your list on another tab, it has been updated on this tab too!","information",5e3)):(firstTimeLoadLocalStorage(),createListsAndElements())}function compareJsonArrays(e,t){if(e===t)return!0;if(!(e instanceof Object&&t instanceof Object))return!1;if(e.constructor!==t.constructor)return!1;var n;for(n in e)if(e.hasOwnProperty(n)){if(!t.hasOwnProperty(n))return!1;if(e[n]===t[n])continue;if("object"!==_typeof(e[n]))return!1;if(!compareJsonArrays(e[n],t[n]))return!1}for(n in t)if(t.hasOwnProperty(n)&&!e.hasOwnProperty(n))return!1;return!0}function themeChanger(e){"default"===e&&(currentTheme="default",$("body").removeClass(),$("body").addClass("theme-default")),"dark"===e&&(currentTheme="dark",$("body").removeClass(),$("body").addClass("theme-dark")),"light"===e&&(currentTheme="light",$("body").removeClass(),$("body").addClass("theme-light")),saveTheme(e)}function saveTheme(e){localStorage.setItem("theme",e)}function loadTheme(){themeChanger(localStorage.getItem("theme"))}function autoChangeTheme(){null!=localStorage.getItem("theme")?localStorage.getItem("theme")!==currentTheme&&(loadTheme(),generateUserAlert("It looks like you updated your theme on another tab, it has been updated on this tab too!","information",5e3)):setDefaultTheme()}function setDefaultTheme(){null==localStorage.getItem("theme")&&localStorage.setItem("theme","default")}function downloadObjectAsJson(){var e=todo,t="todoBackup_"+(new Date).toISOString(),n="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(e,null,2)),o=document.createElement("a");o.setAttribute("href",n),o.setAttribute("download",t+".json"),document.body.appendChild(o),o.click(),o.remove()}function generateUserAlert(e,t,n){var o,l="",s="",a="",i=e,r=Math.floor(1e6*Math.random())+0;"information"==t&&(l="fas fa-info-circle",s="Information",a="userAlert-info"),"success"==t&&(l="fas fa-check-circle",s="Success",a="userAlert-success"),"warning"==t&&(l="fas fa-exclamation-circle",s="Warning",a="userAlert-warning"),"error"==t&&(l="fas fa-times-circle",s="Error",a="userAlert-error"),o="<div class='userAlert "+a+"'id='alertId-"+r+"'><div class='icon'><i class='"+l+"'></i></div><div class='text'><div class='text-title'>"+s+"</div><div class='text-body'>"+i+"</div></div></div>",$(".userAlert-container").append(o),0!==n&&setTimeout(function(){$("#alertId-"+r).fadeOut(2e3,function(){$("#alertId-"+r).remove()})},n)}function timeTill(e){var t=Date.parse(e),n=new Date,o=Math.floor((t-n)/1e3),l=Math.floor(o/60),s=Math.floor(l/60),a=Math.floor(s/24);l=l-24*a*60-60*(s-=24*a);return t-n<=0?"Overdue":1<=a?1==a?a+" Day":a+" Days":1<=s?1==s?s+" Hour":s+" Hours":1==l?l+" Min":l+" Mins"}function calculateRisk(e){var t=Date.parse(e)-new Date;return t<864e5?"danger":t<6048e5?"warning":"info"}function createList(e,t,n,o){t=t||"",n=n||"",o=o||"";var l=!1;if(createJsonList()){var s=todo.length-1;setListName(s,e),""!=t&&setListOpenElements(s,t),""!=n&&setListClosedElements(s,n),""!=o&&setListDeletedElements(s,o),l=!0}return l}function createJsonList(){return todo.push({list_name:"",openElements:[],closedElements:[],deletedElements:[]}),!0}function deleteList(e){var t=!1;try{todo.splice(e,1),t=!0}catch(e){t=!1}return t}function getList(e){return todo[e]}function getListName(e){return todo[e].list_name}function getListOpenElements(e){return todo[e].openElements}function getListClosedElements(e){return todo[e].closedElements}function getListDeletedElements(e){return todo[e].deletedElements}function setListName(e,t){var n=!1;try{todo[e].list_name=t,n=!0}catch(e){n=!1}return n}function setListOpenElements(e,t){var n=!1;try{todo[e].openElements=t,n=!0}catch(e){n=!1}return n}function setListClosedElements(e,t){var n=!1;try{todo[e].closedElements=t,n=!0}catch(e){n=!1}return n}function setListDeletedElements(e,t){var n=!1;try{todo[e].deletedElements=t,n=!0}catch(e){n=!1}return n}function getElementList(e,t){var n;return"open"==t?n=todo[e].openElements:"closed"==t?n=todo[e].closedElements:"deleted"==t&&(n=todo[e].deletedElements),n}function createElement(e,t,n,o,l,s,a,i,r,d,m){if(n){o=o||"",l=l||"",s=s||0,a=a||"",i=i||"",r=r||"";var c=(new Date).toISOString();if(d=d||c,m=m||[],createJsonElement(e,t)){var u=todo[e].openElements.length-1;setElementTitle(e,u,t,n),setElementDescription(e,u,t,o),setElementComments(e,u,t,l),setElementCategory(e,u,t,s),setElementClassification(e,u,t,a),setElementUser(e,u,t,i),setElementDue(e,u,t,r),setElementCreated(e,u,t,d),setElementChecklist(e,u,t,m)}}return!1}function createJsonElement(e,t){return getElementList(e,t).push({title:"",description:"",classification:"",user:"",due:"",created:"",checklist:[]}),!0}function getElement(e,t,n){return getElementList(e,n)[t]}function getElementTitle(e,t,n){return getElementList(e,n)[t].title}function getElementDescription(e,t,n){return getElementList(e,n)[t].description}function getElementComments(e,t,n){return getElementList(e,n)[t].comments}function getElementCategory(e,t,n){return getElementList(e,n)[t].category}function getElementClassification(e,t,n){return getElementList(e,n)[t].classification}function getElementUser(e,t,n){return getElementList(e,n)[t].user}function getElementDue(e,t,n){return getElementList(e,n)[t].due}function getElementCreated(e,t,n){return getElementList(e,n)[t].created}function getElementChecklist(e,t,n){return getElementList(e,n)[t].checklist}function setElementTitle(e,t,n,o){getElementList(e,n)[t].title=o}function setElementDescription(e,t,n,o){getElementList(e,n)[t].description=o}function setElementComments(e,t,n,o){getElementList(e,n)[t].comments=o}function setElementCategory(e,t,n,o){getElementList(e,n)[t].category=parseInt(o)}function setElementClassification(e,t,n,o){getElementList(e,n)[t].classification=o}function setElementUser(e,t,n,o){getElementList(e,n)[t].user=o}function setElementDue(e,t,n,o){getElementList(e,n)[t].due=o}function setElementCreated(e,t,n,o){getElementList(e,n)[t].created=o}function setElementChecklist(e,t,n,o){getElementList(e,n)[t].checklist=o}function changeElementStatus(e,t,n){var o,l,s,a=getElementList(e,"open"),i=getElementList(e,"closed"),r=getElementList(e,"deleted");"open"===n&&(s=a,l=i),"closed"===n&&(s=i,l=a),"deleted"===n&&(s=r,l=i),o=l[t],l.splice(t,1),s.push(o)}function changeElementStatusToDeleted(e,t){changeElementStatus(e,t,"deleted")}function changeElementStatusToClosed(e,t){changeElementStatus(e,t,"closed")}function changeElementStatusToOpen(e,t){changeElementStatus(e,t,"open")}function deleteElement(e,t,n){var o,l=getElementList(e,"open"),s=getElementList(e,"closed"),a=getElementList(e,"deleted");"open"===n&&(o=l),"closed"===n&&(o=s),"deleted"===n&&(o=a),o.splice(t,1)}function reorderList(a,i,r){$.each(todo,function(e,t){if(e===parseInt(a)){if("up"===r&&0!==i&&1<t.openElements.length){var n=t.openElements[i],o=t.openElements[i-1];t.openElements[i]=o,t.openElements[i-1]=n}if("down"===r&&i!==t.openElements.length-1&&1<t.openElements.length){var l=t.openElements[i],s=t.openElements[i+1];t.openElements[i]=s,t.openElements[i+1]=l}}}),createListsAndElements()}function compareElementModalTextarea(){if(0==elementCreateFlag){var e=getElement($("#modal-list").val(),$("#modal-element").val(),$("#modal-status").val());e.description!=$("#elementDescription").val()?($("#elementDescriptionWarning").removeClass("hidden"),$("#elementDescriptionWarning").addClass("flex"),$("#elementDescription").addClass("user-save-alert-border")):($("#elementDescriptionWarning").addClass("hidden"),$("#elementDescriptionWarning").removeClass("flex"),$("#elementDescription").removeClass("user-save-alert-border")),e.comments!=$("#elementComments").val()?($("#elementCommentsWarning").removeClass("hidden"),$("#elementCommentsWarning").addClass("flex"),$("#elementComments").addClass("user-save-alert-border")):($("#elementCommentsWarning").addClass("hidden"),$("#elementCommentsWarning").removeClass("flex"),$("#elementComments").removeClass("user-save-alert-border"))}}function resetElementModalUserAlert(){$("#elementDescriptionWarning").addClass("hidden"),$("#elementDescriptionWarning").removeClass("flex"),$("#elementDescription").removeClass("user-save-alert-border"),$("#elementCommentsWarning").addClass("hidden"),$("#elementCommentsWarning").removeClass("flex"),$("#elementComments").removeClass("user-save-alert-border")}function checkVersion(){"null"===localStorage.getItem("version")||null===localStorage.getItem("version")?updateVersion():(version<localStorage.getItem("version")||"development"===devStatus)&&updateVersion()}function updateVersion(){$.each(todo,function(o,e){repairList(e),$.each(e.openElements,function(e,t){var n="open";repairElement(o,e,t,n),repairElement(o,e,t,n="closed"),repairElement(o,e,t,n="deleted"),createListsAndElements(),localStorage.setItem("version",version)})})}function repairElement(e,t,n,o){(void 0===n.category&&setElementCategory(e,t,o,0),void 0===n.checklist&&setElementChecklist(e,t,o,[]),void 0===n.classification&&setElementClassification(e,t,o,""),void 0===n.comments&&setElementComments(e,t,o,""),void 0===n.created)&&setElementCreated(e,t,o,(new Date).toISOString());void 0===n.description&&setElementDescription(e,t,o,""),void 0===n.due&&setElementDue(e,t,o,""),void 0===n.title&&setElementTitle(e,t,o,"Default Title"),void 0===n.user&&setElementUser(e,t,o,"")}function repairList(e){void 0===e.list_name&&(e.list_name="Default List"),void 0===e.openElements&&(e.openElements=[]),void 0===e.closedElements&&(e.closedElements=[]),void 0===e.deletedElements&&(e.deletedElements=[])}function setMarkdownDescription(e){""!=e?($("#elementDescriptionMarkdownContainer").addClass("flex"),$("#elementDescriptionMarkdownContainer").removeClass("hidden"),document.getElementById("elementDescriptionMarkdownBody").innerHTML=marked(e,{breaks:!0}),highlightMarkdown()):($("#elementDescriptionMarkdownContainer").removeClass("flex"),$("#elementDescriptionMarkdownContainer").addClass("hidden"),document.getElementById("elementDescriptionMarkdownBody").innerHTML="",$("#elementDescription").addClass("flex"),$("#elementDescription").removeClass("hidden"))}function clickDescriptionMarkdownContainer(){$("#elementDescriptionMarkdownContainer").removeClass("flex"),$("#elementDescriptionMarkdownContainer").addClass("hidden"),$("#elementDescription").addClass("flex"),$("#elementDescription").removeClass("hidden"),autosize.update($("#elementDescription")),$("#elementDescription").focus()}function loseDescriptionMarkdownContainerFocus(){$("#elementDescriptionMarkdownContainer").addClass("flex"),$("#elementDescriptionMarkdownContainer").removeClass("hidden"),$("#elementDescription").removeClass("flex"),$("#elementDescription").addClass("hidden"),setMarkdownDescription($("#elementDescription").val())}function setMarkdownComments(e){""!=e?($("#elementCommentsMarkdownContainer").addClass("flex"),$("#elementCommentsMarkdownContainer").removeClass("hidden"),document.getElementById("elementCommentsMarkdownBody").innerHTML=marked(e,{breaks:!0}),highlightMarkdown()):($("#elementCommentsMarkdownContainer").removeClass("flex"),$("#elementCommentsMarkdownContainer").addClass("hidden"),document.getElementById("elementCommentsMarkdownBody").innerHTML="",$("#elementComments").addClass("flex"),$("#elementComments").removeClass("hidden"))}function clickCommentsMarkdownContainer(){$("#elementCommentsMarkdownContainer").removeClass("flex"),$("#elementCommentsMarkdownContainer").addClass("hidden"),$("#elementComments").addClass("flex"),$("#elementComments").removeClass("hidden"),autosize.update($("#elementComments")),$("#elementComments").focus()}function loseCommentsMarkdownContainerFocus(){$("#elementCommentsMarkdownContainer").addClass("flex"),$("#elementCommentsMarkdownContainer").removeClass("hidden"),$("#elementComments").removeClass("flex"),$("#elementComments").addClass("hidden"),setMarkdownComments($("#elementComments").val())}function highlightMarkdown(){document.querySelectorAll("pre code").forEach(function(e){hljs.highlightBlock(e)})}function elementOnDragStartEvent(e,t,n,o){e.dataTransfer.setData("localListId",t),e.dataTransfer.setData("localElementId",n),e.dataTransfer.setData("localElementStatus",o),$("#"+e.target.id).addClass("hideListElement"),$(populateListElementPlaceholder()).insertAfter($("#list-"+t)[0].children[n])}function allowDrop(e){e.preventDefault()}function elementDragEnd(e){createListsAndElements()}function listOnDropEvent(e,t){var n=e.dataTransfer.getData("localListId"),o=e.dataTransfer.getData("localElementId"),l=e.dataTransfer.getData("localElementStatus");t!=n&&(createElement(t,l,getElementTitle(n,o,l),getElementDescription(n,o,l),getElementComments(n,o,l),getElementCategory(n,o,l),getElementClassification(n,o,l),getElementUser(n,o,l),getElementDue(n,o,l),getElementCreated(n,o,l),getElementChecklist(n,o,l)),deleteElement(n,o,l)),createListsAndElements()}var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},todo=JSON.parse(localStorage.getItem("todo")),elementCreateFlag=!1;autosize($("#elementDescription")),autosize($("#elementComments")),$("#elementDescription").focus(function(){autosize.update($("#elementDescription")),autosize.update($("#elementComments"))}),firstTimeLoadLocalStorage(),window.setInterval(function(){autoUpdate()},5e3),window.setInterval(function(){createListsAndElements()},6e4),window.setInterval(function(){$(".list-container").get(0).scrollWidth>$(".list-container").get(0).clientWidth?($(".footer-container").addClass("hidden"),$(".footer-container").removeClass("flex")):($(".footer-container").removeClass("hidden"),$(".footer-container").addClass("flex"))},500);var currentTheme="";setDefaultTheme(),loadTheme(),window.setInterval(function(){autoChangeTheme()},5e3),"serviceWorker"in navigator&&navigator.serviceWorker.register("sw.js",{scope:"./"}),tail.DateTime(".tail-datetime-field",{animate:!0,classNames:!1,closeButton:!0,dateFormat:"YYYY-mm-dd",dateStart:!1,dateRanges:[],dateBlacklist:!0,dateEnd:!1,locale:"en",position:"bottom",rtl:"auto",startOpen:!1,stayOpen:!1,timeFormat:"HH:ii:ss",timeHours:null,timeMinutes:null,timeSeconds:0,timeIncrement:!0,timeStepHours:1,timeStepMinutes:5,timeStepSeconds:5,today:!0,tooltips:[],viewDefault:"days",viewDecades:!1,viewYears:!0,viewMonths:!0,viewDays:!0,weekStart:1}),$(document).on("keyup",function(e){compareElementModalTextarea()});var version=192,devStatus="development";checkVersion(),$(".modal-container").on("click",function(e){e.target===this&&closeAllModals()}),$(document).click(function(){closeAllDropdown()}),$(".dropdown").click(function(e){e.stopPropagation()}),$(".list-button").click(function(e){e.stopPropagation()});
+"use strict";
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var todo = JSON.parse(localStorage.getItem("todo"));
+var elementCreateFlag = false;
+
+autosize($("#elementDescription"));
+autosize($("#elementComments"));
+
+$("#elementDescription").focus(function () {
+  autosize.update($("#elementDescription"));
+  autosize.update($("#elementComments"));
+});
+
+function updateStoredTodoList() {
+  localStorage.setItem("todo", JSON.stringify(todo));
+}
+
+//@prepros-append defaultSetup.js
+//@prepros-append manageElementsAndLists.js
+//@prepros-append modalPrepare.js
+//@prepros-append modalToggleVisibility.js
+//@prepros-append button.js
+//@prepros-append autoUpdate.js
+//@prepros-append themeChanger.js
+//@prepros-append serviceWorker.js
+//@prepros-append importAndExportJson.js
+//@prepros-append userAlerts.js
+//@prepros-append dateDropdown.js
+//@prepros-append timeTill.js
+//@prepros-append jsonApi.js
+//@prepros-append textareaUserSaveAlert.js
+//@prepros-append bringUpToLatestVersion.js
+//@prepros-append markdown.js
+//@prepros-append clickEvents.js
+//@prepros-append dragDrop.js
+
+function firstTimeLoadLocalStorage() {
+  if (localStorage.getItem("todo") === "null" || localStorage.getItem("todo") === null) {
+    todo = [];
+    // createList("Default List");
+    // createElement(
+    //   0,
+    //   "open",
+    //   "This is an item that is yet to be completed",
+    //   "This is the description for the item that is yet to be completed"
+    // );
+    // createListsAndElements();
+    // createElement(
+    //   0,
+    //   "closed",
+    //   "This is an item that has been completed",
+    //   "This is the description for the item that has been completed"
+    // );
+
+    createList("List 1");
+    createList("List 2");
+    createElement(0, "open", "TestElement01");
+    createElement(0, "open", "TestElement02");
+    createElement(0, "open", "TestElement03");
+    createElement(0, "open", "TestElement04");
+    createElement(0, "open", "TestElement05");
+    createElement(0, "closed", "TestElement06");
+    createElement(0, "closed", "TestElement07");
+    createElement(0, "closed", "TestElement08");
+    createElement(0, "closed", "TestElement09");
+    createElement(0, "closed", "TestElement010");
+    createElement(1, "open", "TestElement11");
+    createElement(1, "open", "TestElement12");
+    createElement(1, "open", "TestElement13");
+    createElement(1, "open", "TestElement14");
+    createElement(1, "open", "TestElement15");
+    createElement(1, "closed", "TestElement16");
+    createElement(1, "closed", "TestElement17");
+    createElement(1, "closed", "TestElement18");
+    createElement(1, "closed", "TestElement19");
+    createElement(1, "closed", "TestElement110");
+
+    createListsAndElements();
+  } else {
+    createListsAndElements();
+  }
+}
+firstTimeLoadLocalStorage();
+
+function createListsAndElements() {
+  updateStoredTodoList(); //updated the local storage list with the one that is currently stored in the variable
+  $(".list-container").empty(); //empty the list container
+  $.each(todo, function (listId, listFields) {
+    //iterate through the lists
+    var output = populateListFromJson(listId, listFields); //use the populateListFromJson function to create the html that goes into the list-container class
+    $(".list-container").append(output); //append the output from populateListFromJson to the list-container class that is part of index.html
+    output = "";
+    $.each(listFields.openElements, function (elementId, elementFields) {
+      //iterate through the openElements part of the current list that is being iterated through
+      output += populateElementsFromJson(listId, elementId, elementFields, "open");
+    });
+    $.each(listFields.closedElements, function (elementId, elementFields) {
+      //iterate through the closedElements part of the current list that is being iterated through
+      output += populateElementsFromJson(listId, elementId, elementFields, "closed");
+    });
+    $("#list-" + listId).append(output); //append all of the elements to the list-container
+    // $("#list-" + listId).append(populateListElementPlaceholder());
+  });
+  $(".list-container").append(populateAddAnotherList()); //append the "create another item" button to the list-container
+}
+
+function populateListFromJson(localListId, localListFields) {
+  var returnState = "<div class='list' ondrop='listOnDropEvent(event, " + localListId + ")' ondragover='allowDrop(event)'><div class='list-header'>" + "<div class='list-title'>" + localListFields.list_name + "</div><div class='button-container'><div class='list-button' " + "onclick='toggleDropdown(" + localListId + ")'><i class='fas fa-ellipsis-h'></i></div><div " + "class='dropdown hidden' id='id-dropdown-" + localListId + "'><div class='dropdown-title'><div " + "class='dropdown-title-text'>List Actions</div><i " + "class='fas fa-times' onclick='toggleDropdown(" + localListId + ")'></i></div><div class='dropdown-element' " + "onclick='prepareModalRenameList(" + localListId + ")'>Rename List</div><div class='dropdown-element' " + "onclick='prepareModalDeleteList(" + localListId + ")'>Delete List</div></div></div></div><div class='list-body scrollbar-alt' " + "id='list-" + localListId + "'></div><div class='list-footer' onclick='buttonOpenElementModalForElementCreate(" + localListId + ")'><i class='fas fa-plus'></i> Add another item</div></div>";
+  return returnState;
+}
+
+function populateElementsFromJson(localListId, localElementId, localElementFields, localElementStatus) {
+  var returnState = "";
+  var statusStringA = "";
+  var statusStringB = "";
+  var statusStringC = "";
+  var statusStringD = "";
+  var dueDateTag = "";
+  var idStatusCode = 0;
+  var categoryTag = populateCategoryField(localElementFields.category);
+  if (localElementFields.due != "" && localElementStatus == "open") {
+    dueDateTag = "<div class='tag tag-" + calculateRisk(localElementFields.due) + "'>" + timeTill(localElementFields.due) + "</div>";
+  }
+  if (localElementStatus === "open") {
+    statusStringA = "status-open";
+    statusStringB = "buttonChangeElementStatusToClosed";
+    statusStringC = "far fa-square";
+    statusStringD = "open";
+    idStatusCode = 0;
+  }
+  if (localElementStatus === "closed") {
+    statusStringA = "status-closed";
+    statusStringB = "buttonChangeElementStatusToOpen";
+    statusStringC = "fas fa-check-square";
+    statusStringD = "closed";
+    idStatusCode = 1;
+  }
+  returnState = "<div class='list-element " + statusStringA + "' id=\"" + localListId + "-" + localElementId + "-" + idStatusCode + '"' + " draggable='true' ondragend='elementDragEnd(event)' ondrop='elementonDropEvent(event," + localListId + ", " + localElementId + ', "' + localElementStatus + "\")' ondragover='onElementDragOver(event," + localListId + ", " + localElementId + ', "' + localElementStatus + "\")' ondragstart='elementOnDragStartEvent(event," + localListId + ", " + localElementId + ', "' + localElementStatus + "\")'>" + categoryTag + "<div class='status' onclick='" + statusStringB + "(" + localListId + ", " + localElementId + ")'><i class=\"" + statusStringC + "\"></i></div><div class='title' onclick='buttonOpenElementModalForElementUpdate(" + localListId + ", " + localElementId + ', "' + statusStringD + "\")'>" + localElementFields.title + dueDateTag + "</div><div class='position'>";
+  if (localElementStatus === "open") {
+    returnState += "<div class='position-up position-element' onclick='buttonIncreaseElementPosition(" + localListId + ", " + localElementId + ")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element' onclick='buttonDecreaseElementPosition(" + localListId + ", " + localElementId + ")'><i class='fas fa-caret-down'></i></div>";
+  }
+  if (localElementStatus === "closed") {
+    returnState += "<div class='promote' onclick='prepareModalDelete(" + localListId + ", " + localElementId + ')\'><i class="far fa-trash-alt"></i></div></div>';
+  }
+  returnState += "</div></div>";
+  return returnState;
+}
+
+function populateListElementPlaceholder() {
+  var output = '<div ondragover="onPlaceholderDragOver()" class="list-element-placeholder"></div>';
+  return output;
+}
+
+function populateListElementDrop(localListId, localElementId, localElementStatus) {
+  var output = "<div class='list-element-drop' ondrop='elementonDropEvent(event," + localListId + "," + localElementId + ', "' + localElementStatus + "\")'></div>";
+  return output;
+}
+
+function populateAddAnotherList() {
+  //contains the divs for the "Add another item" for the list-container
+  var output = '<div class="add-list" ' + 'onclick="buttonCreateList()"><i class="fas fa-plus"></i> ' + "Add another item</div>";
+  return output;
+}
+
+function populateCategoryField(localElementFieldsCategory) {
+  var output = "";
+  if (localElementFieldsCategory == 0) {
+    output = "<div class='category'></div>";
+  } else if (localElementFieldsCategory == 1) {
+    output = "<div class='category category-blue'></div>";
+  } else if (localElementFieldsCategory == 2) {
+    output = "<div class='category category-green'></div>";
+  } else if (localElementFieldsCategory == 3) {
+    output = "<div class='category category-orange'></div>";
+  } else if (localElementFieldsCategory == 4) {
+    output = "<div class='category category-purple'></div>";
+  } else if (localElementFieldsCategory == 5) {
+    output = "<div class='category category-red'></div>";
+  } else if (localElementFieldsCategory == 6) {
+    output = "<div class='category category-yellow'></div>";
+  }
+  return output;
+}
+
+//opens the modal in the create configuration
+function prepareModalDelete(localListId, localElementId) {
+  $("#modal-confirm-list").val(localListId);
+  $("#modal-confirm-element").val(localElementId);
+  $("#deleteElementButton").show();
+  $("#deleteListButton").hide();
+  closeAllDropdown();
+  toggleConfirmationModalVisibility();
+}
+
+function prepareModalDeleteList(localListId) {
+  $("#modal-confirm-list").val(localListId);
+  $("#deleteElementButton").hide();
+  $("#deleteListButton").show();
+  closeAllDropdown();
+  toggleConfirmationModalVisibility();
+}
+
+function prepareModalRenameList(listId) {
+  $("#modal-rename-list").val(listId);
+  $("#modal-list-rename-input").val(todo[listId].list_name);
+  closeAllDropdown();
+  toggleRenameListModal();
+  $("#modal-list-rename-input").focus();
+}
+
+//toggles the confirmation modal visibility
+function toggleConfirmationModalVisibility() {
+  if ($("#id-confirmation-modal").hasClass("hidden")) {
+    $("#id-confirmation-modal").addClass("flex");
+    $("#id-confirmation-modal").removeClass("hidden");
+  } else {
+    $("#id-confirmation-modal").removeClass("flex");
+    $("#id-confirmation-modal").addClass("hidden");
+  }
+}
+
+//toggles the element modal visibility
+function toggleElementModalVisibility() {
+  if ($("#id-element-modal").hasClass("hidden")) {
+    $("#id-element-modal").addClass("flex");
+    $("#id-element-modal").removeClass("hidden");
+  } else {
+    $("#id-element-modal").removeClass("flex");
+    $("#id-element-modal").addClass("hidden");
+    elementCreateFlag = false;
+
+    $("#elementDescription").removeClass("flex");
+    $("#elementDescription").addClass("hidden");
+    $("#elementComments").removeClass("flex");
+    $("#elementComments").addClass("hidden");
+
+    $("#elementDescriptionMarkdownContainer").addClass("flex");
+    $("#elementDescriptionMarkdownContainer").removeClass("hidden");
+    $("#elementCommentsMarkdownContainer").addClass("flex");
+    $("#elementCommentsMarkdownContainer").removeClass("hidden");
+  }
+}
+
+function closeAllModals() {
+  $(".modal-container").removeClass("flex");
+  $(".modal-container").addClass("hidden");
+}
+
+function closeAllDropdown() {
+  $(".dropdown").removeClass("flex");
+  $(".dropdown").addClass("hidden");
+}
+
+function toggleRenameListModal() {
+  if ($("#id-rename-modal").hasClass("hidden")) {
+    $("#id-rename-modal").addClass("flex");
+    $("#id-rename-modal").removeClass("hidden");
+  } else {
+    $("#id-rename-modal").removeClass("flex");
+    $("#id-rename-modal").addClass("hidden");
+  }
+}
+
+function toggleDropdown(id) {
+  if ($("#id-dropdown-" + id).hasClass("hidden")) {
+    // hide all other dropdowns
+    $(".dropdown").removeClass("flex");
+    $(".dropdown").addClass("hidden");
+    //show this dropdown
+    $("#id-dropdown-" + id).addClass("flex");
+    $("#id-dropdown-" + id).removeClass("hidden");
+  } else {
+    //hide this dropdown
+    $("#id-dropdown-" + id).removeClass("flex");
+    $("#id-dropdown-" + id).addClass("hidden");
+  }
+}
+
+function buttonIncreaseElementPosition(localListId, localElementId) {
+  reorderList(localListId, localElementId, "up");
+}
+
+function buttonDecreaseElementPosition(localListId, localElementId) {
+  reorderList(localListId, localElementId, "down");
+}
+
+function buttonChangeElementStatusToOpen(listId, localElementId) {
+  changeElementStatusToOpen(listId, localElementId);
+  createListsAndElements();
+}
+
+function buttonChangeElementStatusToClosed(listId, localElementId) {
+  changeElementStatusToClosed(listId, localElementId);
+  createListsAndElements();
+}
+
+function buttonChangeElementStatusToDeleted() {
+  var localListId = $("#modal-confirm-list").val();
+  var localElementId = $("#modal-confirm-element").val();
+  changeElementStatusToDeleted(localListId, localElementId);
+  createListsAndElements();
+  toggleConfirmationModalVisibility();
+  generateUserAlert("List item successfully deleted.", "success", 5000);
+}
+
+function buttonCreateList() {
+  createList("New List");
+  createListsAndElements();
+}
+
+function buttonDeleteList() {
+  var localListId = $("#modal-confirm-list").val();
+  deleteList(localListId);
+  createListsAndElements();
+  toggleConfirmationModalVisibility();
+  generateUserAlert("List successfully deleted.", "success", 5000);
+}
+
+//opens the modal in the update configuration
+// buttonOpenElementModalForElementUpdate
+// prepareModalUpdate
+function buttonOpenElementModalForElementUpdate(localListId, localElementId, localElementStatus) {
+  var localElement = getElement(localListId, localElementId, localElementStatus);
+  resetElementModalUserAlert();
+  $("#modal-list").val(localListId);
+  $("#modal-element").val(localElementId);
+  $("#modal-status").val(localElementStatus);
+  $("#elementTitle").val(localElement.title);
+  $("#elementDescription").val(localElement.description);
+  setMarkdownDescription(localElement.description);
+  $("#elementComments").val(localElement.comments);
+  setMarkdownComments(localElement.comments);
+  $("#elementCategory").val(parseInt(localElement.category));
+  //$("#elementClassification").val(localElement.classification);
+  //$("#elementUser").val(localElement.user);
+  $("#elementDue").val(localElement.due);
+  // $("#elementCreated").val(localElement.created);
+  // $("#elementCategory").val(localElement.category);
+  $("#element-modal-button-create").hide();
+  $("#element-modal-button-update").show();
+  $("#element-modal-update-title").show();
+  $("#element-modal-create-title").hide();
+  closeAllDropdown();
+  toggleElementModalVisibility();
+  autosize.update($("#elementDescription"));
+  autosize.update($("#elementComments"));
+  $("#elementTitle").focus();
+}
+
+//opens the modal in the create configuration
+//prepareModalCreate
+//buttonOpenElementModalForElementCreate
+function buttonOpenElementModalForElementCreate(listId) {
+  elementCreateFlag = true;
+  resetElementModalUserAlert();
+  $("#elementTitle").val("");
+  $("#elementDescription").val("");
+  setMarkdownDescription("");
+  $("#elementComments").val("");
+  setMarkdownComments("");
+  $("#elementCategory").val(0);
+  //$("#elementClassification").val("");
+  //$("#elementUser").val("");
+  $("#elementDue").val("");
+  // $("#elementCreated").val("");
+  // $("#elementCategory").val("");
+  $("#element-modal-button-create").show();
+  $("#element-modal-button-update").hide();
+  $("#element-modal-update-title").hide();
+  $("#element-modal-create-title").show();
+  $("#modal-list").val(listId);
+  closeAllDropdown();
+  toggleElementModalVisibility();
+  autosize.update($("#elementDescription"));
+  autosize.update($("#elementComments"));
+  $("#elementTitle").focus();
+}
+
+//button controls
+// update button
+function buttonUpdateElement() {
+  var localListId = $("#modal-list").val();
+  var localElementId = $("#modal-element").val();
+  var localElementStatus = $("#modal-status").val();
+  setElementTitle(localListId, localElementId, localElementStatus, $("#elementTitle").val());
+  setElementDescription(localListId, localElementId, localElementStatus, $("#elementDescription").val());
+  setElementComments(localListId, localElementId, localElementStatus, $("#elementComments").val());
+  setElementCategory(localListId, localElementId, localElementStatus, parseInt($("#elementCategory").val()));
+  // setElementClassification(localListId, localElementId, localElementStatus, $("#elementClassification").val());
+  // setElementUser(localListId, localElementId, localElementStatus, $("#elementUser").val());
+  setElementDue(localListId, localElementId, localElementStatus, $("#elementDue").val());
+  // setElementCreated(localListId, localElementId, localElementStatus, $("#elementCreated").val());
+  // setElementChecklist(localListId, localElementId, localElementStatus, $("#elementChecklist").val());
+  toggleElementModalVisibility();
+  createListsAndElements();
+}
+
+function buttonCreateNewElement() {
+  var localListId = $("#modal-list").val();
+  var localElementState = "open";
+  var localElementTitle = $("#elementTitle").val();
+  var localElementDescription = $("#elementDescription").val();
+  var localElementComments = $("#elementComments").val();
+  var localElementsCategory = parseInt($("#elementCategory").val());
+  var localElementClassification = "";
+  var localElementUser = "";
+  var localElementDue = $("#elementDue").val();
+  var localElementCreated = "";
+  var localElementChecklist = "";
+  createElement(localListId, localElementState, localElementTitle, localElementDescription, localElementComments, localElementsCategory, localElementClassification, localElementUser, localElementDue, localElementCreated, localElementChecklist);
+  toggleElementModalVisibility();
+  createListsAndElements();
+  elementCreateFlag = false;
+}
+
+function buttonRenameList() {
+  var localListId = $("#modal-rename-list").val();
+  var localListName = $("#modal-list-rename-input").val();
+  setListName(localListId, localListName);
+  createListsAndElements();
+  toggleRenameListModal();
+}
+
+function buttonClearDueDate() {
+  $("#elementDue").val("");
+}
+
+function autoUpdate() {
+  var localTodo = JSON.parse(localStorage.getItem("todo"));
+  if (localStorage.getItem("todo") != null) {
+    if (!compareJsonArrays(todo, localTodo)) {
+      todo = JSON.parse(localStorage.getItem("todo"));
+      createListsAndElements();
+      generateUserAlert("It looks like you updated your list on another tab, it has been updated on this tab too!", "information", 5000);
+    }
+  } else {
+    firstTimeLoadLocalStorage();
+    createListsAndElements();
+  }
+}
+
+function compareJsonArrays(x, y) {
+  if (x === y) {
+    return true;
+  }
+  if (!(x instanceof Object) || !(y instanceof Object)) {
+    return false;
+  }
+  if (x.constructor !== y.constructor) {
+    return false;
+  }
+  var p;
+  for (p in x) {
+    if (x.hasOwnProperty(p)) {
+      if (!y.hasOwnProperty(p)) {
+        return false;
+      }
+      if (x[p] === y[p]) {
+        continue;
+      }
+      if (_typeof(x[p]) !== "object") {
+        return false;
+      }
+      if (!compareJsonArrays(x[p], y[p])) {
+        return false;
+      }
+    }
+  }
+
+  for (p in y) {
+    if (y.hasOwnProperty(p) && !x.hasOwnProperty(p)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// every 5 seconds second check for the list being updated on another tab
+window.setInterval(function () {
+  autoUpdate();
+}, 5000);
+
+// auto update the lists and elements one a minute
+window.setInterval(function () {
+  createListsAndElements();
+}, 60000);
+
+window.setInterval(function () {
+  if ($(".list-container").get(0).scrollWidth > $(".list-container").get(0).clientWidth) {
+    $(".footer-container").addClass("hidden");
+    $(".footer-container").removeClass("flex");
+  } else {
+    $(".footer-container").removeClass("hidden");
+    $(".footer-container").addClass("flex");
+  }
+}, 500);
+
+var currentTheme = "";
+
+function themeChanger(theme) {
+  if (theme === "default") {
+    currentTheme = "default";
+    $("body").removeClass();
+    $("body").addClass("theme-default");
+  }
+  if (theme === "dark") {
+    currentTheme = "dark";
+    $("body").removeClass();
+    $("body").addClass("theme-dark");
+  }
+  if (theme === "light") {
+    currentTheme = "light";
+    $("body").removeClass();
+    $("body").addClass("theme-light");
+  }
+  saveTheme(theme);
+}
+
+function saveTheme(theme) {
+  localStorage.setItem("theme", theme);
+}
+
+function loadTheme() {
+  themeChanger(localStorage.getItem("theme"));
+}
+
+function autoChangeTheme() {
+  if (localStorage.getItem("theme") != null) {
+    if (localStorage.getItem("theme") !== currentTheme) {
+      loadTheme();
+      generateUserAlert("It looks like you updated your theme on another tab, it has been updated on this tab too!", "information", 5000);
+    }
+  } else {
+    setDefaultTheme();
+  }
+}
+
+function setDefaultTheme() {
+  if (localStorage.getItem("theme") == null) {
+    localStorage.setItem("theme", "default");
+  }
+}
+
+setDefaultTheme();
+loadTheme();
+
+//check every 5 seconds for the theme being changed on another tab
+window.setInterval(function () {
+  autoChangeTheme();
+}, 5000);
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js", {
+    scope: "./"
+  });
+}
+
+function downloadObjectAsJson() {
+  var exportObj = todo;
+  var today = new Date();
+  var exportName = "todoBackup_" + today.toISOString();
+  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
+  var downloadAnchorNode = document.createElement("a");
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", exportName + ".json");
+  document.body.appendChild(downloadAnchorNode); // required for firefox
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
+function generateUserAlert(inputBody, inputAlertType, lifespan) {
+  var icon = "";
+  var title = "";
+  var alertClass = "";
+  var body = inputBody;
+  var output = "";
+  var min = 0;
+  var max = 1000000;
+  var random = Math.floor(Math.random() * (+max - +min)) + +min;
+  if (inputAlertType == "information") {
+    icon = "fas fa-info-circle";
+    title = "Information";
+    alertClass = "userAlert-info";
+  }
+  if (inputAlertType == "success") {
+    icon = "fas fa-check-circle";
+    title = "Success";
+    alertClass = "userAlert-success";
+  }
+  if (inputAlertType == "warning") {
+    icon = "fas fa-exclamation-circle";
+    title = "Warning";
+    alertClass = "userAlert-warning";
+  }
+  if (inputAlertType == "error") {
+    icon = "fas fa-times-circle";
+    title = "Error";
+    alertClass = "userAlert-error";
+  }
+  output = "<div class='userAlert " + alertClass + "'id='alertId-" + random + "'><div class='icon'><i class='" + icon + "'></i></div><div class='text'><div class='text-title'>" + title + "</div><div class='text-body'>" + body + "</div></div></div>";
+  $(".userAlert-container").append(output);
+
+  //var myVar = setTimeout(deleteUserAlert(random), 3000);
+  if (lifespan !== 0) {
+    setTimeout(function () {
+      $("#alertId-" + random).fadeOut(2000, function () {
+        $("#alertId-" + random).remove();
+      });
+    }, lifespan);
+  }
+}
+
+//user alert demo messages
+// generateUserAlert("Aww yeah, you successfully read this important alert message.", "information", 0);
+// generateUserAlert("Aww yeah, you successfully read this important alert message.", "success", 0);
+// generateUserAlert("Aww yeah, you successfully read this important alert message.", "warning", 0);
+// generateUserAlert("Aww yeah, you successfully read this important alert message.", "error", 0);
+
+tail.DateTime(".tail-datetime-field", {
+  animate: true,
+  classNames: false,
+  closeButton: true, // New in 0.4.5
+  dateFormat: "YYYY-mm-dd",
+  dateStart: false,
+  dateRanges: [],
+  dateBlacklist: true,
+  dateEnd: false,
+  locale: "en",
+  position: "bottom",
+  rtl: "auto",
+  startOpen: false,
+  stayOpen: false,
+  timeFormat: "HH:ii:ss",
+  timeHours: null, // New Syntax in 0.4.5
+  timeMinutes: null, // New Syntax in 0.4.5
+  timeSeconds: 0, // New Syntax in 0.4.5
+  timeIncrement: true, // New in 0.4.5
+  timeStepHours: 1, // New in 0.4.3
+  timeStepMinutes: 5, // New in 0.4.3
+  timeStepSeconds: 5, // New in 0.4.3
+  today: true,
+  tooltips: [],
+  viewDefault: "days",
+  viewDecades: false,
+  viewYears: true,
+  viewMonths: true,
+  viewDays: true,
+  weekStart: 1
+});
+
+function timeTill(futureDate) {
+  var dateFuture = Date.parse(futureDate);
+  var dateNow = new Date();
+
+  var seconds = Math.floor((dateFuture - dateNow) / 1000);
+  var minutes = Math.floor(seconds / 60);
+  var hours = Math.floor(minutes / 60);
+  var days = Math.floor(hours / 24);
+
+  hours = hours - days * 24;
+  minutes = minutes - days * 24 * 60 - hours * 60;
+  var output = "";
+  if (dateFuture - dateNow <= 0) {
+    output = "Overdue";
+  } else {
+    if (days >= 1) {
+      if (days == 1) {
+        output = days + " Day";
+      } else {
+        output = days + " Days";
+      }
+    } else {
+      if (hours >= 1) {
+        if (hours == 1) {
+          output = hours + " Hour";
+        } else {
+          output = hours + " Hours";
+        }
+      } else {
+        if (minutes == 1) {
+          output = minutes + " Min";
+        } else {
+          output = minutes + " Mins";
+        }
+      }
+    }
+  }
+  return output;
+}
+
+function calculateRisk(futureDate) {
+  var dateFuture = Date.parse(futureDate);
+  var dateNow = new Date();
+  var danger = 1000 * 60 * 60 * 24; // 24 hours in ms
+  var warning = danger * 7; // 1 week in ms
+
+  var returnState = "";
+  var diff = dateFuture - dateNow;
+  if (diff < danger) {
+    returnState = "danger";
+  } else {
+    if (diff < warning) {
+      returnState = "warning";
+    } else {
+      returnState = "info";
+    }
+  }
+  return returnState;
+}
+
+//@prepros-append jsonApi_List.js
+//@prepros-append jsonApi_Element.js
+
+function createList(localListName, localOpenElements, localClosedElements, localDeletedElements) {
+  localOpenElements = localOpenElements || "";
+  localClosedElements = localClosedElements || "";
+  localDeletedElements = localDeletedElements || "";
+  var returnState = false;
+  if (createJsonList()) {
+    //create the barebone json list
+    var locaListId = todo.length - 1;
+    setListName(locaListId, localListName); //as the list will be added on the end it's id will be length - 1
+    if (localOpenElements != "") {
+      setListOpenElements(locaListId, localOpenElements);
+    }
+    if (localClosedElements != "") {
+      setListClosedElements(locaListId, localClosedElements);
+    }
+    if (localDeletedElements != "") {
+      setListDeletedElements(locaListId, localDeletedElements);
+    }
+    returnState = true;
+  }
+  return returnState;
+}
+
+function createJsonList() {
+  var returnState = false;
+  todo.push({
+    list_name: "",
+    openElements: [],
+    closedElements: [],
+    deletedElements: []
+  });
+  returnState = true;
+  return returnState;
+}
+
+function deleteList(localListId) {
+  var returnState = false;
+  try {
+    todo.splice(localListId, 1);
+    returnState = true;
+  } catch (err) {
+    returnState = false;
+  }
+  return returnState;
+}
+
+function getList(localListId) {
+  return todo[localListId];
+}
+
+function getListName(localListId) {
+  return todo[localListId].list_name;
+}
+
+function getListOpenElements(localListId) {
+  return todo[localListId].openElements;
+}
+
+function getListClosedElements(localListId) {
+  return todo[localListId].closedElements;
+}
+
+function getListDeletedElements(localListId) {
+  return todo[localListId].deletedElements;
+}
+
+function setListName(localListId, localListName) {
+  var returnState = false;
+  try {
+    todo[localListId].list_name = localListName;
+    returnState = true;
+  } catch (err) {
+    returnState = false;
+  }
+  return returnState;
+}
+
+function setListOpenElements(localListId, localListOpenElements) {
+  var returnState = false;
+  try {
+    todo[localListId].openElements = localListOpenElements;
+    returnState = true;
+  } catch (err) {
+    returnState = false;
+  }
+  return returnState;
+}
+
+function setListClosedElements(localListId, localListClosedElements) {
+  var returnState = false;
+  try {
+    todo[localListId].closedElements = localListClosedElements;
+    returnState = true;
+  } catch (err) {
+    returnState = false;
+  }
+  return returnState;
+}
+
+function setListDeletedElements(localListId, localListDeletedElements) {
+  var returnState = false;
+  try {
+    todo[localListId].deletedElements = localListDeletedElements;
+    returnState = true;
+  } catch (err) {
+    returnState = false;
+  }
+  return returnState;
+}
+
+// "list_name": "Default List",
+// "openElements": [],
+// "closedElements": [],
+// "deletedElements": []
+
+function getElementList(localListId, localStatus) {
+  var returnState;
+  if (localStatus == "open") {
+    returnState = todo[localListId].openElements;
+  } else if (localStatus == "closed") {
+    returnState = todo[localListId].closedElements;
+  } else if (localStatus == "deleted") {
+    returnState = todo[localListId].deletedElements;
+  }
+  return returnState;
+}
+
+function createElement(localListId, localElementStatus, localElementTitle, localElementDescription, localElementComments, localElementsCategory, localElementClassification, localElementUser, localElementDue, localElementCreated, localElementChecklist) {
+  var returnState = false;
+  if (localElementTitle) {
+    //check that the title is present
+    localElementDescription = localElementDescription || "";
+    localElementComments = localElementComments || "";
+    localElementsCategory = localElementsCategory || 0;
+    localElementClassification = localElementClassification || "";
+    localElementUser = localElementUser || "";
+    localElementDue = localElementDue || "";
+    var d = new Date().toISOString();
+    localElementCreated = localElementCreated || d;
+    localElementChecklist = localElementChecklist || [];
+    if (createJsonElement(localListId, localElementStatus)) {
+      // create the skeleton element in the list
+      var localElementId;
+      if (localElementStatus == "open") {
+        localElementId = todo[localListId].openElements.length - 1;
+      } else if (localElementStatus == "closed") {
+        localElementId = todo[localListId].closedElements.length - 1;
+      } else if (localElementStatus == "deleted") {
+        localElementId = todo[localListId].deletedElements.length - 1;
+      }
+      setElementTitle(localListId, localElementId, localElementStatus, localElementTitle);
+      setElementDescription(localListId, localElementId, localElementStatus, localElementDescription);
+      setElementComments(localListId, localElementId, localElementStatus, localElementComments);
+      setElementCategory(localListId, localElementId, localElementStatus, localElementsCategory);
+      setElementClassification(localListId, localElementId, localElementStatus, localElementClassification);
+      setElementUser(localListId, localElementId, localElementStatus, localElementUser);
+      setElementDue(localListId, localElementId, localElementStatus, localElementDue);
+      setElementCreated(localListId, localElementId, localElementStatus, localElementCreated);
+      setElementChecklist(localListId, localElementId, localElementStatus, localElementChecklist);
+    }
+  }
+  return returnState;
+}
+
+function createJsonElement(localListId, localElementStatus) {
+  var returnState = false;
+  var localList = getElementList(localListId, localElementStatus);
+  localList.push({
+    title: "",
+    description: "",
+    classification: "",
+    user: "",
+    due: "",
+    created: "",
+    checklist: []
+  });
+  returnState = true;
+  return returnState;
+}
+
+function getElement(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId];
+}
+
+function getElementTitle(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].title;
+}
+
+function getElementDescription(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].description;
+}
+
+function getElementComments(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].comments;
+}
+
+function getElementCategory(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].category;
+}
+
+function getElementClassification(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].classification;
+}
+
+function getElementUser(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].user;
+}
+
+function getElementDue(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].due;
+}
+
+function getElementCreated(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].created;
+}
+
+function getElementChecklist(localListId, localElementId, localElementStatus) {
+  var localList = getElementList(localListId, localElementStatus);
+  return localList[localElementId].checklist;
+}
+
+function setElementTitle(localListId, localElementId, localElementStatus, localElementTitle) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].title = localElementTitle;
+}
+function setElementDescription(localListId, localElementId, localElementStatus, localElementDescription) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].description = localElementDescription;
+}
+function setElementComments(localListId, localElementId, localElementStatus, localElementComments) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].comments = localElementComments;
+}
+function setElementCategory(localListId, localElementId, localElementStatus, localElementsCategory) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].category = parseInt(localElementsCategory);
+}
+function setElementClassification(localListId, localElementId, localElementStatus, localElementClassification) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].classification = localElementClassification;
+}
+function setElementUser(localListId, localElementId, localElementStatus, localElementUser) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].user = localElementUser;
+}
+function setElementDue(localListId, localElementId, localElementStatus, localElementDue) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].due = localElementDue;
+}
+function setElementCreated(localListId, localElementId, localElementStatus, localElementCreated) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].created = localElementCreated;
+}
+function setElementChecklist(localListId, localElementId, localElementStatus, localElementChecklist) {
+  var localList = getElementList(localListId, localElementStatus);
+  localList[localElementId].checklist = localElementChecklist;
+}
+
+function changeElementStatus(localListId, localElementId, toStatus) {
+  var localListOpenElements = getElementList(localListId, "open");
+  var localListClosedElements = getElementList(localListId, "closed");
+  var localListDeletedElements = getElementList(localListId, "deleted");
+  var localElement;
+  var remList;
+  var addList;
+  if (toStatus === "open") {
+    addList = localListOpenElements;
+    remList = localListClosedElements;
+  }
+  if (toStatus === "closed") {
+    addList = localListClosedElements;
+    remList = localListOpenElements;
+  }
+  if (toStatus === "deleted") {
+    addList = localListDeletedElements;
+    remList = localListClosedElements;
+  }
+  localElement = remList[localElementId];
+  remList.splice(localElementId, 1);
+  addList.push(localElement);
+}
+
+function changeElementStatusToDeleted(localListId, localElementId) {
+  changeElementStatus(localListId, localElementId, "deleted");
+}
+
+function changeElementStatusToClosed(localListId, localElementId) {
+  changeElementStatus(localListId, localElementId, "closed");
+}
+
+function changeElementStatusToOpen(localListId, localElementId) {
+  changeElementStatus(localListId, localElementId, "open");
+}
+
+function deleteElement(localListId, localElementId, localElementStatus) {
+  var localListOpenElements = getElementList(localListId, "open");
+  var localListClosedElements = getElementList(localListId, "closed");
+  var localListDeletedElements = getElementList(localListId, "deleted");
+  var remList;
+  if (localElementStatus === "open") {
+    remList = localListOpenElements;
+  }
+  if (localElementStatus === "closed") {
+    remList = localListClosedElements;
+  }
+  if (localElementStatus === "deleted") {
+    remList = localListDeletedElements;
+  }
+  remList.splice(localElementId, 1);
+}
+
+// function changeElementCategory() {
+//
+// }
+
+function reorderList(localListId, localElementId, direction) {
+  $.each(todo, function (listId, listFields) {
+    // if the searched for list matches one in the list
+    if (listId === parseInt(localListId)) {
+      //var localElements = listFields.elements;
+      if (direction === "up" && localElementId !== 0 && listFields.openElements.length > 1) {
+        var selectedElementUp = listFields.openElements[localElementId];
+        var swapElementUp = listFields.openElements[localElementId - 1];
+
+        listFields.openElements[localElementId] = swapElementUp;
+        listFields.openElements[localElementId - 1] = selectedElementUp;
+      }
+      if (direction === "down" && localElementId !== listFields.openElements.length - 1 && listFields.openElements.length > 1) {
+        var selectedElementDown = listFields.openElements[localElementId];
+        var swapElementDown = listFields.openElements[localElementId + 1];
+
+        listFields.openElements[localElementId] = swapElementDown;
+        listFields.openElements[localElementId + 1] = selectedElementDown;
+      }
+    }
+  });
+  createListsAndElements();
+}
+// {
+//   "title": "This is an item that is yet to be completed",
+//   "description": "This is the description for the item that is yet to be completed",
+//   "comments": "",
+//   "category": 0,
+//   "classification": "",
+//   "user": "",
+//   "due": "",
+//   "created": "",
+//   "checklist": [{
+//     "name": "checklist Item 1",
+//     "status": "unchecked"
+//   }]
+// }
+
+//elementModalTextAreaUserSaveAlerts
+
+function compareElementModalTextarea() {
+  if (elementCreateFlag == false) {
+    var localListId = $("#modal-list").val();
+    var localElementId = $("#modal-element").val();
+    var localElementStatus = $("#modal-status").val();
+    var localElement = getElement(localListId, localElementId, localElementStatus);
+    if (localElement.description != $("#elementDescription").val()) {
+      //console.log("desc diif");
+      $("#elementDescriptionWarning").removeClass("hidden");
+      $("#elementDescriptionWarning").addClass("flex");
+      $("#elementDescription").addClass("user-save-alert-border");
+    } else {
+      $("#elementDescriptionWarning").addClass("hidden");
+      $("#elementDescriptionWarning").removeClass("flex");
+      $("#elementDescription").removeClass("user-save-alert-border");
+    }
+    if (localElement.comments != $("#elementComments").val()) {
+      $("#elementCommentsWarning").removeClass("hidden");
+      $("#elementCommentsWarning").addClass("flex");
+      $("#elementComments").addClass("user-save-alert-border");
+    } else {
+      $("#elementCommentsWarning").addClass("hidden");
+      $("#elementCommentsWarning").removeClass("flex");
+      $("#elementComments").removeClass("user-save-alert-border");
+    }
+  }
+}
+
+function resetElementModalUserAlert() {
+  $("#elementDescriptionWarning").addClass("hidden");
+  $("#elementDescriptionWarning").removeClass("flex");
+  $("#elementDescription").removeClass("user-save-alert-border");
+  $("#elementCommentsWarning").addClass("hidden");
+  $("#elementCommentsWarning").removeClass("flex");
+  $("#elementComments").removeClass("user-save-alert-border");
+}
+
+$(document).on("keyup", function (e) {
+  compareElementModalTextarea();
+});
+
+var version = 192; //update this to reflect the latest version of the todo
+var devStatus = "development"; //use production or development for the status of the build
+
+function checkVersion() {
+  if (localStorage.getItem("version") === "null" || localStorage.getItem("version") === null) {
+    updateVersion();
+  } else if (version < localStorage.getItem("version") || devStatus === "development") {
+    updateVersion();
+  }
+}
+
+function updateVersion() {
+  $.each(todo, function (listId, listFields) {
+    //iterate through the lists
+    repairList(listFields);
+    $.each(listFields.openElements, function (elementId, elementFields) {
+      var listStatus = "open";
+      repairElement(listId, elementId, elementFields, listStatus);
+      listStatus = "closed";
+      repairElement(listId, elementId, elementFields, listStatus);
+      listStatus = "deleted";
+      repairElement(listId, elementId, elementFields, listStatus);
+      createListsAndElements();
+      localStorage.setItem("version", version);
+    });
+  });
+}
+
+function repairElement(listId, elementId, elementFields, listStatus) {
+  if (elementFields.category === undefined) {
+    setElementCategory(listId, elementId, listStatus, 0);
+  }
+  if (elementFields.checklist === undefined) {
+    setElementChecklist(listId, elementId, listStatus, []);
+  }
+  if (elementFields.classification === undefined) {
+    setElementClassification(listId, elementId, listStatus, "");
+  }
+  if (elementFields.comments === undefined) {
+    setElementComments(listId, elementId, listStatus, "");
+  }
+  if (elementFields.created === undefined) {
+    var d = new Date().toISOString();
+    setElementCreated(listId, elementId, listStatus, d);
+  }
+  if (elementFields.description === undefined) {
+    setElementDescription(listId, elementId, listStatus, "");
+  }
+  if (elementFields.due === undefined) {
+    setElementDue(listId, elementId, listStatus, "");
+  }
+  if (elementFields.title === undefined) {
+    setElementTitle(listId, elementId, listStatus, "Default Title");
+  }
+  if (elementFields.user === undefined) {
+    setElementUser(listId, elementId, listStatus, "");
+  }
+}
+
+function repairList(listFields) {
+  //repair name
+  if (listFields.list_name === undefined) {
+    listFields.list_name = "Default List";
+  }
+  //repair openElements
+  if (listFields.openElements === undefined) {
+    listFields.openElements = [];
+  }
+  //repair closedElements
+  if (listFields.closedElements === undefined) {
+    listFields.closedElements = [];
+  }
+  //repair deletedElements
+  if (listFields.deletedElements === undefined) {
+    listFields.deletedElements = [];
+  }
+}
+
+checkVersion();
+
+// "list_name": "Default List",
+// "openElements": [],
+// "closedElements": [],
+// "deletedElements": []
+
+// {
+//   "title": "This is an item that is yet to be completed",
+//   "description": "This is the description for the item that is yet to be completed",
+//   "comments": "",
+//   "category": 0,
+//   "classification": "",
+//   "user": "",
+//   "due": "",
+//   "created": "",
+//   "checklist": [{
+//     "name": "checklist Item 1",
+//     "status": "unchecked"
+//   }]
+// }
+
+/*jshint esversion: 6 */
+function setMarkdownDescription(content) {
+  if (content != "") {
+    $("#elementDescriptionMarkdownContainer").addClass("flex");
+    $("#elementDescriptionMarkdownContainer").removeClass("hidden");
+    document.getElementById("elementDescriptionMarkdownBody").innerHTML = marked(content, { breaks: true });
+    highlightMarkdown();
+  } else {
+    $("#elementDescriptionMarkdownContainer").removeClass("flex");
+    $("#elementDescriptionMarkdownContainer").addClass("hidden");
+    document.getElementById("elementDescriptionMarkdownBody").innerHTML = "";
+    $("#elementDescription").addClass("flex");
+    $("#elementDescription").removeClass("hidden");
+  }
+}
+
+function clickDescriptionMarkdownContainer() {
+  $("#elementDescriptionMarkdownContainer").removeClass("flex");
+  $("#elementDescriptionMarkdownContainer").addClass("hidden");
+  $("#elementDescription").addClass("flex");
+  $("#elementDescription").removeClass("hidden");
+  autosize.update($("#elementDescription"));
+  $("#elementDescription").focus();
+}
+
+function loseDescriptionMarkdownContainerFocus() {
+  $("#elementDescriptionMarkdownContainer").addClass("flex");
+  $("#elementDescriptionMarkdownContainer").removeClass("hidden");
+
+  $("#elementDescription").removeClass("flex");
+  $("#elementDescription").addClass("hidden");
+
+  setMarkdownDescription($("#elementDescription").val());
+}
+
+function setMarkdownComments(content) {
+  if (content != "") {
+    $("#elementCommentsMarkdownContainer").addClass("flex");
+    $("#elementCommentsMarkdownContainer").removeClass("hidden");
+    document.getElementById("elementCommentsMarkdownBody").innerHTML = marked(content, { breaks: true });
+    highlightMarkdown();
+  } else {
+    $("#elementCommentsMarkdownContainer").removeClass("flex");
+    $("#elementCommentsMarkdownContainer").addClass("hidden");
+    document.getElementById("elementCommentsMarkdownBody").innerHTML = "";
+    $("#elementComments").addClass("flex");
+    $("#elementComments").removeClass("hidden");
+  }
+}
+
+function clickCommentsMarkdownContainer() {
+  $("#elementCommentsMarkdownContainer").removeClass("flex");
+  $("#elementCommentsMarkdownContainer").addClass("hidden");
+
+  $("#elementComments").addClass("flex");
+  $("#elementComments").removeClass("hidden");
+  autosize.update($("#elementComments"));
+  $("#elementComments").focus();
+}
+
+function loseCommentsMarkdownContainerFocus() {
+  $("#elementCommentsMarkdownContainer").addClass("flex");
+  $("#elementCommentsMarkdownContainer").removeClass("hidden");
+
+  $("#elementComments").removeClass("flex");
+  $("#elementComments").addClass("hidden");
+
+  setMarkdownComments($("#elementComments").val());
+}
+
+function highlightMarkdown() {
+  document.querySelectorAll("pre code").forEach(function (block) {
+    hljs.highlightBlock(block);
+  });
+}
+
+$(".modal-container").on("click", function (e) {
+  if (e.target !== this) return;
+  closeAllModals();
+});
+
+$(document).click(function () {
+  closeAllDropdown();
+});
+
+$(".dropdown").click(function (e) {
+  e.stopPropagation();
+});
+
+$(".list-button").click(function (e) {
+  e.stopPropagation();
+});
+
+var globalListenToDrag = false;
+
+function elementOnDragStartEvent(event, localListId, localElementId, localElementStatus) {
+  event.dataTransfer.setData("localListId", localListId);
+  event.dataTransfer.setData("localElementId", localElementId);
+  event.dataTransfer.setData("localElementStatus", localElementStatus);
+  globalListenToDrag = true;
+  var localStatusIdCode = 0;
+  if (localElementStatus == "open") {
+    localStatusIdCode = 0;
+  } else if (localElementStatus == "closed") {
+    localStatusIdCode = 1;
+  }
+  $(populateListElementPlaceholder()).insertAfter($("#" + localListId + "-" + localElementId + "-" + localStatusIdCode));
+}
+
+function allowDrop(event) {
+  if (globalListenToDrag) {
+    event.preventDefault();
+  }
+}
+
+function onElementDragOver(event, localListId, localElementId, localElementStatus) {
+  var listen = globalListenToDrag;
+  if (listen) {
+    var localStatusIdCode = 0;
+    if (localElementStatus == "open") {
+      localStatusIdCode = 0;
+    } else if (localElementStatus == "closed") {
+      localStatusIdCode = 1;
+    }
+    //remove old placeholder
+    $(".list-element-placeholder").remove();
+    $(".list-element-drop").remove();
+    //add new placeholder
+    $(populateListElementDrop(localListId, localElementId, localElementStatus)).insertBefore($("#" + localListId + "-" + localElementId + "-" + localStatusIdCode));
+  }
+}
+
+function onPlaceholderDragOver() {
+  $(".list-element-drop").remove();
+}
+
+function elementonDropEvent(event, localListIdDest, localElementIdDest, localElementStatusDest) {
+  var localListId = event.dataTransfer.getData("localListId");
+  var localElementId = event.dataTransfer.getData("localElementId");
+  var localElementStatus = event.dataTransfer.getData("localElementStatus");
+
+  if (localListId == localListIdDest) {
+    moveWithinList(localListId, localElementId, localElementStatus, localListIdDest, localElementIdDest, localElementStatusDest);
+  } else {
+    moveListToList(localListId, localElementId, localElementStatus, localListIdDest, localElementIdDest, localElementStatusDest);
+  }
+}
+
+function elementDragEnd(event) {
+  globalListenToDrag = false;
+  createListsAndElements();
+}
+
+function listOnDropEvent(event, destList) {
+  // var localListId = event.dataTransfer.getData("localListId");
+  // var localElementId = event.dataTransfer.getData("localElementId");
+  // var localElementStatus = event.dataTransfer.getData("localElementStatus");
+  // if (destList != localListId) {
+  //   //stop elements moving to the same list (for now...)
+  //   createElement(
+  //     destList,
+  //     localElementStatus,
+  //     getElementTitle(localListId, localElementId, localElementStatus),
+  //     getElementDescription(localListId, localElementId, localElementStatus),
+  //     getElementComments(localListId, localElementId, localElementStatus),
+  //     getElementCategory(localListId, localElementId, localElementStatus),
+  //     getElementClassification(localListId, localElementId, localElementStatus),
+  //     getElementUser(localListId, localElementId, localElementStatus),
+  //     getElementDue(localListId, localElementId, localElementStatus),
+  //     getElementCreated(localListId, localElementId, localElementStatus),
+  //     getElementChecklist(localListId, localElementId, localElementStatus)
+  //   );
+  //   deleteElement(localListId, localElementId, localElementStatus);
+  // }
+  // createListsAndElements();
+}
+
+function moveWithinList(localListId, localElementId, localElementStatus, localListIdDest, localElementIdDest, localElementStatusDest) {
+  //if same status
+  var itemBeingMoved = getElement(localListId, localElementId, localElementStatus);
+  var list = getElementList(localListIdDest, localElementStatus);
+  if (localElementStatus == localElementStatusDest) {
+    // splice to new pos
+    list.splice(localElementIdDest, 0, itemBeingMoved);
+    if (localElementIdDest < localElementId) {
+      var elementModifier = parseInt(localElementId) + 1;
+      deleteElement(localListId, elementModifier, localElementStatus);
+    }
+    if (localElementIdDest > localElementId) {
+      deleteElement(localListId, localElementId, localElementStatus);
+    }
+  } else {
+    //append to same status as original
+    list.push(itemBeingMoved);
+    deleteElement(localListId, localElementId, localElementStatus);
+  }
+}
+
+function moveListToList(localListId, localElementId, localElementStatus, localListIdDest, localElementIdDest, localElementStatusDest) {
+  //if same status
+  var itemBeingMoved = getElement(localListId, localElementId, localElementStatus);
+  var list = getElementList(localListIdDest, localElementStatus);
+  if (localElementStatus == localElementStatusDest) {
+    //add dragged item to new list in new position
+    list.splice(localElementIdDest, 0, itemBeingMoved);
+  } else {
+    // append to new list but old status
+    list.push(itemBeingMoved);
+  }
+  //remove dragged item from old list
+  deleteElement(localListId, localElementId, localElementStatus);
+}

@@ -98,22 +98,26 @@
           }
         }
       }
-      .list-element-placeholder {
+      .element-background {
+        //position: absolute !important;
+        //width: 400px;
+        //opacity: 0;
+      }
+      .list-element-placeholder,
+      .list-element-drop {
         padding: 4px 0 6px 0;
         cursor: pointer;
         display: flex;
         text-decoration: none;
         height: 31px;
         margin: 3px 4px;
-        margin-top: -34px;
         border-radius: 4px;
         text-align: center;
         align-self: center;
         justify-content: center;
       }
-      .hideListElement {
-        opacity: 0;
-        //height: 1px;
+      .list-element-placeholder {
+        margin-top: -34px;
       }
       .status-closed {
         .position {
@@ -200,7 +204,11 @@
             }
           }
         }
-        .list-element-placeholder {
+        .element-background {
+          background-color: $theme-default-bg-color-2;
+        }
+        .list-element-placeholder,
+        .list-element-drop {
           background-color: $theme-default-bg-color-1;
           border: 2px dashed darken($theme-default-accent-color-1, 10%);
         }
@@ -274,7 +282,11 @@
             }
           }
         }
-        .list-element-placeholder {
+        .element-background {
+          background-color: $theme-dark-bg-color-2;
+        }
+        .list-element-placeholder,
+        .list-element-drop {
           background-color: $theme-dark-bg-color-1;
           border: 2px dashed darken($theme-dark-accent-color-1, 10%);
         }
@@ -347,7 +359,8 @@
             }
           }
         }
-        .list-element-placeholder {
+        .list-element-placeholder,
+        .list-element-drop {
           background-color: $theme-light-bg-color-1;
           border: 2px dashed darken($theme-light-accent-color-1, 10%);
         }

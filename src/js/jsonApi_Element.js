@@ -37,7 +37,14 @@ function createElement(
     localElementChecklist = localElementChecklist || [];
     if (createJsonElement(localListId, localElementStatus)) {
       // create the skeleton element in the list
-      var localElementId = todo[localListId].openElements.length - 1;
+      var localElementId;
+      if (localElementStatus == "open") {
+        localElementId = todo[localListId].openElements.length - 1;
+      } else if (localElementStatus == "closed") {
+        localElementId = todo[localListId].closedElements.length - 1;
+      } else if (localElementStatus == "deleted") {
+        localElementId = todo[localListId].deletedElements.length - 1;
+      }
       setElementTitle(
         localListId,
         localElementId,
