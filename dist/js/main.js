@@ -138,9 +138,6 @@ function populateElementsFromJson(localListId, localElementId, localElementField
     idStatusCode = 1;
   }
   returnState = "<div class='list-element " + statusStringA + "' id=\"" + localListId + "-" + localElementId + "-" + idStatusCode + '"' + " draggable='true' ondragend='elementDragEnd(event)' ondrop='elementonDropEvent(event," + localListId + ", " + localElementId + ', "' + localElementStatus + "\")' ondragover='onElementDragOver(event," + localListId + ", " + localElementId + ', "' + localElementStatus + "\")' ondragstart='elementOnDragStartEvent(event," + localListId + ", " + localElementId + ', "' + localElementStatus + "\")'>" + categoryTag + "<div class='status' onclick='" + statusStringB + "(" + localListId + ", " + localElementId + ")'><i class=\"" + statusStringC + "\"></i></div><div class='title' onclick='buttonOpenElementModalForElementUpdate(" + localListId + ", " + localElementId + ', "' + statusStringD + "\")'>" + localElementFields.title + dueDateTag + "</div><div class='position'>";
-  if (localElementStatus === "open") {
-    returnState += "<div class='position-up position-element' onclick='buttonIncreaseElementPosition(" + localListId + ", " + localElementId + ")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element' onclick='buttonDecreaseElementPosition(" + localListId + ", " + localElementId + ")'><i class='fas fa-caret-down'></i></div>";
-  }
   if (localElementStatus === "closed") {
     returnState += "<div class='promote' onclick='prepareModalDelete(" + localListId + ", " + localElementId + ')\'><i class="far fa-trash-alt"></i></div></div>';
   }
@@ -278,13 +275,13 @@ function toggleDropdown(id) {
   }
 }
 
-function buttonIncreaseElementPosition(localListId, localElementId) {
-  reorderList(localListId, localElementId, "up");
-}
+// function buttonIncreaseElementPosition(localListId, localElementId) {
+//   reorderList(localListId, localElementId, "up");
+// }
 
-function buttonDecreaseElementPosition(localListId, localElementId) {
-  reorderList(localListId, localElementId, "down");
-}
+// function buttonDecreaseElementPosition(localListId, localElementId) {
+//   reorderList(localListId, localElementId, "down");
+// }
 
 function buttonChangeElementStatusToOpen(listId, localElementId) {
   changeElementStatusToOpen(listId, localElementId);

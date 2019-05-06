@@ -146,18 +146,6 @@ function populateElementsFromJson(
     localElementFields.title +
     dueDateTag +
     "</div><div class='position'>";
-  if (localElementStatus === "open") {
-    returnState +=
-      "<div class='position-up position-element' onclick='buttonIncreaseElementPosition(" +
-      localListId +
-      ", " +
-      localElementId +
-      ")'><i class='fas fa-caret-up'></i></div><div class='position-down position-element' onclick='buttonDecreaseElementPosition(" +
-      localListId +
-      ", " +
-      localElementId +
-      ")'><i class='fas fa-caret-down'></i></div>";
-  }
   if (localElementStatus === "closed") {
     returnState +=
       "<div class='promote' onclick='prepareModalDelete(" +

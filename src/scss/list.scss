@@ -54,30 +54,15 @@
           align-self: stretch;
           display: flex;
           flex-direction: column;
-          .position-element {
-            display: flex;
-            flex-grow: 1;
-            font-size: 14px;
-            padding: 0 14px;
-            i {
-              align-self: center;
-            }
-          }
           .promote {
             align-items: stretch;
             display: flex;
             flex-grow: 1;
-            font-size: 18px;
-            padding: 0 11px 0 10px;
+            font-size: 16px;
+            padding: 0 8px;
             i {
               align-self: center;
             }
-          }
-          .position-up {
-            border-top-right-radius: 4px;
-          }
-          .position-down {
-            border-bottom-right-radius: 4px;
           }
         }
         .title {
@@ -178,13 +163,6 @@
             color: darken($theme-default-font-color-1, 10%);
           }
           .position {
-            border-left: 1px solid $theme-default-accent-color-1;
-            .position-element {
-              &:hover {
-                background-color: darken($theme-default-accent-color-1, 10%);
-                color: darken($theme-default-font-color-1, 10%);
-              }
-            }
             .promote {
               background-color: transparent;
               color: $red;
@@ -192,9 +170,6 @@
                 background-color: $red;
                 color: $white;
               }
-            }
-            .position-down {
-              border-top: 1px solid $theme-default-accent-color-1;
             }
           }
           .status {
@@ -256,13 +231,6 @@
             color: darken($theme-dark-font-color-2, 10%);
           }
           .position {
-            border-left: 1px solid $theme-dark-accent-color-1;
-            .position-element {
-              &:hover {
-                background-color: darken($theme-dark-accent-color-1, 5%);
-                color: $white;
-              }
-            }
             .promote {
               background-color: transparent;
               color: $red;
@@ -270,9 +238,6 @@
                 background-color: $red;
                 color: $white;
               }
-            }
-            .position-down {
-              border-top: 1px solid $theme-dark-accent-color-1;
             }
           }
           .status {
@@ -334,22 +299,12 @@
             color: darken($theme-light-font-color-1, 10%);
           }
           .position {
-            border-left: 1px solid $theme-light-accent-color-1;
-            .position-element {
-              &:hover {
-                background-color: darken($theme-light-accent-color-1, 10%);
-                color: darken($theme-light-font-color-1, 10%);
-              }
-            }
             .promote {
               color: $red;
               &:hover {
                 background-color: $red;
                 color: $white;
               }
-            }
-            .position-down {
-              border-top: 1px solid $theme-light-accent-color-1;
             }
           }
           .status {

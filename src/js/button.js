@@ -1,10 +1,10 @@
-function buttonIncreaseElementPosition(localListId, localElementId) {
-  reorderList(localListId, localElementId, "up");
-}
+// function buttonIncreaseElementPosition(localListId, localElementId) {
+//   reorderList(localListId, localElementId, "up");
+// }
 
-function buttonDecreaseElementPosition(localListId, localElementId) {
-  reorderList(localListId, localElementId, "down");
-}
+// function buttonDecreaseElementPosition(localListId, localElementId) {
+//   reorderList(localListId, localElementId, "down");
+// }
 
 function buttonChangeElementStatusToOpen(listId, localElementId) {
   changeElementStatusToOpen(listId, localElementId);
