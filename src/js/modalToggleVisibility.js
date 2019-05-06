@@ -51,17 +51,16 @@ function toggleRenameListModal() {
   }
 }
 
-function toggleDropdown(id) {
-  if ($("#id-dropdown-" + id).hasClass("hidden")) {
+function toggleDropdown(buttonId) {
+  if ($("#id-dropdown-" + buttonId).hasClass("hidden")) {
     // hide all other dropdowns
-    $(".dropdown").removeClass("flex");
-    $(".dropdown").addClass("hidden");
+    closeAllDropdown();
     //show this dropdown
-    $("#id-dropdown-" + id).addClass("flex");
-    $("#id-dropdown-" + id).removeClass("hidden");
+    $("#id-dropdown-" + buttonId).removeClass("hidden");
+    $("#id-dropdown-" + buttonId).addClass("flex");
   } else {
     //hide this dropdown
-    $("#id-dropdown-" + id).removeClass("flex");
-    $("#id-dropdown-" + id).addClass("hidden");
+    $("#id-dropdown-" + buttonId).removeClass("flex");
+    $("#id-dropdown-" + buttonId).addClass("hidden");
   }
 }

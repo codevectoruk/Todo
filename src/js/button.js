@@ -184,8 +184,9 @@ function buttonRenameList() {
   var localListId = $("#modal-rename-list").val();
   var localListName = $("#modal-list-rename-input").val();
   setListName(localListId, localListName);
-  createListsAndElements();
   toggleRenameListModal();
+  closeAllDropdown();
+  createListsAndElements();
 }
 
 function buttonClearDueDate() {

@@ -6,11 +6,14 @@ $(".modal-container").on("click", function(e) {
 $(document).click(function() {
   closeAllDropdown();
 });
+function registerDropdownClickInterrupts() {
+  $(".dropdown").click(function(e) {
+    e.stopPropagation();
+  });
 
-$(".dropdown").click(function(e) {
-  e.stopPropagation();
-});
+  $(".list-button").click(function(e) {
+    e.stopPropagation();
+  });
+}
 
-$(".list-button").click(function(e) {
-  e.stopPropagation();
-});
+registerDropdownClickInterrupts();

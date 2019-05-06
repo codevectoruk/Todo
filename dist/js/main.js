@@ -104,6 +104,7 @@ function createListsAndElements() {
     // $("#list-" + listId).append(populateListElementPlaceholder());
   });
   $(".list-container").append(populateAddAnotherList()); //append the "create another item" button to the list-container
+  registerDropdownClickInterrupts();
 }
 
 function populateListFromJson(localListId, localListFields) {
@@ -260,18 +261,17 @@ function toggleRenameListModal() {
   }
 }
 
-function toggleDropdown(id) {
-  if ($("#id-dropdown-" + id).hasClass("hidden")) {
+function toggleDropdown(buttonId) {
+  if ($("#id-dropdown-" + buttonId).hasClass("hidden")) {
     // hide all other dropdowns
-    $(".dropdown").removeClass("flex");
-    $(".dropdown").addClass("hidden");
+    closeAllDropdown();
     //show this dropdown
-    $("#id-dropdown-" + id).addClass("flex");
-    $("#id-dropdown-" + id).removeClass("hidden");
+    $("#id-dropdown-" + buttonId).removeClass("hidden");
+    $("#id-dropdown-" + buttonId).addClass("flex");
   } else {
     //hide this dropdown
-    $("#id-dropdown-" + id).removeClass("flex");
-    $("#id-dropdown-" + id).addClass("hidden");
+    $("#id-dropdown-" + buttonId).removeClass("flex");
+    $("#id-dropdown-" + buttonId).addClass("hidden");
   }
 }
 
@@ -416,8 +416,9 @@ function buttonRenameList() {
   var localListId = $("#modal-rename-list").val();
   var localListName = $("#modal-list-rename-input").val();
   setListName(localListId, localListName);
-  createListsAndElements();
   toggleRenameListModal();
+  closeAllDropdown();
+  createListsAndElements();
 }
 
 function buttonClearDueDate() {
@@ -1112,7 +1113,9 @@ function resetElementModalUserAlert() {
 }
 
 $(document).on("keyup", function (e) {
-  compareElementModalTextarea();
+  if ($("#elementDescription").is(":visible")) {
+    compareElementModalTextarea();
+  }
 });
 
 var version = 192; //update this to reflect the latest version of the todo
@@ -1299,14 +1302,17 @@ $(".modal-container").on("click", function (e) {
 $(document).click(function () {
   closeAllDropdown();
 });
+function registerDropdownClickInterrupts() {
+  $(".dropdown").click(function (e) {
+    e.stopPropagation();
+  });
 
-$(".dropdown").click(function (e) {
-  e.stopPropagation();
-});
+  $(".list-button").click(function (e) {
+    e.stopPropagation();
+  });
+}
 
-$(".list-button").click(function (e) {
-  e.stopPropagation();
-});
+registerDropdownClickInterrupts();
 
 var globalListenToDrag = false;
 

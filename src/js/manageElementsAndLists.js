@@ -28,6 +28,7 @@ function createListsAndElements() {
     // $("#list-" + listId).append(populateListElementPlaceholder());
   });
   $(".list-container").append(populateAddAnotherList()); //append the "create another item" button to the list-container
+  registerDropdownClickInterrupts();
 }
 
 function populateListFromJson(localListId, localListFields) {
