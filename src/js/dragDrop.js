@@ -21,12 +21,6 @@ function elementOnDragStartEvent(
   );
 }
 
-function allowDrop(event) {
-  if (globalListenToDrag) {
-    event.preventDefault();
-  }
-}
-
 function onElementDragOver(
   event,
   localListId,
@@ -35,6 +29,7 @@ function onElementDragOver(
 ) {
   var listen = globalListenToDrag;
   if (listen) {
+    event.preventDefault();
     var localStatusIdCode = 0;
     if (localElementStatus == "open") {
       localStatusIdCode = 0;
@@ -93,11 +88,19 @@ function elementDragEnd(event) {
   createListsAndElements();
 }
 
-// function listOnDragOver(event) {
-//   // if (listen) {
-//   //   $("list-body").append(populateListElementDrop(localListId, localElementId, localElementStatus))
-//   // }
-// }
+function listOnDragOver(event, destList) {
+  var listen = globalListenToDrag;
+  if (listen) {
+    event.preventDefault();
+    if (
+      getList(destList).openElements.length === 0 &&
+      getList(destList).closedElements.length === 0
+    ) {
+      $(".list-element-placeholder").remove();
+      $(".list-element-drop").remove();
+    }
+  }
+}
 
 function listOnDropEvent(event, destList) {
   var listen = globalListenToDrag;
@@ -106,9 +109,6 @@ function listOnDropEvent(event, destList) {
       getList(destList).openElements.length === 0 &&
       getList(destList).closedElements.length === 0
     ) {
-      //remove old placeholder
-      $(".list-element-placeholder").remove();
-      $(".list-element-drop").remove();
       var localListId = event.dataTransfer.getData("localListId");
       var localElementId = event.dataTransfer.getData("localElementId");
       var localElementStatus = event.dataTransfer.getData("localElementStatus");

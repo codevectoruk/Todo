@@ -35,7 +35,9 @@ function populateListFromJson(localListId, localListFields) {
   var returnState =
     "<div class='list' ondrop='listOnDropEvent(event, " +
     localListId +
-    ")' ondragover='allowDrop(event)'><div class='list-header'>" +
+    ")' ondragover='listOnDragOver(event," +
+    localListId +
+    ")'><div class='list-header'>" +
     "<div class='list-title'>" +
     localListFields.list_name +
     "</div><div class='button-container'><div class='list-button' " +

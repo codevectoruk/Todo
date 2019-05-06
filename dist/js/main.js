@@ -108,7 +108,7 @@ function createListsAndElements() {
 }
 
 function populateListFromJson(localListId, localListFields) {
-  var returnState = "<div class='list' ondrop='listOnDropEvent(event, " + localListId + ")' ondragover='allowDrop(event)'><div class='list-header'>" + "<div class='list-title'>" + localListFields.list_name + "</div><div class='button-container'><div class='list-button' " + "onclick='toggleDropdown(" + localListId + ")'><i class='fas fa-ellipsis-h'></i></div><div " + "class='dropdown hidden' id='id-dropdown-" + localListId + "'><div class='dropdown-title'><div " + "class='dropdown-title-text'>List Actions</div><i " + "class='fas fa-times' onclick='toggleDropdown(" + localListId + ")'></i></div><div class='dropdown-element' " + "onclick='prepareModalRenameList(" + localListId + ")'>Rename List</div><div class='dropdown-element' " + "onclick='prepareModalDeleteList(" + localListId + ")'>Delete List</div></div></div></div><div class='list-body scrollbar-alt' " + "id='list-" + localListId + "'></div><div class='list-footer' onclick='buttonOpenElementModalForElementCreate(" + localListId + ")'><i class='fas fa-plus'></i> Add another item</div></div>";
+  var returnState = "<div class='list' ondrop='listOnDropEvent(event, " + localListId + ")' ondragover='listOnDragOver(event," + localListId + ")'><div class='list-header'>" + "<div class='list-title'>" + localListFields.list_name + "</div><div class='button-container'><div class='list-button' " + "onclick='toggleDropdown(" + localListId + ")'><i class='fas fa-ellipsis-h'></i></div><div " + "class='dropdown hidden' id='id-dropdown-" + localListId + "'><div class='dropdown-title'><div " + "class='dropdown-title-text'>List Actions</div><i " + "class='fas fa-times' onclick='toggleDropdown(" + localListId + ")'></i></div><div class='dropdown-element' " + "onclick='prepareModalRenameList(" + localListId + ")'>Rename List</div><div class='dropdown-element' " + "onclick='prepareModalDeleteList(" + localListId + ")'>Delete List</div></div></div></div><div class='list-body scrollbar-alt' " + "id='list-" + localListId + "'></div><div class='list-footer' onclick='buttonOpenElementModalForElementCreate(" + localListId + ")'><i class='fas fa-plus'></i> Add another item</div></div>";
   return returnState;
 }
 
@@ -1330,15 +1330,10 @@ function elementOnDragStartEvent(event, localListId, localElementId, localElemen
   $(populateListElementPlaceholder()).insertAfter($("#" + localListId + "-" + localElementId + "-" + localStatusIdCode));
 }
 
-function allowDrop(event) {
-  if (globalListenToDrag) {
-    event.preventDefault();
-  }
-}
-
 function onElementDragOver(event, localListId, localElementId, localElementStatus) {
   var listen = globalListenToDrag;
   if (listen) {
+    event.preventDefault();
     var localStatusIdCode = 0;
     if (localElementStatus == "open") {
       localStatusIdCode = 0;
@@ -1374,19 +1369,21 @@ function elementDragEnd(event) {
   createListsAndElements();
 }
 
-// function listOnDragOver(event) {
-//   // if (listen) {
-//   //   $("list-body").append(populateListElementDrop(localListId, localElementId, localElementStatus))
-//   // }
-// }
+function listOnDragOver(event, destList) {
+  var listen = globalListenToDrag;
+  if (listen) {
+    event.preventDefault();
+    if (getList(destList).openElements.length === 0 && getList(destList).closedElements.length === 0) {
+      $(".list-element-placeholder").remove();
+      $(".list-element-drop").remove();
+    }
+  }
+}
 
 function listOnDropEvent(event, destList) {
   var listen = globalListenToDrag;
   if (listen) {
     if (getList(destList).openElements.length === 0 && getList(destList).closedElements.length === 0) {
-      //remove old placeholder
-      $(".list-element-placeholder").remove();
-      $(".list-element-drop").remove();
       var localListId = event.dataTransfer.getData("localListId");
       var localElementId = event.dataTransfer.getData("localElementId");
       var localElementStatus = event.dataTransfer.getData("localElementStatus");
