@@ -31,3 +31,4 @@ function updateStoredTodoList() {
 //@prepros-append markdown.js
 //@prepros-append clickEvents.js
 //@prepros-append dragDrop.js
+//@prepros-append notifications.js

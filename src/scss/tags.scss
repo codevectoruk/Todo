@@ -1,31 +1,29 @@
 .tag {
-    border-radius: 4px;
-    display: inline-block;
-    font-size: 12px;
-    line-height: 1;
-    margin: 0 0 0 4px;
-    padding: 2px 4px;
-    text-align: center;
-    vertical-align: baseline;
-    white-space: nowrap;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  margin: 0 0 0 4px;
+  padding: 2px 4px;
+  text-align: center;
+  vertical-align: baseline;
+  white-space: nowrap;
+  background-color: transparent;
 }
 @each $color, $value in $theme-colors {
-    .tag-#{$color} {
-        border: 2px solid $value;
-        &:hover {
-            border: 2px solid darken($value,10%);
-        }
+  .tag-#{$color} {
+    border: 2px solid $value;
+    &:hover {
+      border: 2px solid darken($value, 10%);
     }
-    .theme-default .tag-#{$color} {
-        background-color: $theme-default-bg-color-1;
-        color: $theme-default-font-color-1;
-    }
-    .theme-dark .tag-#{$color} {
-        background-color: $theme-dark-bg-color-1;
-        color: $theme-dark-font-color-1;
-    }
-    .theme-light .tag-#{$color} {
-        background-color: $theme-light-bg-color-1;
-        color: $theme-light-font-color-1;
-    }
+  }
+  .theme-default .tag-#{$color} {
+    color: $theme-default-font-color-1;
+  }
+  .theme-dark .tag-#{$color} {
+    color: $theme-dark-font-color-1;
+  }
+  .theme-light .tag-#{$color} {
+    color: $theme-light-font-color-1;
+  }
 }
