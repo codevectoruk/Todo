@@ -1,0 +1,1 @@
+$(".footer").append(" v." + version);

@@ -1,3 +1,5 @@
+var version = 213; //update this to reflect the latest version of the todo
+var devStatus = "production"; //use production or development for the status of the build
 var todo = JSON.parse(localStorage.getItem("todo"));
 var elementCreateFlag = false;
 
@@ -32,3 +34,4 @@ function updateStoredTodoList() {
 //@prepros-append clickEvents.js
 //@prepros-append dragDrop.js
 //@prepros-append notifications.js
+//@prepros-append footer.js

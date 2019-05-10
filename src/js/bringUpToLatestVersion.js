@@ -1,6 +1,3 @@
-var version = 192; //update this to reflect the latest version of the todo
-var devStatus = "development"; //use production or development for the status of the build
-
 function checkVersion() {
   if (
     localStorage.getItem("version") === "null" ||
