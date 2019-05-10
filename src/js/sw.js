@@ -1,4 +1,4 @@
-var CACHE = "2.1.1";
+var CACHE = "2.1.2";
 
 // On install, cache some resource.
 self.addEventListener("install", function(evt) {
@@ -47,7 +47,12 @@ function precache() {
       "webfonts/fa-regular-400.woff",
       "webfonts/fa-regular-400.woff2",
       "webfonts/fa-solid-900.woff",
-      "webfonts/fa-solid-900.woff2"
+      "webfonts/fa-solid-900.woff2",
+      "fonts/OpenSans-Bold.ttf",
+      "fonts/OpenSans-Italic.ttf",
+      "fonts/OpenSans-Light.ttf",
+      "fonts/OpenSans-Regular.ttf",
+      "fonts/OpenSans-SemiBold.ttf"
     ]);
   });
 }
