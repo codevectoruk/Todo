@@ -1,6 +1,6 @@
 var CACHE = "2.1.3";
 
-// On install, cache some resource.
+// On install, cache some resources.
 self.addEventListener("install", function(evt) {
   //console.log("The service worker is being installed.");
 
@@ -13,12 +13,12 @@ self.addEventListener("install", function(evt) {
 // from the server.
 self.addEventListener("fetch", function(evt) {
   //console.log("The service worker is serving the asset.");
-  // Try network and if it fails, go for the cached copy.
-  evt.respondWith(
-    fromNetwork(evt.request, 400).catch(function() {
-      return fromCache(evt.request);
-    })
-  );
+  // You can use `respondWith()` to answer immediately, without waiting for the
+  // network response to reach the service worker...
+  evt.respondWith(fromCache(evt.request));
+  // ...and `waitUntil()` to prevent the worker from being killed until the
+  // cache is updated.
+  evt.waitUntil(update(evt.request));
 });
 
 // Open a cache and use `addAll()` with an array of assets to add all of them
@@ -57,21 +57,6 @@ function precache() {
   });
 }
 
-// Time limited network request. If the network fails or the response is not
-// served before timeout, the promise is rejected.
-function fromNetwork(request, timeout) {
-  return new Promise(function(fulfill, reject) {
-    // Reject in case of timeout.
-    var timeoutId = setTimeout(reject, timeout);
-    // Fulfill in case of success.
-    fetch(request).then(function(response) {
-      clearTimeout(timeoutId);
-      fulfill(response);
-      // Reject also if network fetch rejects.
-    }, reject);
-  });
-}
-
 // Open the cache where the assets were stored and search for the requested
 // resource. Notice that in case of no matching, the promise still resolves
 // but it does with `undefined` as value.
@@ -79,6 +64,16 @@ function fromCache(request) {
   return caches.open(CACHE).then(function(cache) {
     return cache.match(request).then(function(matching) {
       return matching || Promise.reject("no-match");
+    });
+  });
+}
+
+// Update consists in opening the cache, performing a network request and
+// storing the new response data.
+function update(request) {
+  return caches.open(CACHE).then(function(cache) {
+    return fetch(request).then(function(response) {
+      return cache.put(request, response);
     });
   });
 }
