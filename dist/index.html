@@ -21,8 +21,12 @@
       </div>
       <div class="flex-right">
         <div class="import-export">
-          <i class="fas fa-file-import"></i>
-          <i class="fas fa-file-export" onclick="downloadObjectAsJson()"></i>
+          <i class="fas fa-file-import" aria-hidden="true"></i>
+          <i
+            class="fas fa-file-export"
+            onclick="downloadObjectAsJson()"
+            aria-hidden="true"
+          ></i>
         </div>
         <div class="theme-picker">
           Theme:
@@ -56,7 +60,7 @@
               class="close-container"
               onclick="toggleElementModalVisibility()"
             >
-              <i class="fas fa-times"></i>
+              <i class="fas fa-times" aria-hidden="true"></i>
             </div>
           </div>
         </div>
@@ -90,7 +94,11 @@
                   class="tail-datetime-field"
                   placeholder="yyyy-mm-dd hh:mm:ss"
                 />
-                <i class="fas fa-times" onclick="buttonClearDueDate()"></i>
+                <i
+                  class="fas fa-times"
+                  onclick="buttonClearDueDate()"
+                  aria-hidden="true"
+                ></i>
               </div>
             </div>
           </div>
@@ -105,7 +113,9 @@
                 id="elementDescriptionMarkdownBody"
                 onclick="clickDescriptionMarkdownContainer()"
               ></div>
-              <div class="markdown-edit-button"><i class="fas fa-pen"></i></div>
+              <div class="markdown-edit-button">
+                <i class="fas fa-pen" aria-hidden="true"></i>
+              </div>
             </div>
             <textarea
               type="text"
@@ -130,7 +140,9 @@
                 id="elementCommentsMarkdownBody"
                 onclick="clickCommentsMarkdownContainer()"
               ></div>
-              <div class="markdown-edit-button"><i class="fas fa-pen"></i></div>
+              <div class="markdown-edit-button">
+                <i class="fas fa-pen" aria-hidden="true"></i>
+              </div>
             </div>
             <textarea
               type="text"
