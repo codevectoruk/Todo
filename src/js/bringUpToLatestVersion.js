@@ -1,10 +1,7 @@
 function checkVersion() {
   if (
     localStorage.getItem("version") === "null" ||
-    localStorage.getItem("version") === null
-  ) {
-    updateVersion();
-  } else if (
+    localStorage.getItem("version") === null ||
     version < localStorage.getItem("version") ||
     devStatus === "development"
   ) {
