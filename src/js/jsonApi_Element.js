@@ -279,7 +279,7 @@ function changeElementStatus(localListId, localElementId, toStatus) {
     addList = localListDeletedElements;
     remList = localListClosedElements;
   }
-  if (remList[localElementId] !== undefined) {
+  if (remList !== undefined) {
     localElement = remList[localElementId];
     remList.splice(localElementId, 1);
     addList.push(localElement);
@@ -312,7 +312,7 @@ function deleteElement(localListId, localElementId, localElementStatus) {
   if (localElementStatus === "deleted") {
     remList = localListDeletedElements;
   }
-  if (remList[localElementId] !== undefined) {
+  if (remList !== undefined) {
     remList.splice(localElementId, 1);
   }
 }
