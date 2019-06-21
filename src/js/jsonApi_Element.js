@@ -279,9 +279,11 @@ function changeElementStatus(localListId, localElementId, toStatus) {
     addList = localListDeletedElements;
     remList = localListClosedElements;
   }
-  localElement = remList[localElementId];
-  remList.splice(localElementId, 1);
-  addList.push(localElement);
+  if (remList[localElementId] !== undefined) {
+    localElement = remList[localElementId];
+    remList.splice(localElementId, 1);
+    addList.push(localElement);
+  }
 }
 
 function changeElementStatusToDeleted(localListId, localElementId) {
@@ -310,7 +312,9 @@ function deleteElement(localListId, localElementId, localElementStatus) {
   if (localElementStatus === "deleted") {
     remList = localListDeletedElements;
   }
-  remList.splice(localElementId, 1);
+  if (remList[localElementId] !== undefined) {
+    remList.splice(localElementId, 1);
+  }
 }
 
 // function changeElementCategory() {
