@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 If you just want to use the application the easiest way is to go to the github pages link to this repository.
 
-[https://todo.journeys.io/](https://todo.journeys.io/)
+[http://todo.codevector.co.uk/](http://todo.codevector.co.uk/)
 
 ### Building the Application Yourself
 
