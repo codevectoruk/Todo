@@ -1,0 +1,35 @@
+{
+  "name": "todo",
+  "version": "3.0.1",
+  "description": "Serverless ToDo",
+  "keywords": [
+    "code",
+    "vector",
+    "todo",
+    "serverless"
+  ],
+  "license": "",
+  "author": "Edward Wright",
+  "scripts": {
+    "build": "parcel build index.html",
+    "start_2": "npm run build --no-source-maps --no-content-hash --no-minify && npm run dev",
+    "dev": "parcel index.html --open",
+    "start": "npm run build && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "caniuse-lite": "^1.0.30001165",
+    "elliptic": ">=6.5.3",
+    "highlight.js": "^10.4.1",
+    "lodash": ">=4.17.19",
+    "node-forge": ">=0.10.0",
+    "normalize.css": "^8.0.1",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.30.0",
+    "tail.datetime": "^0.4.13"
+  },
+  "dependencies": {
+    "functions": "^1.0.9"
+  }
+}

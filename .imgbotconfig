@@ -1,6 +1,0 @@
-"schedule": "daily", // daily|weekly|monthly
-    "ignoredFiles": [
-        "src/*", // ignore by folderpath
-    ],
-    "aggressiveCompression": "true" // true|false
-}

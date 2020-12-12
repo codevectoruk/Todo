@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>TODO</title>
-    <meta name="description" content="To Do List" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#5d5dff" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="shortcut icon" href="images/todo-icon.ico" />
-    <link rel="icon" type="image/png" href="images/todo-icon256.png" />
-    <link rel="apple-touch-icon-precomposed" href="images/todo-icon256.png" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#5d5dff" />
-    <link rel="manifest" href="manifest.json" />
-  </head>
+    <meta name="description" content="To Do List">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#5d5dff">
+    <!-- <link rel="stylesheet" href="./node_modules/tail.datetime/css/tail.datetime-default.css" /> -->
+    <link rel="stylesheet" href="/main.77bb5cfd.css">
+    <link rel="shortcut icon" href="/todo-icon.7aa00a5f.ico">
+    <link rel="icon" type="image/png" href="/todo-icon256.67014e86.png">
+    <link rel="apple-touch-icon-precomposed" href="/todo-icon256.67014e86.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#5d5dff">
+    <link rel="manifest" href="/manifest.js">
+  <script src="/main.77bb5cfd.js"></script><link rel="stylesheet" href="/main.fb6bbcaf.css"></head>
   <body class="theme-default">
     <div class="main-title-container" role="main">
       <div class="main-title">
-        <img src="./images/todo.png" alt="Todo Logo" />
+        <img src="/todo.c049fe58.png" alt="Todo Logo">
       </div>
       <div class="flex-right">
         <div class="import-export">
@@ -26,18 +26,9 @@
         </div>
         <div class="theme-picker">
           Theme:
-          <div
-            class="theme theme-picker-default"
-            onclick="themeChanger('default')"
-          ></div>
-          <div
-            class="theme theme-picker-dark"
-            onclick="themeChanger('dark')"
-          ></div>
-          <div
-            class="theme theme-picker-light"
-            onclick="themeChanger('light')"
-          ></div>
+          <div class="theme theme-picker-default" onclick="themeChanger('default')"></div>
+          <div class="theme theme-picker-dark" onclick="themeChanger('dark')"></div>
+          <div class="theme theme-picker-light" onclick="themeChanger('light')"></div>
         </div>
       </div>
     </div>
@@ -52,10 +43,7 @@
             <div class="modal-title" id="element-modal-update-title">
               Update Item
             </div>
-            <div
-              class="close-container"
-              onclick="toggleElementModalVisibility()"
-            >
+            <div class="close-container" onclick="toggleElementModalVisibility()">
               <i class="fas fa-times"></i>
             </div>
           </div>
@@ -63,10 +51,10 @@
         <div class="scroll">
           <div class="input-container">
             <div class="input-title"><span>Title</span></div>
-            <input type="text" id="elementTitle" placeholder="Enter a title…" />
-            <input type="hidden" id="modal-list" />
-            <input type="hidden" id="modal-element" />
-            <input type="hidden" id="modal-status" />
+            <input type="text" id="elementTitle" placeholder="Enter a title…">
+            <input type="hidden" id="modal-list">
+            <input type="hidden" id="modal-element">
+            <input type="hidden" id="modal-status">
           </div>
           <div class="flex-horizontal">
             <div class="input-container">
@@ -84,62 +72,29 @@
             <div class="input-container input-container-padding">
               <div class="input-title"><span>Due Date</span></div>
               <div class="input-button-group-container">
-                <input
-                  type="text"
-                  id="elementDue"
-                  class="tail-datetime-field"
-                  placeholder="yyyy-mm-dd hh:mm:ss"
-                />
+                <input type="text" id="elementDue" class="tail-datetime-field" placeholder="yyyy-mm-dd hh:mm:ss">
                 <i class="fas fa-times" onclick="buttonClearDueDate()"></i>
               </div>
             </div>
           </div>
           <div class="input-container">
             <div class="input-title"><span>Description</span></div>
-            <div
-              class="markdown-container"
-              id="elementDescriptionMarkdownContainer"
-            >
-              <div
-                class="markdown-body markdown"
-                id="elementDescriptionMarkdownBody"
-                onclick="clickDescriptionMarkdownContainer()"
-              ></div>
+            <div class="markdown-container" id="elementDescriptionMarkdownContainer">
+              <div class="markdown-body markdown" id="elementDescriptionMarkdownBody" onclick="clickDescriptionMarkdownContainer()"></div>
               <div class="markdown-edit-button"><i class="fas fa-pen"></i></div>
             </div>
-            <textarea
-              type="text"
-              class="scrollbar hidden"
-              id="elementDescription"
-              placeholder="Add a more detailed description…"
-              rows="2"
-              onfocusout="loseDescriptionMarkdownContainerFocus()"
-            ></textarea>
+            <textarea type="text" class="scrollbar hidden" id="elementDescription" placeholder="Add a more detailed description…" rows="2" onfocusout="loseDescriptionMarkdownContainerFocus()"></textarea>
             <div class="user-save-alert hidden" id="elementDescriptionWarning">
               There are unsaved changes
             </div>
           </div>
           <div class="input-container">
             <div class="input-title"><span>Comments</span></div>
-            <div
-              class="markdown-container"
-              id="elementCommentsMarkdownContainer"
-            >
-              <div
-                class="markdown-body markdown"
-                id="elementCommentsMarkdownBody"
-                onclick="clickCommentsMarkdownContainer()"
-              ></div>
+            <div class="markdown-container" id="elementCommentsMarkdownContainer">
+              <div class="markdown-body markdown" id="elementCommentsMarkdownBody" onclick="clickCommentsMarkdownContainer()"></div>
               <div class="markdown-edit-button"><i class="fas fa-pen"></i></div>
             </div>
-            <textarea
-              type="text"
-              class="scrollbar hidden"
-              id="elementComments"
-              placeholder="Add comments on the work that has been done…"
-              rows="2"
-              onfocusout="loseCommentsMarkdownContainerFocus()"
-            ></textarea>
+            <textarea type="text" class="scrollbar hidden" id="elementComments" placeholder="Add comments on the work that has been done…" rows="2" onfocusout="loseCommentsMarkdownContainerFocus()"></textarea>
             <div class="user-save-alert hidden" id="elementCommentsWarning">
               There are unsaved changes
             </div>
@@ -147,27 +102,9 @@
         </div>
         <div class="noscroll">
           <div class="button-container">
-            <input
-              class="button button-success"
-              id="element-modal-button-create"
-              type="button"
-              value="Create"
-              onclick="buttonCreateNewElement()"
-            />
-            <input
-              class="button button-info"
-              id="element-modal-button-update"
-              type="button"
-              value="Save"
-              onclick="buttonUpdateElement()"
-            />
-            <input
-              class="button button-default"
-              id="element-modal-button-cancel"
-              type="button"
-              value="Cancel"
-              onclick="toggleElementModalVisibility()"
-            />
+            <input class="button button-success" id="element-modal-button-create" type="button" value="Create" onclick="buttonCreateNewElement()">
+            <input class="button button-info" id="element-modal-button-update" type="button" value="Save" onclick="buttonUpdateElement()">
+            <input class="button button-default" id="element-modal-button-cancel" type="button" value="Cancel" onclick="toggleElementModalVisibility()">
           </div>
         </div>
       </div>
@@ -175,35 +112,16 @@
     <div class="modal-container hidden" id="id-confirmation-modal">
       <div class="modal-md generic-modal">
         <div class="scroll">
-          <div class="modal-title">
-            Delete
-          </div>
+          <div class="modal-title">Delete</div>
           <div class="text-container">
             Are you sure you want to delete this?
           </div>
           <div class="button-container">
-            <input type="hidden" id="modal-confirm-list" />
-            <input type="hidden" id="modal-confirm-element" />
-            <input
-              class="button button-danger"
-              id="deleteElementButton"
-              type="button"
-              value="Confirm"
-              onclick="buttonChangeElementStatusToDeleted()"
-            />
-            <input
-              class="button button-danger"
-              id="deleteListButton"
-              type="button"
-              value="Confirm"
-              onclick="buttonDeleteList()"
-            />
-            <input
-              class="button button-default"
-              type="button"
-              value="Cancel"
-              onclick="toggleConfirmationModalVisibility()"
-            />
+            <input type="hidden" id="modal-confirm-list">
+            <input type="hidden" id="modal-confirm-element">
+            <input class="button button-danger" id="deleteElementButton" type="button" value="Confirm" onclick="buttonChangeElementStatusToDeleted()">
+            <input class="button button-danger" id="deleteListButton" type="button" value="Confirm" onclick="buttonDeleteList()">
+            <input class="button button-default" type="button" value="Cancel" onclick="toggleConfirmationModalVisibility()">
           </div>
         </div>
       </div>
@@ -211,31 +129,15 @@
     <div class="modal-container hidden" id="id-rename-modal">
       <div class="modal-lg generic-modal">
         <div class="scroll">
-          <div class="modal-title">
-            Rename List
-          </div>
+          <div class="modal-title">Rename List</div>
           <div class="input-container">
             <div class="input-title"><span>List Title</span></div>
-            <input
-              type="text"
-              id="modal-list-rename-input"
-              placeholder="Change List's Name…"
-            />
+            <input type="text" id="modal-list-rename-input" placeholder="Change List's Name…">
           </div>
           <div class="button-container">
-            <input type="hidden" id="modal-rename-list" />
-            <input
-              class="button button-info"
-              type="button"
-              value="Confirm"
-              onclick="buttonRenameList()"
-            />
-            <input
-              class="button button-cancel"
-              type="button"
-              value="Cancel"
-              onclick="toggleRenameListModal()"
-            />
+            <input type="hidden" id="modal-rename-list">
+            <input class="button button-info" type="button" value="Confirm" onclick="buttonRenameList()">
+            <input class="button button-cancel" type="button" value="Cancel" onclick="toggleRenameListModal()">
           </div>
         </div>
       </div>
@@ -244,11 +146,49 @@
       <div class="footer">&copy; Edward Wright 2019</div>
     </div>
     <div class="userAlert-container"></div>
-    <script src="js/jquery-3.4.0.min.js"></script>
-    <script src="js/autosize.min.js"></script>
-    <script src="js/tail.datetime.min.js"></script>
-    <script src="js/marked.min.js"></script>
-    <script src="js/highlight.min.js"></script>
-    <script src="js/main.js"></script>
+
+    <script type="text/javascript" src="/main.fb6bbcaf.js"></script>
+    <script type="text/javascript" src="/tail.datetime.min.cc4106c2.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  tail.DateTime(".tail-datetime-field", {
+    animate: true,
+    classNames: false,
+    closeButton: true,
+    // New in 0.4.5
+    dateFormat: "YYYY-mm-dd",
+    dateStart: false,
+    dateRanges: [],
+    dateBlacklist: true,
+    dateEnd: false,
+    locale: "en",
+    position: "bottom",
+    rtl: "auto",
+    startOpen: false,
+    stayOpen: false,
+    timeFormat: "HH:ii:ss",
+    timeHours: null,
+    // New Syntax in 0.4.5
+    timeMinutes: null,
+    // New Syntax in 0.4.5
+    timeSeconds: 0,
+    // New Syntax in 0.4.5
+    timeIncrement: true,
+    // New in 0.4.5
+    timeStepHours: 1,
+    // New in 0.4.3
+    timeStepMinutes: 5,
+    // New in 0.4.3
+    timeStepSeconds: 5,
+    // New in 0.4.3
+    today: true,
+    tooltips: [],
+    viewDefault: "days",
+    viewDecades: false,
+    viewYears: true,
+    viewMonths: true,
+    viewDays: true,
+    weekStart: 1
+  });
+});</script>
   </body>
 </html>
